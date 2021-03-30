@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">CampusCamaraFP</string>
+    <string name="etusu">Usuario</string>
+    <string name="etpass">Contraseña</string>
+    <string name="botoniniciar">Iniciar Sesión</string>
+</resources>
