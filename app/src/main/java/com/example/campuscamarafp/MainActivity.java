@@ -2,8 +2,10 @@ package com.example.campuscamarafp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 public class MainActivity extends AppCompatActivity {
 
