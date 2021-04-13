@@ -68,14 +68,14 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="99dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <Spinner
             android:id="@+id/spinnerCursos"
-            android:layout_width="205dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             tools:layout_conversion_absoluteHeight="24dp"
             tools:layout_conversion_absoluteWidth="114dp"
             tools:layout_editor_absoluteX="40dp"
@@ -83,14 +83,15 @@
 
 
         <RadioGroup
-            android:layout_width="205dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/rbPrimero"
-                android:layout_width="103dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/primero"
                 tools:layout_conversion_absoluteHeight="48dp"
@@ -100,7 +101,7 @@
 
             <RadioButton
                 android:id="@+id/rbSegundo"
-                android:layout_width="102dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="@string/segundo"
@@ -128,7 +129,7 @@
             android:hint="@string/registrarse"
             android:textColor="@color/linea_escribir"
             android:textColorHighlight="@color/linea_escribir"
-            android:textColorHint="@color/linea_escribir"
+            android:textColorHint="@color/white"
             android:textColorLink="@color/linea_escribir"
             tools:layout_conversion_absoluteHeight="48dp"
             tools:layout_conversion_absoluteWidth="126dp"

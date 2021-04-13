@@ -5,5 +5,7 @@
     android:textSize="18sp"
     android:padding="10sp"
     android:textColor="@color/linea_escribir"
+    android:textAlignment="center"
     android:fontFamily="sans-serif"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center_horizontal" />
