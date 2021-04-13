@@ -7,7 +7,7 @@
     android:background="#E8E8E8"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".InicioSesion">
 
     <ImageView
         android:id="@+id/imageView"
@@ -57,7 +57,8 @@
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         android:clickable="true"
-        android:hint="@string/textClick" />
+        android:hint="@string/textClick"
+        android:textColorHint="@color/linea_escribir" />
 
     <Button
         android:id="@+id/btnIniciar"
