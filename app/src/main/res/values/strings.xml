@@ -7,4 +7,7 @@
     <string name="etnombre">Nombre</string>
     <string name="etapellidos">Apellidos</string>
     <string name="curso">Curso</string>
+    <string name="correo">Correo</string>
+    <string name="primero">1º</string>
+    <string name="segundo">2º</string>
 </resources>

@@ -73,7 +73,7 @@
             android:clickable="true"
             android:hint="@string/registrarse"
             android:onClick="Registrar"
-            android:textColorHint="@color/black" />
+            android:textColorHint="@color/linea_escribir" />
     </LinearLayout>
 
 </LinearLayout>
