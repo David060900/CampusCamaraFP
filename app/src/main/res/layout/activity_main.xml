@@ -47,6 +47,18 @@
         android:textColor="#004E70"
         android:textColorHint="#004E70" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:clickable="true"
+        android:hint="@string/textClick" />
+
     <Button
         android:id="@+id/btnIniciar"
         android:layout_width="160dp"

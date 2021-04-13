@@ -3,4 +3,5 @@
     <string name="etusu">Usuario</string>
     <string name="etpass">Contraseña</string>
     <string name="botoniniciar">Iniciar Sesión</string>
+    <string name="textClick">Registrarse</string>
 </resources>
