@@ -76,6 +76,7 @@
             android:id="@+id/spinnerCursos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             tools:layout_conversion_absoluteHeight="24dp"
             tools:layout_conversion_absoluteWidth="114dp"
             tools:layout_editor_absoluteX="40dp"
@@ -86,6 +87,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="-20dp"
+            android:layout_marginLeft="-20dp"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
@@ -125,6 +128,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             android:gravity="center_vertical"
+            android:onClick="Registrarse"
             android:text="@string/registrarse"
             android:textColor="@color/white"
             android:textColorHighlight="@color/linea_escribir"
