@@ -1,5 +1,7 @@
 package com.example.campuscamarafp;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -12,7 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-    public class Registrarse extends AppCompatActivity {
+
+import com.example.campuscamarafp.utilidades.Utilidades;
+
+public class Registrarse extends AppCompatActivity {
 
         private EditText etNombre, etApellido, etCorreo, etPassword;
         private Spinner spinner1;
@@ -37,6 +42,25 @@ import androidx.appcompat.app.AppCompatActivity;
         }
 
         public void Registrarse (View view){
+            //MensajeEspacios(view);
+            registrarUsuarios();
+        }
+
+        private void registrarUsuarios() {
+            AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "bd_campus", null, 1);
+
+            SQLiteDatabase db = conexion.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(Utilidades.CAMPO_NOMBRE, etNombre.getText().toString());
+            values.put(Utilidades.CAMPO_APELLIDOS, etApellido.getText().toString());
+            values.put(Utilidades.CAMPO_CORREO, etCorreo.getText().toString());
+            values.put(Utilidades.CAMPO_PASSWORD, etPassword.getText().toString());
+
+            Toast.makeText(this,"Registrado", Toast.LENGTH_SHORT).show();
+        }
+
+        public void MensajeEspacios (View view){
             if(etNombre.getText().toString().isEmpty()){
                 Toast.makeText(this,"Introduce el Nombre", Toast.LENGTH_SHORT).show();
             }else{

@@ -20,6 +20,8 @@ public class InicioSesion extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         et1 = (EditText)findViewById(R.id.etUsuario);
+
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "bd_campus", null, 1);
     }
 
     public void Registrar (View view){
