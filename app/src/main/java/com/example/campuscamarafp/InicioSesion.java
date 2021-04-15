@@ -16,12 +16,12 @@ public class InicioSesion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_inicio);
+        setContentView(R.layout.activity_iniciosesion);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         et1 = (EditText)findViewById(R.id.etUsuario);
 
-        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "bd_campus", null, 1);
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
     }
 
     public void Registrar (View view){
