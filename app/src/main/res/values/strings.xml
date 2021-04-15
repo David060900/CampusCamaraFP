@@ -1,13 +1,12 @@
 <resources>
     <string name="app_name">CampusCamaraFP</string>
-    <string name="etusu">Usuario</string>
+    <string name="email">email</string>
     <string name="etpass">Contraseña</string>
     <string name="botoniniciar">Iniciar Sesión</string>
     <string name="registrarse">Registrarse</string>
     <string name="etnombre">Nombre</string>
     <string name="etapellidos">Apellidos</string>
     <string name="curso">Curso</string>
-    <string name="correo">Correo</string>
     <string name="primero">1º</string>
     <string name="segundo">2º</string>
 </resources>

@@ -6,7 +6,6 @@ public class Usuario {
     private String apellidos;
     private String correo;
     private String password;
-    private String curso;
 
     public Usuario(String nombre, String apellidos, String correo, String password) {
         this.nombre = nombre;

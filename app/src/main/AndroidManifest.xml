@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CampusCamaraFP">
         <activity android:name=".Registrarse"></activity>
+        <activity android:name=".Inicio"></activity>
         <activity android:name=".InicioSesion">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
