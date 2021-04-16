@@ -40,15 +40,30 @@ public class InicioSesion extends AppCompatActivity {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
+        String correo = et1.getText().toString();
+        String password = et2.getText().toString();
+
         Cursor fila = bd.rawQuery("select " + Utilidades.CAMPO_CORREO +
                 ", " + Utilidades.CAMPO_PASSWORD + " from " + Utilidades.TABLA_USUARIOS
-                + " where " + Utilidades.CAMPO_CORREO + " = '" + et1.getText().toString() + "'"
+                + " where " + Utilidades.CAMPO_CORREO + " = '" + correo
+                        + "' and " + Utilidades.CAMPO_PASSWORD + " = '" + password + "'"
                 , null);
+        try{
+            if(fila.moveToFirst()){
+                String cor = fila.getString(0);
+                String pass = fila.getString(1);
 
-        Intent i = new Intent(this, Inicio.class);
-        i.putExtra("dato", et1.getText().toString());
-        startActivity(i);
-        Toast.makeText(this,"Inicio",Toast.LENGTH_SHORT).show();
+                if(correo.equals(cor) && password.equals(password)){
+                    Intent i = new Intent(this, Inicio.class);
+                    startActivity(i);
+                    Toast.makeText(this,"Inicio",Toast.LENGTH_SHORT).show();
+                }
+            }else{
+                Toast.makeText(this,"Datos incorrectos",Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {//capturamos los errores si hubieran
+            Toast.makeText(this, "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
 }
