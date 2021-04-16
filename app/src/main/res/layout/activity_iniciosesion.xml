@@ -48,9 +48,23 @@
         android:textColorHint="@color/linea_escribir" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/cbInicioSesion"
+            android:layout_width="205dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:text="@string/checkinicio" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
         <Button

@@ -41,7 +41,7 @@ public class Registrarse extends AppCompatActivity {
 
 
         }
-
+        //llamamos a la clase que comprueba el registro de usuarios y que no hayan espacios a la hora de registrar
         public void Registrarse (View view){
             registrarUsuarios();
         }
@@ -54,6 +54,7 @@ public class Registrarse extends AppCompatActivity {
             String apellidos = etApellido.getText().toString();
             String correo = etCorreo.getText().toString();
             String password = etPassword.getText().toString();
+            String curso = spinner1.getSelectedItem().toString();
 
             ContentValues values = new ContentValues();
 
@@ -62,11 +63,11 @@ public class Registrarse extends AppCompatActivity {
                 values.put(Utilidades.CAMPO_APELLIDOS, apellidos);
                 values.put(Utilidades.CAMPO_CORREO, correo);
                 values.put(Utilidades.CAMPO_PASSWORD, password);
+                values.put(Utilidades.CAMPO_CURSO, curso);
                 Toast.makeText(this,"Usuario '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(this,"Introduce todos los campos", Toast.LENGTH_SHORT).show();
             }
-
             db.insert(Utilidades.TABLA_USUARIOS, null, values);
             db.close();
         }
