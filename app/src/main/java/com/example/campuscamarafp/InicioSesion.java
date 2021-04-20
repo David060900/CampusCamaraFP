@@ -44,7 +44,7 @@ public class InicioSesion extends AppCompatActivity {
     public void Inicio (View view){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
-
+        
         String correo = et1.getText().toString();
         String password = et2.getText().toString();
         //sentencia que comprueba en la base de datos el correo y la contraseña
