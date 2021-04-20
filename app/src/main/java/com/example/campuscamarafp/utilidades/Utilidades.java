@@ -9,6 +9,7 @@ public class Utilidades {
     public static final String CAMPO_CORREO = "correo";
     public static final String CAMPO_PASSWORD = "password";
     public static final String CAMPO_CURSO = "curso";
+    public static final String CAMPO_NUMCURSO = "numcurso";
 
     //sentencia que crea la tabla usuarios
     public static final String CREAR_TABLA_USUARIO = "create table " + TABLA_USUARIOS +
@@ -16,5 +17,6 @@ public class Utilidades {
             + CAMPO_APELLIDOS + " text, " +
             CAMPO_CORREO + " text primary key, " +
             CAMPO_PASSWORD + " text, " +
-            CAMPO_CURSO + " text)";
+            CAMPO_CURSO + " text, " +
+            CAMPO_NUMCURSO + " text)";
 }

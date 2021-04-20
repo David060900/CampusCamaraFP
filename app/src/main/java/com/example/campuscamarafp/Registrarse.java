@@ -38,8 +38,6 @@ public class Registrarse extends AppCompatActivity {
             String cursos [] = {"DAM", "Marketing y Publicidad", "Comercio Internacional"};
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_cursos, cursos);
             spinner1.setAdapter(adapter);
-
-
         }
         //llamamos a la clase que comprueba el registro de usuarios y que no hayan espacios a la hora de registrar
         public void Registrarse (View view){
@@ -55,16 +53,30 @@ public class Registrarse extends AppCompatActivity {
             String correo = etCorreo.getText().toString();
             String password = etPassword.getText().toString();
             String curso = spinner1.getSelectedItem().toString();
+            String curso1 = cb1.getText().toString();
+            String curso2 = cb2.getText().toString();
 
             ContentValues values = new ContentValues();
 
             if(!nombre.isEmpty() && !apellidos.isEmpty() && !correo.isEmpty() && !password.isEmpty()){
-                values.put(Utilidades.CAMPO_NOMBRE, nombre);
-                values.put(Utilidades.CAMPO_APELLIDOS, apellidos);
-                values.put(Utilidades.CAMPO_CORREO, correo);
-                values.put(Utilidades.CAMPO_PASSWORD, password);
-                values.put(Utilidades.CAMPO_CURSO, curso);
-                Toast.makeText(this,"Usuario '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
+                if(!curso1.isEmpty()){
+                    values.put(Utilidades.CAMPO_NOMBRE, nombre);
+                    values.put(Utilidades.CAMPO_APELLIDOS, apellidos);
+                    values.put(Utilidades.CAMPO_CORREO, correo);
+                    values.put(Utilidades.CAMPO_PASSWORD, password);
+                    values.put(Utilidades.CAMPO_CURSO, curso);
+                    values.put(Utilidades.CAMPO_NUMCURSO, curso1);
+                    Toast.makeText(this,"Usuario '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
+                }
+                if(!curso2.isEmpty()){
+                    values.put(Utilidades.CAMPO_NOMBRE, nombre);
+                    values.put(Utilidades.CAMPO_APELLIDOS, apellidos);
+                    values.put(Utilidades.CAMPO_CORREO, correo);
+                    values.put(Utilidades.CAMPO_PASSWORD, password);
+                    values.put(Utilidades.CAMPO_CURSO, curso);
+                    values.put(Utilidades.CAMPO_NUMCURSO, curso2);
+                    Toast.makeText(this,"Usuario '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
+                }
             }else{
                 Toast.makeText(this,"Introduce todos los campos", Toast.LENGTH_SHORT).show();
             }

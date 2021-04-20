@@ -16,7 +16,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override//creamos los scripts
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("DROP TABLE usuarios");
+        db.execSQL(Utilidades.CREAR_TABLA_USUARIO);
     }
 
     @Override//verifica si existe una version antigua de la base de datos

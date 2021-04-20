@@ -7,7 +7,7 @@
     <string name="etnombre">Nombre</string>
     <string name="etapellidos">Apellidos</string>
     <string name="curso">Curso</string>
-    <string name="primero">1º</string>
-    <string name="segundo">2º</string>
+    <string name="primero">1ero</string>
+    <string name="segundo">2do</string>
     <string name="checkinicio">Guardar los datos</string>
 </resources>
