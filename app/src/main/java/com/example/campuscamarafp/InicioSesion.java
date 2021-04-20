@@ -67,7 +67,7 @@ public class InicioSesion extends AppCompatActivity {
                     Usuario usu = new Usuario();
                     usu.setCorreo(correo);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("usuarios", usu);
+                    bundle.putSerializable("usu_iniciosesion", usu);
                     i.putExtras(bundle);
                     startActivity(i);
                     Toast.makeText(this,"Inicio",Toast.LENGTH_SHORT).show();

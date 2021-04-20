@@ -24,15 +24,12 @@ public class Inicio  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
-
         tv = (TextView)findViewById(R.id.txtPrueba);
 
         Bundle objEnviado = getIntent().getExtras();
         Usuario usu;
-        usu = (Usuario) objEnviado.getSerializable("usuarios");
+        usu = (Usuario) objEnviado.getSerializable("usu_iniciosesion");
         tv.setText(usu.getCorreo());
-
-
     }
 
     public void Perfil (View view){
@@ -41,7 +38,7 @@ public class Inicio  extends AppCompatActivity {
 
         Bundle objEnviado = getIntent().getExtras();
         Usuario usu;
-        usu = (Usuario) objEnviado.getSerializable("usuarios");
+        usu = (Usuario) objEnviado.getSerializable("usu_iniciosesion");
 
         Cursor fila = bd.rawQuery("select * from " + Utilidades.TABLA_USUARIOS
                         + " where " + Utilidades.CAMPO_CORREO + " = '" + usu.getCorreo()
@@ -50,26 +47,27 @@ public class Inicio  extends AppCompatActivity {
         //corrección de errores
         try{
             if(fila.moveToFirst()){
+                Usuario user = new Usuario();
                 String nom = fila.getString(0);
+                user.setNombre(nom);
                 String ape = fila.getString(1);
+                user.setApellidos(ape);
                 String cor= fila.getString(2);
+                user.setCorreo(cor);
                 String pass = fila.getString(3);
+                user.setPassword(pass);
                 String cur = fila.getString(4);
+                user.setCurso(cur);
                 String ncur = fila.getString(5);
-                //condicion si coinciden los datos abrimos la siguiente ventana
-                if(usu.getCorreo().equals(cor) && usu.getPassword().equals(pass)){
-                    Intent i = new Intent(this, Perfil.class);
-                    Usuario usu = new Usuario();
-                    usu.setCorreo(correo);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("usuarios", usu);
-                    i.putExtras(bundle);
-                    startActivity(i);
-                    Toast.makeText(this,"Inicio",Toast.LENGTH_SHORT).show();
-                }
-            }else{
-                Toast.makeText(this,"Datos incorrectos",Toast.LENGTH_SHORT).show();
+                user.setNumcurso(ncur);
+
+                Intent i = new Intent(this, Perfil.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("datos_usuarios", user);
+                i.putExtras(bundle);
+                startActivity(i);
             }
+
         } catch (Exception e) {//capturamos los errores si hubieran
             Toast.makeText(this, "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
