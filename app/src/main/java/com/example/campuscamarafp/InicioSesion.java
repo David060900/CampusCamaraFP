@@ -62,7 +62,7 @@ public class InicioSesion extends AppCompatActivity {
                 String cor = fila.getString(0);
                 String pass = fila.getString(1);
                 //condicion si coinciden los datos abrimos la siguiente ventana
-                if(correo.equals(cor) && password.equals(password)){
+                if(correo.equals(cor) && password.equals(pass)){
                     Intent i = new Intent(this, Inicio.class);
                     Usuario usu = new Usuario();
                     usu.setCorreo(correo);
