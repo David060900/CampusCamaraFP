@@ -14,7 +14,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.campuscamarafp.entidades.Usuario;
 import com.example.campuscamarafp.utilidades.Utilidades;
+
+import java.io.Serializable;
 
 public class InicioSesion extends AppCompatActivity {
 
@@ -61,8 +64,14 @@ public class InicioSesion extends AppCompatActivity {
                 //condicion si coinciden los datos abrimos la siguiente ventana
                 if(correo.equals(cor) && password.equals(password)){
                     Intent i = new Intent(this, Inicio.class);
+                    Usuario usu = new Usuario();
+                    usu.setCorreo(correo);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("usuarios", usu);
+                    i.putExtras(bundle);
                     startActivity(i);
                     Toast.makeText(this,"Inicio",Toast.LENGTH_SHORT).show();
+
                 }
             }else{
                 Toast.makeText(this,"Datos incorrectos",Toast.LENGTH_SHORT).show();

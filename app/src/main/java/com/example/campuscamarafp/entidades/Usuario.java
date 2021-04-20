@@ -1,17 +1,27 @@
 package com.example.campuscamarafp.entidades;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
 
     private String nombre;
     private String apellidos;
     private String correo;
     private String password;
+    private String curso;
+    private String numcurso;
 
-    public Usuario(String nombre, String apellidos, String correo, String password) {
+    public Usuario(String nombre, String apellidos, String correo, String password, String curso, String numcurso) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
         this.password = password;
+        this.curso = curso;
+        this.numcurso = numcurso;
+    }
+
+    public Usuario(){
+
     }
 
     public String getNombre() {
@@ -44,6 +54,22 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
+
+    public String getNumcurso() {
+        return numcurso;
+    }
+
+    public void setNumcurso(String numcurso) {
+        this.numcurso = numcurso;
     }
 
 }
