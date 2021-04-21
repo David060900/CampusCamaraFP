@@ -22,7 +22,7 @@ public class Perfil  extends AppCompatActivity{
         Bundle objEnviado = getIntent().getExtras();
         Usuario user;
         user = (Usuario) objEnviado.getSerializable("datos_usuarios");
-        tv1.setText(user.getNombre());
+        tv1.setText(user.getNombre() + " " + user.getNumcurso());
         tv2.setText(user.getApellidos());
 
     }
