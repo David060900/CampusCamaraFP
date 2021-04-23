@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,5 +74,19 @@ public class Inicio  extends AppCompatActivity {
             Toast.makeText(this, "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+    //método que muestra los botones de acción
+    public boolean onCreateOptionsMenu (Menu menu){
+        getMenuInflater().inflate(R.menu.menuacciones, menu);
+        return true;
+    }
+    //método para agregar las acciones de los botones de acción
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
 
+        if(id == R.id.opcion1){
+            Toast.makeText(this, "Inicio1", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

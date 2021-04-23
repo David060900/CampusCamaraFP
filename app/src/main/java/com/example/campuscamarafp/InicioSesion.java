@@ -9,6 +9,8 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -79,5 +81,4 @@ public class InicioSesion extends AppCompatActivity {
             Toast.makeText(this, "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
-
 }
