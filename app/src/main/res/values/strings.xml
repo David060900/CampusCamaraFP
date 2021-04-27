@@ -9,7 +9,8 @@
     <string name="curso">Curso</string>
     <string name="primero">1ero</string>
     <string name="segundo">2do</string>
-    <string name="checkinicio">Guardar los datos</string>
+    <string name="boxalumno">Alumno/a</string>
+    <string name="boxprofesor">Profesor/a</string>
     <string name="buscar">Buscar</string>
     <string name="compartir">Compartir</string>
     <string name="opcion1">Opción 1</string>

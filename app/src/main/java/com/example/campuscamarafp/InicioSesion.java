@@ -2,29 +2,24 @@ package com.example.campuscamarafp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.campuscamarafp.entidades.Usuario;
 import com.example.campuscamarafp.utilidades.Utilidades;
 
-import java.io.Serializable;
-
 public class InicioSesion extends AppCompatActivity {
 
     private EditText et1, et2;
-    private CheckBox cb1;
+    private RadioButton rb1, rb2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +29,25 @@ public class InicioSesion extends AppCompatActivity {
 
         et1 = (EditText)findViewById(R.id.etCorreoIS);
         et2 = (EditText)findViewById(R.id.etPasswordIS);
-        cb1 = (CheckBox)findViewById(R.id.cbInicioSesion);
+        rb1 = (RadioButton) findViewById(R.id.rbAlumno);
+        rb2 = (RadioButton) findViewById(R.id.rbProfesor);
 
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
     }
     //método que abre la ventana para el registor de usuarios
     public void Registrar (View view){
-        Intent i = new Intent(this, Registrarse.class);
-        i.putExtra("dato", et1.getText().toString());
-        startActivity(i);
-        Toast.makeText(this,"Resgistro",Toast.LENGTH_SHORT).show();
+        if(rb1.isChecked()) {
+            Intent i = new Intent(this, Registrarse.class);
+            i.putExtra("dato", et1.getText().toString());
+            startActivity(i);
+            Toast.makeText(this,"Resgistro",Toast.LENGTH_SHORT).show();
+        }
+        if(rb2.isChecked()){
+            Intent i = new Intent(this, RegistrarseProfesores.class);
+            i.putExtra("dato2", et1.getText().toString());
+            startActivity(i);
+            Toast.makeText(this,"Inicio",Toast.LENGTH_SHORT).show();
+        }
     }
     //método para iniciar sesión y abrir otra ventana
     public void Inicio (View view){
