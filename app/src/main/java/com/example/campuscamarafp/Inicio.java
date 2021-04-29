@@ -32,7 +32,7 @@ public class Inicio  extends AppCompatActivity {
         tv.setText(usu.getCorreo());
     }
 
-    public void Perfil (View view){
+    public void Perfil (){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
@@ -79,12 +79,12 @@ public class Inicio  extends AppCompatActivity {
     }
     //método para agregar las acciones de los botones de acción
     public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-
-        if(id == R.id.opcion1){
-            Toast.makeText(this, "Inicio1", Toast.LENGTH_SHORT).show();
-            return true;
+        switch (item.getItemId()) {
+            case R.id.imgperfil:
+                Perfil();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 }
