@@ -60,27 +60,27 @@ public class Registrarse extends AppCompatActivity {
 
             if(!nombre.isEmpty() && !apellidos.isEmpty() && !correo.isEmpty() && !password.isEmpty()){
                 if(!curso1.isEmpty()){
-                    values.put(Utilidades.CAMPO_NOMBRE, nombre);
-                    values.put(Utilidades.CAMPO_APELLIDOS, apellidos);
-                    values.put(Utilidades.CAMPO_CORREO, correo);
-                    values.put(Utilidades.CAMPO_PASSWORD, password);
-                    values.put(Utilidades.CAMPO_CURSO, curso);
-                    values.put(Utilidades.CAMPO_NUMCURSO, curso1);
-                    Toast.makeText(this,"Usuario '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
+                    values.put(Utilidades.CAMPO_NOMBRE_ALUMNOS, nombre);
+                    values.put(Utilidades.CAMPO_APELLIDOS_ALUMNOS, apellidos);
+                    values.put(Utilidades.CAMPO_CORREO_ALUMNOS, correo);
+                    values.put(Utilidades.CAMPO_PASSWORD_ALUMNOS, password);
+                    values.put(Utilidades.CAMPO_CURSO_ALUMNOS, curso);
+                    values.put(Utilidades.CAMPO_NUMCURSO_ALUMNOS, curso1);
+                    Toast.makeText(this,"Alumno '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
                 }
                 if(!curso2.isEmpty()){
-                    values.put(Utilidades.CAMPO_NOMBRE, nombre);
-                    values.put(Utilidades.CAMPO_APELLIDOS, apellidos);
-                    values.put(Utilidades.CAMPO_CORREO, correo);
-                    values.put(Utilidades.CAMPO_PASSWORD, password);
-                    values.put(Utilidades.CAMPO_CURSO, curso);
-                    values.put(Utilidades.CAMPO_NUMCURSO, curso2);
-                    Toast.makeText(this,"Usuario '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
+                    values.put(Utilidades.CAMPO_NOMBRE_ALUMNOS, nombre);
+                    values.put(Utilidades.CAMPO_APELLIDOS_ALUMNOS, apellidos);
+                    values.put(Utilidades.CAMPO_CORREO_ALUMNOS, correo);
+                    values.put(Utilidades.CAMPO_PASSWORD_ALUMNOS, password);
+                    values.put(Utilidades.CAMPO_CURSO_ALUMNOS, curso);
+                    values.put(Utilidades.CAMPO_NUMCURSO_ALUMNOS, curso2);
+                    Toast.makeText(this,"Alumno '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
                 }
             }else{
                 Toast.makeText(this,"Introduce todos los campos", Toast.LENGTH_SHORT).show();
             }
-            db.insert(Utilidades.TABLA_USUARIOS, null, values);
+            db.insert(Utilidades.TABLA_ALUMNOS, null, values);
             db.close();
         }
 

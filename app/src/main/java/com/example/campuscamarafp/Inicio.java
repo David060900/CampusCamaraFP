@@ -15,8 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.campuscamarafp.entidades.Usuario;
 import com.example.campuscamarafp.utilidades.Utilidades;
 
-import java.util.ArrayList;
-
 public class Inicio  extends AppCompatActivity {
 
     private TextView tv;
@@ -42,8 +40,8 @@ public class Inicio  extends AppCompatActivity {
         Usuario usu;
         usu = (Usuario) objEnviado.getSerializable("usu_iniciosesion");
 
-        Cursor fila = bd.rawQuery("select * from " + Utilidades.TABLA_USUARIOS
-                        + " where " + Utilidades.CAMPO_CORREO + " = '" + usu.getCorreo()
+        Cursor fila = bd.rawQuery("select * from " + Utilidades.TABLA_ALUMNOS
+                        + " where " + Utilidades.CAMPO_CORREO_ALUMNOS + " = '" + usu.getCorreo()
                         + "'"
                 , null);
         //corrección de errores

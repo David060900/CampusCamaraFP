@@ -16,13 +16,15 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override//creamos los scripts
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(Utilidades.CREAR_TABLA_USUARIO);
+        db.execSQL(Utilidades.CREAR_TABLA_ALUMNO);
+        db.execSQL(Utilidades.CREAR_TABLA_PROFESOR);
     }
 
     @Override//verifica si existe una version antigua de la base de datos
     //refrescamos los scripts
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS usuarios");
+        db.execSQL("DROP TABLE IF EXISTS alumnos");
+        db.execSQL("DROP TABLE IF EXISTS profesores");
         onCreate(db);
     }
 }

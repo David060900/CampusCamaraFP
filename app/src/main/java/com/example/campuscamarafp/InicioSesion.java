@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -40,13 +39,13 @@ public class InicioSesion extends AppCompatActivity {
             Intent i = new Intent(this, Registrarse.class);
             i.putExtra("dato", et1.getText().toString());
             startActivity(i);
-            Toast.makeText(this,"Resgistro",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Resgistro Alumnos",Toast.LENGTH_SHORT).show();
         }
         if(rb2.isChecked()){
             Intent i = new Intent(this, RegistrarseProfesores.class);
             i.putExtra("dato2", et1.getText().toString());
             startActivity(i);
-            Toast.makeText(this,"Inicio",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Registro Profesores",Toast.LENGTH_SHORT).show();
         }
     }
     //método para iniciar sesión y abrir otra ventana
@@ -57,10 +56,10 @@ public class InicioSesion extends AppCompatActivity {
         String correo = et1.getText().toString();
         String password = et2.getText().toString();
         //sentencia que comprueba en la base de datos el correo y la contraseña
-        Cursor fila = bd.rawQuery("select " + Utilidades.CAMPO_CORREO +
-                ", " + Utilidades.CAMPO_PASSWORD + " from " + Utilidades.TABLA_USUARIOS
-                + " where " + Utilidades.CAMPO_CORREO + " = '" + correo
-                        + "' and " + Utilidades.CAMPO_PASSWORD + " = '" + password + "'"
+        Cursor fila = bd.rawQuery("select " + Utilidades.CAMPO_CORREO_ALUMNOS +
+                ", " + Utilidades.CAMPO_PASSWORD_ALUMNOS + " from " + Utilidades.TABLA_ALUMNOS
+                + " where " + Utilidades.CAMPO_CORREO_ALUMNOS + " = '" + correo
+                        + "' and " + Utilidades.CAMPO_PASSWORD_ALUMNOS + " = '" + password + "'"
                 , null);
         //corrección de errores
         try{
