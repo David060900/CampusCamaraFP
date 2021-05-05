@@ -45,6 +45,6 @@ public class Utilidades {
     public static final String CREAR_TABLA_ASIGNATURAS = "create table " + TABLA_ASIGNATURAS +
             "(" + CAMPO_NOMBRE_ASIGNATURAS + " text, " +
             CAMPO_CURSO_ASIGNATURAS + " text, " +
-            CAMPO_FK_CORREO_ALUMNOS + " text foreign key references TABLA_ALUMNOS(CAMPO_CORREO_ALUMNOS));";
+            CAMPO_FK_CORREO_ALUMNOS + " text foreign key references tabla_alumnos(campo_correo_alumnos));";
 
 }

@@ -2,7 +2,7 @@ package com.example.campuscamarafp.entidades;
 
 import java.io.Serializable;
 
-public class Usuario implements Serializable {
+public class Alumno implements Serializable {
 
     private String nombre;
     private String apellidos;
@@ -11,7 +11,7 @@ public class Usuario implements Serializable {
     private String curso;
     private String numcurso;
 
-    public Usuario(String nombre, String apellidos, String correo, String password, String curso, String numcurso) {
+    public Alumno(String nombre, String apellidos, String correo, String password, String curso, String numcurso) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
@@ -20,7 +20,7 @@ public class Usuario implements Serializable {
         this.numcurso = numcurso;
     }
 
-    public Usuario(){
+    public Alumno(){
 
     }
 

@@ -6,13 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.campuscamarafp.entidades.Usuario;
+import com.example.campuscamarafp.entidades.Alumno;
 import com.example.campuscamarafp.utilidades.Utilidades;
 
 public class Inicio  extends AppCompatActivity {
@@ -27,8 +26,8 @@ public class Inicio  extends AppCompatActivity {
         tv = (TextView)findViewById(R.id.txtPrueba);
 
         Bundle objEnviado = getIntent().getExtras();
-        Usuario usu;
-        usu = (Usuario) objEnviado.getSerializable("usu_iniciosesion");
+        Alumno usu;
+        usu = (Alumno) objEnviado.getSerializable("usu_iniciosesion");
         tv.setText(usu.getCorreo());
     }
 
@@ -37,8 +36,8 @@ public class Inicio  extends AppCompatActivity {
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
         Bundle objEnviado = getIntent().getExtras();
-        Usuario usu;
-        usu = (Usuario) objEnviado.getSerializable("usu_iniciosesion");
+        Alumno usu;
+        usu = (Alumno) objEnviado.getSerializable("usu_iniciosesion");
 
         Cursor fila = bd.rawQuery("select * from " + Utilidades.TABLA_ALUMNOS
                         + " where " + Utilidades.CAMPO_CORREO_ALUMNOS + " = '" + usu.getCorreo()
@@ -47,7 +46,7 @@ public class Inicio  extends AppCompatActivity {
         //corrección de errores
         try{
             if(fila.moveToFirst()){
-                Usuario user = new Usuario();
+                Alumno user = new Alumno();
                 String nom = fila.getString(0);
                 user.setNombre(nom);
                 String ape = fila.getString(1);

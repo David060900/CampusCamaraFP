@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.example.campuscamarafp.entidades.Usuario;
+import com.example.campuscamarafp.entidades.Alumno;
 import com.example.campuscamarafp.utilidades.Utilidades;
 
 public class InicioSesion extends AppCompatActivity {
@@ -69,7 +69,7 @@ public class InicioSesion extends AppCompatActivity {
                 //condicion si coinciden los datos abrimos la siguiente ventana
                 if(correo.equals(cor) && password.equals(pass)){
                     Intent i = new Intent(this, Inicio.class);
-                    Usuario usu = new Usuario();
+                    Alumno usu = new Alumno();
                     usu.setCorreo(correo);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("usu_iniciosesion", usu);

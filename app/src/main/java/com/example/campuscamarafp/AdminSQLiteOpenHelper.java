@@ -18,7 +18,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Utilidades.CREAR_TABLA_ALUMNO);
         db.execSQL(Utilidades.CREAR_TABLA_PROFESOR);
-        //db.execSQL(Utilidades.CREAR_TABLA_ASIGNATURAS);
+        db.execSQL(Utilidades.CREAR_TABLA_ASIGNATURAS);
     }
 
     @Override//verifica si existe una version antigua de la base de datos
@@ -26,7 +26,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS alumnos");
         db.execSQL("DROP TABLE IF EXISTS profesores");
-        //db.execSQL("DROP TABLE IF EXISTS asignaturas");
+        db.execSQL("DROP TABLE IF EXISTS asignaturas");
         onCreate(db);
     }
 }
