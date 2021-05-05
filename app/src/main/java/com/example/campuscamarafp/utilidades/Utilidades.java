@@ -46,5 +46,4 @@ public class Utilidades {
             "(" + CAMPO_NOMBRE_ASIGNATURAS + " text, " +
             CAMPO_CURSO_ASIGNATURAS + " text, " +
             CAMPO_FK_CORREO_ALUMNOS + " text foreign key references tabla_alumnos(campo_correo_alumnos));";
-
 }
