@@ -11,18 +11,36 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tituloBT"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAprender"
+                    android:layout_width="205dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/aprender" />
+
+                <Button
+                    android:id="@+id/btnImpartir"
+                    android:layout_width="205dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/impartir" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/txtPrueba"
@@ -30,12 +48,6 @@
                 android:layout_height="99dp"
                 android:layout_marginTop="176dp" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="160dp"
-                android:layout_height="84dp"
-                android:layout_marginTop="64dp"
-                android:text="Button" />
         </LinearLayout>
     </ScrollView>
 
