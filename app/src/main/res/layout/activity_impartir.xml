@@ -80,7 +80,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spinnerLugarQuedar" />
 
     <EditText
-        android:id="@+id/etDiaSemana"
+        android:id="@+id/etDiaSemanaImpartir"
         android:layout_width="362dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -100,6 +100,6 @@
         android:onClick="RegistrarImpartir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDiaSemana" />
+        app:layout_constraintTop_toBottomOf="@+id/etDiaSemanaImpartir" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

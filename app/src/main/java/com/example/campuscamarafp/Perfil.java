@@ -30,10 +30,10 @@ public class Perfil  extends AppCompatActivity{
         Bundle objEnviado = getIntent().getExtras();
         Profesor profe;
         Alumno alum;
-        //profe = (Profesor) objEnviado.getSerializable("datos_usuarios");
-        alum = (Alumno) objEnviado.getSerializable("datos_usuarios");
-        //tv1.setText(profe.getCorreo());
-        tv2.setText(alum.getCorreo());
+        profe = (Profesor) objEnviado.getSerializable("datos_usuarios");
+        //alum = (Alumno) objEnviado.getSerializable("datos_usuarios");
+        tv1.setText(profe.getCorreo());
+        //tv2.setText(alum.getCorreo());
     }
 
     public void cargarImagen(View view){
