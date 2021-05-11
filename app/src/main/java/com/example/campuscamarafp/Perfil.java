@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.entidades.Alumno;
+import com.example.campuscamarafp.entidades.Profesor;
 
 public class Perfil  extends AppCompatActivity{
 
@@ -27,10 +28,12 @@ public class Perfil  extends AppCompatActivity{
         iv = (ImageView)findViewById(R.id.imagen_perfil);
 
         Bundle objEnviado = getIntent().getExtras();
-        Alumno user;
-        user = (Alumno) objEnviado.getSerializable("datos_usuarios");
-        tv1.setText(user.getNombre() + " " + user.getNumcurso());
-        tv2.setText(user.getApellidos());
+        Profesor profe;
+        Alumno alum;
+        //profe = (Profesor) objEnviado.getSerializable("datos_usuarios");
+        alum = (Alumno) objEnviado.getSerializable("datos_usuarios");
+        //tv1.setText(profe.getCorreo());
+        tv2.setText(alum.getCorreo());
     }
 
     public void cargarImagen(View view){

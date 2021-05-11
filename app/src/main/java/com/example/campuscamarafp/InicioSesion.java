@@ -14,6 +14,7 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.campuscamarafp.entidades.Alumno;
+import com.example.campuscamarafp.entidades.Profesor;
 import com.example.campuscamarafp.utilidades.Utilidades;
 
 public class InicioSesion extends AppCompatActivity {
@@ -69,11 +70,9 @@ public class InicioSesion extends AppCompatActivity {
                 , null);
         //corrección de errores
         try{
-            if(fila.moveToFirst()||fila2.moveToFirst()){
+            if(fila.moveToFirst()){
                 String cor = fila.getString(0);
-                String cor2 = fila2.getString(0);
                 String pass = fila.getString(1);
-                String pass2 = fila2.getString(1);
                 //condicion si coinciden los datos abrimos la siguiente ventana
                 if(correo.equals(cor) && password.equals(pass)){
                     Intent i = new Intent(this, Inicio.class);
@@ -84,6 +83,19 @@ public class InicioSesion extends AppCompatActivity {
                     i.putExtras(bundle);
                     startActivity(i);
                     Toast.makeText(this,"Inicio",Toast.LENGTH_SHORT).show();
+                }
+            }else if(fila2.moveToFirst()){
+                String cor2 = fila2.getString(0);
+                String pass2 = fila2.getString(1);
+                if(correo.equals(cor2) && password.equals(pass2)){
+                    Intent i = new Intent(this, Perfil.class);
+                    Profesor pro = new Profesor();
+                    pro.setCorreo(correo);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("datos_usuarios", pro);
+                    i.putExtras(bundle);
+                    startActivity(i);
+                    Toast.makeText(this,"Perfil",Toast.LENGTH_SHORT).show();
                 }
             }else{
                 Toast.makeText(this,"Datos incorrectos",Toast.LENGTH_SHORT).show();

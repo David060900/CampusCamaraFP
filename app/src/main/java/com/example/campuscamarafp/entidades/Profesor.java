@@ -8,12 +8,14 @@ public class Profesor implements Serializable {
     private String apellidos;
     private String correo;
     private String password;
+    private String curso;
 
-    public Profesor(String nombre, String apellidos, String correo, String password, String curso, String numcurso) {
+    public Profesor(String nombre, String apellidos, String correo, String password, String curso) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
         this.password = password;
+        this.curso = curso;
     }
 
     public Profesor(){
@@ -50,6 +52,14 @@ public class Profesor implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
     }
 
 }
