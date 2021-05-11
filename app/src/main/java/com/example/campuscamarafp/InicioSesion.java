@@ -62,18 +62,25 @@ public class InicioSesion extends AppCompatActivity {
                 + " where " + Utilidades.CAMPO_CORREO_ALUMNOS + " = '" + correo
                         + "' and " + Utilidades.CAMPO_PASSWORD_ALUMNOS + " = '" + password + "'"
                 , null);
+        Cursor fila2 = bd.rawQuery("select " + Utilidades.CAMPO_CORREO_PROFESORES +
+                        ", " + Utilidades.CAMPO_PASSWORD_PROFESORES + " from " + Utilidades.TABLA_PROFESORES
+                        + " where " + Utilidades.CAMPO_CORREO_PROFESORES + " = '" + correo
+                        + "' and " + Utilidades.CAMPO_PASSWORD_PROFESORES + " = '" + password + "'"
+                , null);
         //corrección de errores
         try{
-            if(fila.moveToFirst()){
+            if(fila.moveToFirst()||fila2.moveToFirst()){
                 String cor = fila.getString(0);
+                String cor2 = fila2.getString(0);
                 String pass = fila.getString(1);
+                String pass2 = fila2.getString(1);
                 //condicion si coinciden los datos abrimos la siguiente ventana
                 if(correo.equals(cor) && password.equals(pass)){
                     Intent i = new Intent(this, Inicio.class);
-                    Alumno usu = new Alumno();
-                    usu.setCorreo(correo);
+                    Alumno alu = new Alumno();
+                    alu.setCorreo(correo);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("usu_iniciosesion", usu);
+                    bundle.putSerializable("usu_iniciosesion", alu);
                     i.putExtras(bundle);
                     startActivity(i);
                     Toast.makeText(this,"Inicio",Toast.LENGTH_SHORT).show();

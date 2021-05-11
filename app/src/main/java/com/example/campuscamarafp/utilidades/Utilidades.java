@@ -17,7 +17,6 @@ public class Utilidades {
     public static final String CAMPO_APELLIDOS_PROFESORES = "apellidos";
     public static final String CAMPO_CORREO_PROFESORES = "correo";
     public static final String CAMPO_PASSWORD_PROFESORES = "password";
-    //public static final String CAMPO_PASSWORD_PROFESORES = "password";
 
     //creamos campos estáticos para las asignaturas
     public static final String TABLA_ASIGNATURAS = "asignaturas";
