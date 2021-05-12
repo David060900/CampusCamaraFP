@@ -23,7 +23,7 @@ public class Alumno implements Serializable {
     public Alumno(){
 
     }
-
+    //getters y setters
     public String getNombre() {
         return nombre;
     }
