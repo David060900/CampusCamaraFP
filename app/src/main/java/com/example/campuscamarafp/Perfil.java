@@ -16,7 +16,6 @@ import com.example.campuscamarafp.entidades.Profesor;
 public class Perfil  extends AppCompatActivity{
 
     private TextView tv1, tv2;
-    private ImageView iv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,6 @@ public class Perfil  extends AppCompatActivity{
 
         tv1 = (TextView)findViewById(R.id.textView2);
         tv2 = (TextView)findViewById(R.id.textView3);
-        iv = (ImageView)findViewById(R.id.imagen_perfil);
 
         Bundle objEnviado = getIntent().getExtras();
         Profesor profe;
@@ -36,7 +34,7 @@ public class Perfil  extends AppCompatActivity{
         //tv2.setText(alum.getCorreo());
     }
 
-    public void cargarImagen(View view){
+    /*public void cargarImagen(View view){
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/");
         startActivityForResult(intent.createChooser(intent, "Seleccione la Aplicación"), 10);
@@ -48,6 +46,6 @@ public class Perfil  extends AppCompatActivity{
             Uri path = data.getData();
             iv.setImageURI(path);
         }
-    }
+    }*/
 
 }

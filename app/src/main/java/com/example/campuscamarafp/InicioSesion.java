@@ -88,7 +88,7 @@ public class InicioSesion extends AppCompatActivity {
                 String cor2 = fila2.getString(0);
                 String pass2 = fila2.getString(1);
                 if(correo.equals(cor2) && password.equals(pass2)){
-                    Intent i = new Intent(this, Perfil.class);
+                    Intent i = new Intent(this, PasarLista.class);
                     Profesor pro = new Profesor();
                     pro.setCorreo(correo);
                     Bundle bundle = new Bundle();

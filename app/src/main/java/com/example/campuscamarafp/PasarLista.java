@@ -23,7 +23,7 @@ public class PasarLista extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_impartir);
+        setContentView(R.layout.activity_pasarlista);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         lv = (ListView)findViewById(R.id.lista);
