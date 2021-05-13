@@ -15,4 +15,10 @@
     <string name="compartir">Compartir</string>
     <string name="opcion1">Opción 1</string>
     <string name="opcion2">Opción 2</string>
+    <string name="impartir">Impartir</string>
+    <string name="aprender">Aprender</string>
+    <string name="asigimpartir">¿Qué asignatura quieres impartir?</string>
+    <string name="tiempoimpartir">¿Cuánto tiempo tienes para emplear en la asignatura?</string>
+    <string name="lugarimpartir">¿Dónde te gustaría quedar para ayudar?</string>
+    <string name="diasemanaimpartir">¿Qué día de la semana te viene bien?</string>
 </resources>

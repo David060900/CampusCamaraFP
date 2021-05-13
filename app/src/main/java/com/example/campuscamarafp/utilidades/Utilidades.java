@@ -17,12 +17,13 @@ public class Utilidades {
     public static final String CAMPO_APELLIDOS_PROFESORES = "apellidos";
     public static final String CAMPO_CORREO_PROFESORES = "correo";
     public static final String CAMPO_PASSWORD_PROFESORES = "password";
-    //public static final String CAMPO_PASSWORD_PROFESORES = "password";
 
-    //creamos campos estáticos para las asignaturas
-    public static final String TABLA_ASIGNATURAS = "asignaturas";
-    public static final String CAMPO_NOMBRE_ASIGNATURAS = "nombre";
-    public static final String CAMPO_CURSO_ASIGNATURAS = "apellidos";
+    //creamos campos estáticos para impartir
+    public static final String TABLA_IMPARTIR = "impartir";
+    public static final String CAMPO_NOMBRE_ASIGNATURA = "asignatura";
+    public static final String CAMPO_TIEMPO_IMPARTIR = "tiempo";
+    public static final String CAMPO_LUGAR_IMPARTIR = "lugar";
+    public static final String CAMPO_DIA_IMPARTIR = "dia";
     public static final String CAMPO_FK_CORREO_ALUMNOS = "correo";
 
     //sentencia que crea la tabla alumnos
@@ -42,9 +43,11 @@ public class Utilidades {
             CAMPO_PASSWORD_PROFESORES + " text);";
 
     //sentencia que crea la tabla asignsturas
-    public static final String CREAR_TABLA_ASIGNATURAS = "create table " + TABLA_ASIGNATURAS +
-            "(" + CAMPO_NOMBRE_ASIGNATURAS + " text, " +
-            CAMPO_CURSO_ASIGNATURAS + " text, " +
-            CAMPO_FK_CORREO_ALUMNOS + " text foreign key references TABLA_ALUMNOS(CAMPO_CORREO_ALUMNOS));";
-
+    public static final String CREAR_TABLA_IMPARTIR = "create table " + TABLA_IMPARTIR +
+            "(" + CAMPO_NOMBRE_ASIGNATURA + " text, " +
+            CAMPO_TIEMPO_IMPARTIR + " text, " +
+            CAMPO_LUGAR_IMPARTIR + " text, " +
+            CAMPO_DIA_IMPARTIR + " text, " +
+            CAMPO_FK_CORREO_ALUMNOS + " text);";
+    //"foreign key (" + CAMPO_FK_CORREO_ALUMNOS + ") references " + TABLA_ALUMNOS + "(" + CAMPO_CORREO_ALUMNOS + ")
 }

@@ -35,7 +35,7 @@ public class Registrarse extends AppCompatActivity {
             cb1 = (RadioButton) findViewById(R.id.rbPrimero);
             cb2 = (RadioButton)findViewById(R.id.rbSegundo);
 
-            String cursos [] = {"DAM", "Marketing y Publicidad", "Comercio Internacional"};
+            String cursos [] = {"DAM", "Marketing y Publicidad", "Comercio Internacional", "Comercio Internacional"};
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_cursos, cursos);
             spinner1.setAdapter(adapter);
         }
