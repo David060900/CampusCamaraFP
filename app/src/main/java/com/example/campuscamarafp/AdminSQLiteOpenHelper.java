@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 
 import com.example.campuscamarafp.utilidades.Utilidades;
 
+import java.util.ArrayList;
+
 public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     public AdminSQLiteOpenHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {

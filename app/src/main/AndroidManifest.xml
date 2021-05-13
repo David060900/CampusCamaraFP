@@ -16,6 +16,7 @@
         <activity android:name=".Perfil"></activity>
         <activity android:name=".RegistrarseProfesores"></activity>
         <activity android:name=".Impartir"></activity>
+        <activity android:name=".PasarLista"></activity>
         <activity android:name=".InicioSesion">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
