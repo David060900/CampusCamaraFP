@@ -5,7 +5,9 @@ import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import com.example.campuscamarafp.utilidades.Utilidades;
 public class RegistrarseProfesores extends AppCompatActivity {
 
     private EditText etNombre, etApellido, etCorreo, etPassword;
+    private Spinner spinner1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,11 @@ public class RegistrarseProfesores extends AppCompatActivity {
         etApellido = (EditText)findViewById(R.id.etApellidosP);
         etCorreo = (EditText)findViewById(R.id.etCorreoRP);
         etPassword = (EditText)findViewById(R.id.etPasswordRP);
+        spinner1 = (Spinner)findViewById(R.id.spinnerCursos2);
+
+        String cursos [] = {"DAM", "Marketing y Publicidad", "Comercio Internacional", "Transporte y Logística"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_cursos, cursos);
+        spinner1.setAdapter(adapter);
 
     }
 

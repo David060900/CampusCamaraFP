@@ -17,6 +17,7 @@ public class Utilidades {
     public static final String CAMPO_APELLIDOS_PROFESORES = "apellidos";
     public static final String CAMPO_CORREO_PROFESORES = "correo";
     public static final String CAMPO_PASSWORD_PROFESORES = "password";
+    public static final String CAMPO_CURSO_PROFESORES = "curso";
 
     //creamos campos estáticos para impartir
     public static final String TABLA_IMPARTIR = "impartir";
@@ -40,7 +41,8 @@ public class Utilidades {
             "(" + CAMPO_NOMBRE_PROFESORES + " text, " +
             CAMPO_APELLIDOS_PROFESORES + " text, " +
             CAMPO_CORREO_PROFESORES + " text primary key, " +
-            CAMPO_PASSWORD_PROFESORES + " text);";
+            CAMPO_PASSWORD_PROFESORES + " text, " +
+            CAMPO_CURSO_PROFESORES + " text);";
 
     //sentencia que crea la tabla asignsturas
     public static final String CREAR_TABLA_IMPARTIR = "create table if not exists " + TABLA_IMPARTIR +

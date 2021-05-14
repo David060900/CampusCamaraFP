@@ -99,7 +99,7 @@ public class Inicio  extends AppCompatActivity {
         Intent i = new Intent(this, Impartir.class);
         Bundle objEnviado = getIntent().getExtras();
         Alumno alumnoRecibe;
-        alumnoRecibe = (Alumno) objEnviado.getSerializable("usu_iniciosesion");
+        alumnoRecibe = (Alumno) objEnviado.getSerializable("alumno_iniciosesion");
         String correo_alumno = alumnoRecibe.getCorreo();
 
         Bundle bundle = new Bundle();

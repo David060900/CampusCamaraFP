@@ -37,7 +37,7 @@ public class InicioSesion extends AppCompatActivity {
     //método que abre la ventana para el registor de usuarios
     public void Registrar (View view){
         if(rb1.isChecked()) {
-            Intent i = new Intent(this, Registrarse.class);
+            Intent i = new Intent(this, RegistrarseAlumnos.class);
             i.putExtra("dato", et1.getText().toString());
             startActivity(i);
             Toast.makeText(this,"Resgistro Alumnos",Toast.LENGTH_SHORT).show();
@@ -94,7 +94,7 @@ public class InicioSesion extends AppCompatActivity {
                     bundle.putSerializable("profesor_iniciosesion", profesorEnvia);
                     i.putExtras(bundle);
                     startActivity(i);
-                    Toast.makeText(this,"Perfil",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Lista",Toast.LENGTH_SHORT).show();
                 }
             }else{
                 Toast.makeText(this,"Datos incorrectos",Toast.LENGTH_SHORT).show();
