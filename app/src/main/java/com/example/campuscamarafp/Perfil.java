@@ -26,12 +26,12 @@ public class Perfil  extends AppCompatActivity{
         tv2 = (TextView)findViewById(R.id.textView3);
 
         Bundle objEnviado = getIntent().getExtras();
-        Profesor profe;
-        Alumno alum;
-        profe = (Profesor) objEnviado.getSerializable("datos_usuarios");
-        //alum = (Alumno) objEnviado.getSerializable("datos_usuarios");
-        tv1.setText(profe.getCorreo());
-        //tv2.setText(alum.getCorreo());
+        Profesor profesorRecibe;
+        Alumno alumnoRecibe;
+        //profesorRecibe = (Profesor) objEnviado.getSerializable("datos_usuarios");
+        alumnoRecibe = (Alumno) objEnviado.getSerializable("datos_alumnos");
+        //tv1.setText(profesorRecibe.getCorreo());
+        tv2.setText(alumnoRecibe.getCorreo());
     }
 
     /*public void cargarImagen(View view){

@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.campuscamarafp.entidades.Alumno;
 import com.example.campuscamarafp.entidades.Profesor;
@@ -76,10 +75,10 @@ public class InicioSesion extends AppCompatActivity {
                 //condicion si coinciden los datos abrimos la siguiente ventana
                 if(correo.equals(cor) && password.equals(pass)){
                     Intent i = new Intent(this, Inicio.class);
-                    Alumno alu = new Alumno();
-                    alu.setCorreo(correo);
+                    Alumno alumnoEnvia = new Alumno();
+                    alumnoEnvia.setCorreo(correo);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("usu_iniciosesion", alu);
+                    bundle.putSerializable("alumno_iniciosesion", alumnoEnvia);
                     i.putExtras(bundle);
                     startActivity(i);
                     Toast.makeText(this,"Inicio",Toast.LENGTH_SHORT).show();
@@ -89,10 +88,10 @@ public class InicioSesion extends AppCompatActivity {
                 String pass2 = fila2.getString(1);
                 if(correo.equals(cor2) && password.equals(pass2)){
                     Intent i = new Intent(this, PasarLista.class);
-                    Profesor pro = new Profesor();
-                    pro.setCorreo(correo);
+                    Profesor profesorEnvia = new Profesor();
+                    profesorEnvia.setCorreo(correo);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("datos_usuarios", pro);
+                    bundle.putSerializable("profesor_iniciosesion", profesorEnvia);
                     i.putExtras(bundle);
                     startActivity(i);
                     Toast.makeText(this,"Perfil",Toast.LENGTH_SHORT).show();

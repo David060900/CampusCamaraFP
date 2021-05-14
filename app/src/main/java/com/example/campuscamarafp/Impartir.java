@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.campuscamarafp.entidades.Alumno;
 import com.example.campuscamarafp.utilidades.Utilidades;
 
 public class Impartir extends AppCompatActivity {
@@ -48,6 +49,11 @@ public class Impartir extends AppCompatActivity {
         String asignaturas = spinner1.getSelectedItem().toString();
         String lugarQuedada = spinner2.getSelectedItem().toString();
 
+        Bundle objEnviado = getIntent().getExtras();
+        Alumno alumnoRecibe;
+        alumnoRecibe = (Alumno) objEnviado.getSerializable("correo_impartir");
+        String correo_alumno = alumnoRecibe.getCorreo();
+
         ContentValues values = new ContentValues();
 
         if(!tiempoImpartir.isEmpty() || !diaSemanaImpartir.isEmpty()){
@@ -55,6 +61,7 @@ public class Impartir extends AppCompatActivity {
             values.put(Utilidades.CAMPO_DIA_IMPARTIR, diaSemanaImpartir);
             values.put(Utilidades.CAMPO_NOMBRE_ASIGNATURA, asignaturas);
             values.put(Utilidades.CAMPO_LUGAR_IMPARTIR, lugarQuedada);
+            values.put(Utilidades.CAMPO_FK_CORREO_ALUMNOS, correo_alumno);
             Toast.makeText(this,"Asignatura '" + asignaturas + "' lista para impartir", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this,"Introduce todos los campos", Toast.LENGTH_SHORT).show();
