@@ -47,7 +47,6 @@ public class Utilidades {
             "(" + CAMPO_NOMBRE_ASIGNATURA + " text, " +
             CAMPO_TIEMPO_IMPARTIR + " text, " +
             CAMPO_LUGAR_IMPARTIR + " text, " +
-            CAMPO_DIA_IMPARTIR + " text, " +
-            CAMPO_FK_CORREO_ALUMNOS + " text);";
+            CAMPO_DIA_IMPARTIR + " text);";
     //"foreign key (" + CAMPO_FK_CORREO_ALUMNOS + ") references " + TABLA_ALUMNOS + "(" + CAMPO_CORREO_ALUMNOS + ")
 }
