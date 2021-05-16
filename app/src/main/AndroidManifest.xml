@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CampusCamaraFP">
-        <activity android:name=".Registrarse"></activity>
+        <activity android:name=".RegistrarseAlumnos"></activity>
         <activity android:name=".Inicio"></activity>
         <activity android:name=".Perfil"></activity>
         <activity android:name=".RegistrarseProfesores"></activity>

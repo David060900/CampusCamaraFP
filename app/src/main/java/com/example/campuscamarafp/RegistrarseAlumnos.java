@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.utilidades.Utilidades;
 
-public class Registrarse extends AppCompatActivity {
+public class RegistrarseAlumnos extends AppCompatActivity {
 
         private EditText etNombre, etApellido, etCorreo, etPassword;
         private Spinner spinner1;
@@ -24,7 +24,7 @@ public class Registrarse extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_registro);
+            setContentView(R.layout.activity_registro_alumnos);
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
             etNombre = (EditText)findViewById(R.id.etNombre);
@@ -35,7 +35,7 @@ public class Registrarse extends AppCompatActivity {
             cb1 = (RadioButton) findViewById(R.id.rbPrimero);
             cb2 = (RadioButton)findViewById(R.id.rbSegundo);
 
-            String cursos [] = {"DAM", "Marketing y Publicidad", "Comercio Internacional", "Comercio Internacional"};
+            String cursos [] = {"DAM", "Marketing y Publicidad", "Comercio Internacional", "Transporte y Logística"};
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_cursos, cursos);
             spinner1.setAdapter(adapter);
         }

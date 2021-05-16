@@ -17,6 +17,7 @@ public class Utilidades {
     public static final String CAMPO_APELLIDOS_PROFESORES = "apellidos";
     public static final String CAMPO_CORREO_PROFESORES = "correo";
     public static final String CAMPO_PASSWORD_PROFESORES = "password";
+    public static final String CAMPO_CURSO_PROFESORES = "curso";
 
     //creamos campos estáticos para impartir
     public static final String TABLA_IMPARTIR = "impartir";
@@ -24,10 +25,10 @@ public class Utilidades {
     public static final String CAMPO_TIEMPO_IMPARTIR = "tiempo";
     public static final String CAMPO_LUGAR_IMPARTIR = "lugar";
     public static final String CAMPO_DIA_IMPARTIR = "dia";
-    public static final String CAMPO_FK_CORREO_ALUMNOS = "correo";
+    public static final String CAMPO_FK_CORREO_ALUMNOS = "correo_alumnos";
 
     //sentencia que crea la tabla alumnos
-    public static final String CREAR_TABLA_ALUMNO = "create table " + TABLA_ALUMNOS +
+    public static final String CREAR_TABLA_ALUMNO = "create table if not exists " + TABLA_ALUMNOS +
             "(" + CAMPO_NOMBRE_ALUMNOS + " text, "
             + CAMPO_APELLIDOS_ALUMNOS + " text, " +
             CAMPO_CORREO_ALUMNOS + " text primary key, " +
@@ -36,17 +37,19 @@ public class Utilidades {
             CAMPO_NUMCURSO_ALUMNOS + " text);";
 
     //sentencia que crea la tabla profesores
-    public static final String CREAR_TABLA_PROFESOR = "create table " + TABLA_PROFESORES +
+    public static final String CREAR_TABLA_PROFESOR = "create table if not exists " + TABLA_PROFESORES +
             "(" + CAMPO_NOMBRE_PROFESORES + " text, " +
             CAMPO_APELLIDOS_PROFESORES + " text, " +
             CAMPO_CORREO_PROFESORES + " text primary key, " +
-            CAMPO_PASSWORD_PROFESORES + " text);";
+            CAMPO_PASSWORD_PROFESORES + " text, " +
+            CAMPO_CURSO_PROFESORES + " text);";
 
     //sentencia que crea la tabla asignsturas
-    public static final String CREAR_TABLA_IMPARTIR = "create table " + TABLA_IMPARTIR +
+    public static final String CREAR_TABLA_IMPARTIR = "create table if not exists " + TABLA_IMPARTIR +
             "(" + CAMPO_NOMBRE_ASIGNATURA + " text, " +
             CAMPO_TIEMPO_IMPARTIR + " text, " +
             CAMPO_LUGAR_IMPARTIR + " text, " +
-            CAMPO_DIA_IMPARTIR + " text);";
-    //"foreign key (" + CAMPO_FK_CORREO_ALUMNOS + ") references " + TABLA_ALUMNOS + "(" + CAMPO_CORREO_ALUMNOS + ")
+            CAMPO_DIA_IMPARTIR + " text, " +
+            CAMPO_FK_CORREO_ALUMNOS + " text, " +
+            "foreign key (correo_alumnos) references alumnos(correo));";
 }

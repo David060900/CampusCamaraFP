@@ -41,13 +41,14 @@
                     android:layout_weight="1"
                     android:onClick="Impartir"
                     android:text="@string/impartir" />
+
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtPrueba"
-                android:layout_width="140dp"
-                android:layout_height="99dp"
-                android:layout_marginTop="176dp" />
+            <ListView
+                android:id="@+id/listaBanco"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
         </LinearLayout>
     </ScrollView>
