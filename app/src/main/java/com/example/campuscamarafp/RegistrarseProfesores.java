@@ -45,6 +45,7 @@ public class RegistrarseProfesores extends AppCompatActivity {
         String apellidos = etApellido.getText().toString();
         String correo = etCorreo.getText().toString();
         String password = etPassword.getText().toString();
+        String curso = spinner1.getSelectedItem().toString();
 
         ContentValues values = new ContentValues();
 
@@ -53,6 +54,7 @@ public class RegistrarseProfesores extends AppCompatActivity {
                 values.put(Utilidades.CAMPO_APELLIDOS_PROFESORES, apellidos);
                 values.put(Utilidades.CAMPO_CORREO_PROFESORES, correo);
                 values.put(Utilidades.CAMPO_PASSWORD_PROFESORES, password);
+                values.put(Utilidades.CAMPO_CURSO_PROFESORES, curso);
                 Toast.makeText(this,"Profesor '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this,"Introduce todos los campos", Toast.LENGTH_SHORT).show();

@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/scrollView2"
+        android:layout_width="403dp"
+        android:layout_height="536dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,17 +25,11 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnAprender"
-                    android:layout_width="205dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/aprender" />
-
-                <Button
                     android:id="@+id/btnImpartir"
                     android:layout_width="205dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_marginStart="102dp"
+                    android:layout_marginLeft="102dp"
                     android:onClick="Impartir"
                     android:text="@string/impartir" />
 
@@ -47,10 +38,24 @@
             <ListView
                 android:id="@+id/listaBanco"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_height="480dp"
+                android:choiceMode="singleChoice"
+                tools:ignore="MissingConstraints" />
 
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/btnQuedar"
+        android:layout_width="205dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:onClick="Quedar"
+        android:text="@string/quedar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

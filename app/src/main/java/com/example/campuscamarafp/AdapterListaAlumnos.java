@@ -10,15 +10,18 @@ import android.widget.TextView;
 
 import com.example.campuscamarafp.entidades.Alumno;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterListaAlumnos extends BaseAdapter {
 
-    private Context context;
-    private ArrayList<Alumno> listItems;
+    protected Activity activity;
+    protected List<Alumno> listItems;
 
-    public AdapterListaAlumnos(Context context, ArrayList<Alumno> listItems) {
-        this.context = context;
+    public AdapterListaAlumnos(Activity activity, List<Alumno> listItems) {
+        this.activity = activity;
         this.listItems = listItems;
     }
 
@@ -40,12 +43,18 @@ public class AdapterListaAlumnos extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
-        if(convertView == null){
-            LayoutInflater inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (convertView == null) {
+            LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inf.inflate(R.layout.lista, null);
+            Alumno alu = listItems.get(position);
+            if(!alu.getNombre().isEmpty()){
+                TextView nombre, apellidos;
+                nombre=(TextView)v.findViewById(R.id.tvPrueba);
+                nombre.setText(alu.getNombre());
+                apellidos=(TextView)v.findViewById(R.id.tvPrueba2);
+                apellidos.setText(alu.getApellidos());
+            }
         }
-        TextView nombre, apellidos;
         return null;
-
     }
 }
