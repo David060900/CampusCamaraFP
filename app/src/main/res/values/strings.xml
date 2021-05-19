@@ -21,4 +21,5 @@
     <string name="tiempoimpartir">¿Cuánto tiempo tienes para emplear en la asignatura?</string>
     <string name="lugarimpartir">¿Dónde te gustaría quedar para ayudar?</string>
     <string name="diasemanaimpartir">¿Qué día de la semana te viene bien?</string>
+    <string name="quedar">Quedar</string>
 </resources>

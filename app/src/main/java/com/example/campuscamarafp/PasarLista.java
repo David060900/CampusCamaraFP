@@ -29,6 +29,10 @@ public class PasarLista extends AppCompatActivity {
 
         final ListView lv = (ListView)findViewById(R.id.lista);
         final ArrayList<Alumno> lista;
+        lista = llenar_lv();
+        adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, lista);
+        lv.setAdapter(adaptador);
+        selectAlumnos();
         /*ListView lv
         List<Alumno> mAdapter = new ArrayList<Alumno>();
         Alumno match = new Alumno();
@@ -40,14 +44,10 @@ public class PasarLista extends AppCompatActivity {
         AdapterListaAlumnos adapter2 = new AdapterListaAlumnos(this, mAdapter);
         lv = (ListView) findViewById(R.id.lista);
         lv.setAdapter(adapter2);*/
-        lista = llenar_lv();
-        adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, lista);
-        lv.setAdapter(adaptador);
-        selectAlumnos();
     }
 
     public void selectAlumnos(){
-        final ArrayList<Alumno> lista = new ArrayList<>();
+        //final ArrayList<Alumno> lista = new ArrayList<>();
         final ListView lv = (ListView)findViewById(R.id.lista);
         lv.setOnItemClickListener((parent, view, position, id) -> {
             AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);

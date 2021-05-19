@@ -20,36 +20,44 @@
         android:id="@+id/tvApellidosPasarLista"
         android:layout_width="134dp"
         android:layout_height="28dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
         android:layout_marginTop="16dp"
         android:text="Apellidos"
         app:layout_constraintStart_toEndOf="@+id/tvNombrePasarLista"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/lista"
+    <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="match_parent"
-        android:layout_height="506dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNombrePasarLista"
-        app:layout_constraintVertical_bias="0.0"
-        android:choiceMode="multipleChoice"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent">
 
-    </ListView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/lista"
+                android:layout_width="match_parent"
+                android:layout_height="480dp"
+                android:layout_marginTop="55dp"
+                android:choiceMode="multipleChoice"
+                tools:ignore="MissingConstraints">
+
+            </ListView>
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/btnPasarLista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="505dp"
         android:onClick="guardarLista"
         android:text="Guardar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lista" />
+        app:layout_constraintTop_toBottomOf="@+id/tvApellidosPasarLista" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

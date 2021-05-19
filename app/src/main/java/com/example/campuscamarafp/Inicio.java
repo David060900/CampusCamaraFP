@@ -1,5 +1,6 @@
 package com.example.campuscamarafp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
@@ -8,11 +9,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.entidades.Alumno;
@@ -22,9 +25,9 @@ import java.util.ArrayList;
 
 public class Inicio  extends AppCompatActivity {
 
-    private ListView lv;
-    ArrayList<String> lista;
     ArrayAdapter adaptador;
+    final ArrayList<String> lista = new ArrayList<>();
+    final ListView lv = (ListView)findViewById(R.id.listaBanco);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,23 +35,31 @@ public class Inicio  extends AppCompatActivity {
         setContentView(R.layout.activity_inicio);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        lv = (ListView)findViewById(R.id.listaBanco);
-
+        final ArrayList<Impartir> lista;
         lista = lvBanco();
         adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, lista);
         lv.setAdapter(adaptador);
     }
 
+    public void Quedar(View view){
+
+    }
+
     public ArrayList lvBanco(){
-        ArrayList<String> lista = new ArrayList<>();
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
-        String tabla_lista = "select * from impartir";
+        String tabla_lista = "select asignatura, correo_alumnos, dia, tiempo from impartir";
         Cursor registro = bd.rawQuery(tabla_lista, null);
         if(registro.moveToFirst()){
             do{
-                lista.add(registro.getString(0));
+                lista.add(registro.getString(0)
+                        + "\t\t"
+                        + registro.getString(1)
+                        + "\t\t"
+                        + registro.getString(2)
+                        + "\t\t"
+                        + registro.getString(3));
             }while(registro.moveToNext());
         }
         return lista;
