@@ -27,7 +27,7 @@ public class Inicio  extends AppCompatActivity {
 
     ArrayAdapter adaptador;
     final ArrayList<String> lista = new ArrayList<>();
-    final ListView lv = (ListView)findViewById(R.id.listaBanco);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class Inicio  extends AppCompatActivity {
         setContentView(R.layout.activity_inicio);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        final ListView lv = (ListView)findViewById(R.id.listaBanco);
         final ArrayList<Impartir> lista;
         lista = lvBanco();
         adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, lista);

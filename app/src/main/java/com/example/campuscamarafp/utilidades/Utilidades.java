@@ -11,6 +11,7 @@ public class Utilidades {
     public static final String CAMPO_CURSO_ALUMNOS = "curso";
     public static final String CAMPO_NUMCURSO_ALUMNOS = "numcurso";
     public static final String CAMPO_FALTAS_ALUMNOS = "faltas";
+    public static final String CAMPO_DIA_ALUMNOS = "dia";
 
     //creamos campos estáticos para todos los profesores
     public static final String TABLA_PROFESORES = "profesores";
@@ -36,7 +37,8 @@ public class Utilidades {
             CAMPO_PASSWORD_ALUMNOS + " text, " +
             CAMPO_CURSO_ALUMNOS + " text, " +
             CAMPO_NUMCURSO_ALUMNOS + " text, " +
-            CAMPO_FALTAS_ALUMNOS + " text);";
+            CAMPO_FALTAS_ALUMNOS + " integer, " +
+            CAMPO_DIA_ALUMNOS + " text);";
 
     //sentencia que crea la tabla profesores
     public static final String CREAR_TABLA_PROFESOR = "create table if not exists " + TABLA_PROFESORES +
