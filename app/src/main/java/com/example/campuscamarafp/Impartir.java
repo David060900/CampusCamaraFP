@@ -2,21 +2,17 @@ package com.example.campuscamarafp;
 
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
-import android.content.pm.ActivityInfo;
-import android.database.ContentObservable;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.example.campuscamarafp.entidades.Alumno;
 import com.example.campuscamarafp.utilidades.Utilidades;
@@ -73,5 +69,22 @@ public class Impartir extends AppCompatActivity {
         }
         db.insert(Utilidades.TABLA_IMPARTIR, null, values);
         db.close();
+    }
+
+    public void etCalendario(View view) {
+        et2 = (EditText)findViewById(R.id.etDiaSemanaImpartir);
+        Calendar cal = Calendar.getInstance();
+        int anio = cal.get(Calendar.YEAR);
+        int mes = cal.get(Calendar.MONTH);
+        int dia = cal.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dpd = new DatePickerDialog(Impartir.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                String fecha = dayOfMonth + "/" + month + "/" + year;
+                et2.setText(fecha);
+            }
+        }, anio, mes, dia);
+        dpd.show();
     }
 }
