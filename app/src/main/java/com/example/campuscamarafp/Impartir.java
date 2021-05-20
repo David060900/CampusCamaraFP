@@ -1,20 +1,27 @@
 package com.example.campuscamarafp;
 
+import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.pm.ActivityInfo;
 import android.database.ContentObservable;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.campuscamarafp.entidades.Alumno;
 import com.example.campuscamarafp.utilidades.Utilidades;
+
+import java.util.Calendar;
 
 public class Impartir extends AppCompatActivity {
 
@@ -22,30 +29,28 @@ public class Impartir extends AppCompatActivity {
     private EditText et1, et2;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_impartir);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+    //calendario https://www.youtube.com/watch?v=quR2UW-VkU0&ab_channel=ProgramEnthusiast
+    public void RegistrarImpartir(View view){
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        SQLiteDatabase db = conexion.getWritableDatabase();
 
         et1 = (EditText)findViewById(R.id.etTiempoImpartir);
         et2 = (EditText)findViewById(R.id.etDiaSemanaImpartir);
         spinner1 = (Spinner)findViewById(R.id.spinnerAsignaturas);
         spinner2 = (Spinner)findViewById(R.id.spinnerLugarQuedar);
 
-        String asignaturas [] = {"FOL", "Informática", "Matemáticas"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_cursos, asignaturas);
+        String asignaturasArray [] = {"FOL", "Informática", "Matemáticas"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_cursos, asignaturasArray);
         spinner1.setAdapter(adapter);
         String lugar [] = {"Hall CCFP", "Online"};
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_cursos, lugar);
         spinner2.setAdapter(adapter2);
-    }
-
-    public void RegistrarImpartir(View view){
-        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
-        SQLiteDatabase db = conexion.getWritableDatabase();
 
         String tiempoImpartir = et1.getText().toString();
-        String diaSemanaImpartir = et2.getText().toString();
         String asignaturas = spinner1.getSelectedItem().toString();
         String lugarQuedada = spinner2.getSelectedItem().toString();
 
@@ -56,9 +61,9 @@ public class Impartir extends AppCompatActivity {
 
         ContentValues values = new ContentValues();
 
-        if(!tiempoImpartir.isEmpty() || !diaSemanaImpartir.isEmpty()){
+        if(!tiempoImpartir.isEmpty() || !et2.getText().toString().isEmpty()){
             values.put(Utilidades.CAMPO_TIEMPO_IMPARTIR, tiempoImpartir);
-            values.put(Utilidades.CAMPO_DIA_IMPARTIR, diaSemanaImpartir);
+            values.put(Utilidades.CAMPO_DIA_IMPARTIR, et2.getText().toString());
             values.put(Utilidades.CAMPO_NOMBRE_ASIGNATURA, asignaturas);
             values.put(Utilidades.CAMPO_LUGAR_IMPARTIR, lugarQuedada);
             values.put(Utilidades.CAMPO_FK_CORREO_ALUMNOS, correo_alumno);

@@ -74,7 +74,7 @@ public class PasarLista extends AppCompatActivity {
         contentValues.put("faltas", "6");
         //es un update--bd.insert("alumnos",null, contentValues);
         Toast.makeText(this, "Faltas puestas", Toast.LENGTH_SHORT).show();
-        finish();
+        //finish();
     }
 
     public ArrayList llenar_lv(){

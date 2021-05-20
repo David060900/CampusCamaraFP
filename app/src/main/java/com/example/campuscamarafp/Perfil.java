@@ -1,11 +1,6 @@
 package com.example.campuscamarafp;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,16 +17,6 @@ public class Perfil  extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
-        tv1 = (TextView)findViewById(R.id.textView2);
-        tv2 = (TextView)findViewById(R.id.textView3);
-
-        Bundle objEnviado = getIntent().getExtras();
-        Profesor profesorRecibe;
-        Alumno alumnoRecibe;
-        //profesorRecibe = (Profesor) objEnviado.getSerializable("datos_usuarios");
-        alumnoRecibe = (Alumno) objEnviado.getSerializable("datos_alumnos");
-        //tv1.setText(profesorRecibe.getCorreo());
-        tv2.setText(alumnoRecibe.getCorreo());
     }
 
     /*public void cargarImagen(View view){
