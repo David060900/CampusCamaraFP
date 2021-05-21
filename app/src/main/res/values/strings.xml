@@ -22,4 +22,5 @@
     <string name="lugarimpartir">¿Dónde te gustaría quedar para ayudar?</string>
     <string name="diasemanaimpartir">¿Qué día de la semana te viene bien?</string>
     <string name="quedar">Quedar</string>
+    <string name="cambiarpass">Cambiar Contraseña</string>
 </resources>

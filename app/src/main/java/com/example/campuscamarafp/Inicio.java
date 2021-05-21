@@ -49,7 +49,7 @@ public class Inicio  extends AppCompatActivity {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(Inicio.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
-        Cursor fila = bd.rawQuery("select correo_alumno from impartir", null);
+        Cursor fila = bd.rawQuery("select correo_alumnos from impartir", null);
         ImpartirSerializable impartir = new ImpartirSerializable();
         lv.setOnItemClickListener((parent, view, position, id) -> {
             if (fila.moveToPosition(position)) {
@@ -60,9 +60,8 @@ public class Inicio  extends AppCompatActivity {
         });
         btn.setOnClickListener(v -> {
             Toast.makeText(Inicio.this, "Hola " , Toast.LENGTH_SHORT).show();
-            bd.execSQL("delete from alumnos where correo = '" + impartir.getCorreo_alumnos() + "';");
+            bd.execSQL("delete from impartir where correo_alumnos = '" + impartir.getCorreo_alumnos() + "';");
         });
-
     }
 
     public ArrayList lvBanco(){
@@ -114,6 +113,8 @@ public class Inicio  extends AppCompatActivity {
                 alumnoEnvia.setCurso(cur);
                 String ncur = fila.getString(5);
                 alumnoEnvia.setNumcurso(ncur);
+                int faltas = fila.getInt(6);
+                alumnoEnvia.setFaltas(faltas);
 
                 Intent i = new Intent(this, Perfil.class);
                 Bundle bundle = new Bundle();

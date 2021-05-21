@@ -47,6 +47,7 @@ public class Impartir extends AppCompatActivity {
         spinner2.setAdapter(adapter2);
 
         String tiempoImpartir = et1.getText().toString();
+        String calendario = et2.getText().toString();
         String asignaturas = spinner1.getSelectedItem().toString();
         String lugarQuedada = spinner2.getSelectedItem().toString();
 
@@ -59,7 +60,7 @@ public class Impartir extends AppCompatActivity {
 
         if(!tiempoImpartir.isEmpty() || !et2.getText().toString().isEmpty()){
             values.put(Utilidades.CAMPO_TIEMPO_IMPARTIR, tiempoImpartir);
-            values.put(Utilidades.CAMPO_DIA_IMPARTIR, et2.getText().toString());
+            values.put(Utilidades.CAMPO_DIA_IMPARTIR, calendario);
             values.put(Utilidades.CAMPO_NOMBRE_ASIGNATURA, asignaturas);
             values.put(Utilidades.CAMPO_LUGAR_IMPARTIR, lugarQuedada);
             values.put(Utilidades.CAMPO_FK_CORREO_ALUMNOS, correo_alumno);
