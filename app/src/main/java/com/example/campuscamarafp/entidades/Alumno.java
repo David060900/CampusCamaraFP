@@ -10,14 +10,16 @@ public class Alumno implements Serializable {
     private String password;
     private String curso;
     private String numcurso;
+    private int faltas;
 
-    public Alumno(String nombre, String apellidos, String correo, String password, String curso, String numcurso) {
+    public Alumno(String nombre, String apellidos, String correo, String password, String curso, String numcurso, int faltas) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
         this.password = password;
         this.curso = curso;
         this.numcurso = numcurso;
+        this.faltas = faltas;
     }
 
     public Alumno(){
@@ -70,6 +72,14 @@ public class Alumno implements Serializable {
 
     public void setNumcurso(String numcurso) {
         this.numcurso = numcurso;
+    }
+
+    public int getFaltas() {
+        return faltas;
+    }
+
+    public void setFaltas(int faltas) {
+        this.faltas = faltas;
     }
 
 }

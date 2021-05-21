@@ -1,6 +1,5 @@
 package com.example.campuscamarafp;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
@@ -9,25 +8,24 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.entidades.Alumno;
+import com.example.campuscamarafp.entidades.ImpartirSerializable;
 import com.example.campuscamarafp.utilidades.Utilidades;
 
 import java.util.ArrayList;
 
 public class Inicio  extends AppCompatActivity {
 
-    ArrayAdapter adaptador;
-    final ArrayList<String> lista = new ArrayList<>();
-
+    ArrayAdapter<String> adaptador;
+    private ListView lv;
+    private Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +38,35 @@ public class Inicio  extends AppCompatActivity {
         lista = lvBanco();
         adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, lista);
         lv.setAdapter(adaptador);
+
+        Quedar();
     }
 
-    public void Quedar(View view){
+    public void Quedar(){
+        lv = (ListView)findViewById(R.id.listaBanco);
+        btn = (Button)findViewById(R.id.btnQuedar);
+
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(Inicio.this, "campus", null, 1);
+        SQLiteDatabase bd = conexion.getWritableDatabase();
+
+        Cursor fila = bd.rawQuery("select correo_alumno from impartir", null);
+        ImpartirSerializable impartir = new ImpartirSerializable();
+        lv.setOnItemClickListener((parent, view, position, id) -> {
+            if (fila.moveToPosition(position)) {
+                String correo = fila.getString(0);
+                impartir.setCorreo_alumnos(correo);
+                Toast.makeText(Inicio.this, "Correo: " + impartir.getCorreo_alumnos() , Toast.LENGTH_SHORT).show();
+            }
+        });
+        btn.setOnClickListener(v -> {
+            Toast.makeText(Inicio.this, "Hola " , Toast.LENGTH_SHORT).show();
+            bd.execSQL("delete from alumnos where correo = '" + impartir.getCorreo_alumnos() + "';");
+        });
 
     }
 
     public ArrayList lvBanco(){
+        ArrayList<String> lista = new ArrayList<>();
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 

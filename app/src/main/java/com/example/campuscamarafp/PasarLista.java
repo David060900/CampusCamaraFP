@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,6 +21,8 @@ import java.util.ArrayList;
 public class PasarLista extends AppCompatActivity {
 
     ArrayAdapter<String> adaptador;
+    private ListView lv;
+    private Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,43 +30,35 @@ public class PasarLista extends AppCompatActivity {
         setContentView(R.layout.activity_pasarlista);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        final ListView lv = (ListView)findViewById(R.id.lista);
+        lv = (ListView)findViewById(R.id.lista);
         final ArrayList<Alumno> lista;
+
         lista = llenar_lv();
         adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, lista);
         lv.setAdapter(adaptador);
+
         selectAlumnos();
-        /*ListView lv
-        List<Alumno> mAdapter = new ArrayList<Alumno>();
-        Alumno match = new Alumno();
-
-        match.setNombre("Hola");
-        match.setApellidos("Adios");
-        mAdapter.add(match);
-
-        AdapterListaAlumnos adapter2 = new AdapterListaAlumnos(this, mAdapter);
-        lv = (ListView) findViewById(R.id.lista);
-        lv.setAdapter(adapter2);*/
     }
 
     public void selectAlumnos(){
-        //final ArrayList<Alumno> lista = new ArrayList<>();
-        final ListView lv = (ListView)findViewById(R.id.lista);
+        lv = (ListView)findViewById(R.id.lista);
+        btn = (Button)findViewById(R.id.btnPasarLista);
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
+        SQLiteDatabase bd = conexion.getWritableDatabase();
+        Cursor fila = bd.rawQuery("select correo from alumnos", null);
+        Alumno alumno = new Alumno();
         lv.setOnItemClickListener((parent, view, position, id) -> {
-            AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
-            SQLiteDatabase bd = conexion.getWritableDatabase();
-
-            Cursor fila = bd.rawQuery("select nombre, apellidos from alumnos", null);
-            Alumno alumno = new Alumno();
             if (fila.moveToPosition(position)) {
-                String nombre = fila.getString(0);
-                String apellidos = fila.getString(1);
-                alumno.setNombre(nombre);
-                alumno.setApellidos(apellidos);
-                Toast.makeText(PasarLista.this, "Nombre: " + alumno.getNombre()
-                            + " Apellidos "+ alumno.getApellidos(), Toast.LENGTH_SHORT).show();
+                String correo = fila.getString(0);
+                alumno.setCorreo(correo);
+                Toast.makeText(PasarLista.this, "Correo: " + alumno.getCorreo() , Toast.LENGTH_SHORT).show();
             }
         });
+        btn.setOnClickListener(v -> {
+            Toast.makeText(PasarLista.this, "Hola " , Toast.LENGTH_SHORT).show();
+            bd.execSQL("delete from alumnos where correo = '" + alumno.getCorreo() + "';");
+        });
+
     }
 
     public void guardarLista(View view){

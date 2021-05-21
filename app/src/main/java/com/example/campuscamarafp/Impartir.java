@@ -29,7 +29,7 @@ public class Impartir extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_impartir);
     }
-    //calendario https://www.youtube.com/watch?v=quR2UW-VkU0&ab_channel=ProgramEnthusiast
+
     public void RegistrarImpartir(View view){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();
@@ -78,12 +78,9 @@ public class Impartir extends AppCompatActivity {
         int mes = cal.get(Calendar.MONTH);
         int dia = cal.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog dpd = new DatePickerDialog(Impartir.this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String fecha = dayOfMonth + "/" + month + "/" + year;
-                et2.setText(fecha);
-            }
+        DatePickerDialog dpd = new DatePickerDialog(Impartir.this, (view1, year, month, dayOfMonth) -> {
+            String fecha = dayOfMonth + "/" + month + "/" + year;
+            et2.setText(fecha);
         }, anio, mes, dia);
         dpd.show();
     }
