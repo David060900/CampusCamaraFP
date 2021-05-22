@@ -12,6 +12,7 @@
     import android.widget.ArrayAdapter;
     import android.widget.Button;
     import android.widget.ListView;
+    import android.widget.TextView;
     import android.widget.Toast;
 
     import androidx.appcompat.app.AppCompatActivity;
@@ -21,11 +22,11 @@
     import com.example.campuscamarafp.utilidades.Utilidades;
 
     import java.util.ArrayList;
+    import java.util.List;
 
     public class PasarLista extends AppCompatActivity {
 
         ArrayAdapter<String> adaptador;
-        private ListView lv;
         private Button btn;
 
         @Override
@@ -34,7 +35,7 @@
             setContentView(R.layout.activity_pasarlista);
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-            lv = (ListView)findViewById(R.id.lista);
+            ListView lv = (ListView)findViewById(R.id.lista);
             final ArrayList<Alumno> lista;
 
             lista = llenar_lv();
@@ -45,7 +46,7 @@
         }
 
         public void selectAlumnos(){
-            lv = (ListView)findViewById(R.id.lista);
+            final ListView lv = (ListView)findViewById(R.id.lista);
             btn = (Button)findViewById(R.id.btnPasarLista);
             AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
             SQLiteDatabase bd = conexion.getWritableDatabase();

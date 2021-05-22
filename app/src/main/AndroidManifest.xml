@@ -17,13 +17,15 @@
         <activity android:name=".RegistrarseProfesores"></activity>
         <activity android:name=".Impartir"></activity>
         <activity android:name=".PasarLista"></activity>
-        <activity android:name=".InicioSesion">
+        <activity android:name=".InicioSesion"></activity>
+        <activity android:name=".SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"> <!-- Elimina la barra del sistema operativo -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
