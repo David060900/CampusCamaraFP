@@ -1,6 +1,5 @@
     package com.example.campuscamarafp;
 
-    import android.content.ContentValues;
     import android.content.Intent;
     import android.content.pm.ActivityInfo;
     import android.database.Cursor;
@@ -8,11 +7,9 @@
     import android.os.Bundle;
     import android.view.Menu;
     import android.view.MenuItem;
-    import android.view.View;
     import android.widget.ArrayAdapter;
     import android.widget.Button;
     import android.widget.ListView;
-    import android.widget.TextView;
     import android.widget.Toast;
 
     import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +19,6 @@
     import com.example.campuscamarafp.utilidades.Utilidades;
 
     import java.util.ArrayList;
-    import java.util.List;
 
     public class PasarLista extends AppCompatActivity {
 
@@ -35,7 +31,7 @@
             setContentView(R.layout.activity_pasarlista);
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-            ListView lv = (ListView)findViewById(R.id.lista);
+            final ListView lv = (ListView)findViewById(R.id.lista);
             final ArrayList<Alumno> lista;
 
             lista = llenar_lv();
@@ -46,8 +42,8 @@
         }
 
         public void selectAlumnos(){
-            final ListView lv = (ListView)findViewById(R.id.lista);
             btn = (Button)findViewById(R.id.btnPasarLista);
+            ListView lv = (ListView)findViewById(R.id.lista);
             AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
             SQLiteDatabase bd = conexion.getWritableDatabase();
             Cursor fila = bd.rawQuery("select correo from alumnos", null);
@@ -60,8 +56,9 @@
                 }
             });
             btn.setOnClickListener(v -> {
-                bd.execSQL("update alumnos set faltas = faltas + '" + 1
-                        + "' where correo = '" + alumno.getCorreo() + "';");
+                int aaa = 1;
+                    bd.execSQL("update alumnos set faltas = " + aaa
+                            + " where correo = '" + alumno.getCorreo() + "';");
                 Toast.makeText(PasarLista.this, "Hola ", Toast.LENGTH_SHORT).show();
             });
         }

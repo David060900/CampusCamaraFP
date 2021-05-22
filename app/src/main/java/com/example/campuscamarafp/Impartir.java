@@ -28,11 +28,6 @@ public class Impartir extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_impartir);
-    }
-
-    public void RegistrarImpartir(View view){
-        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
-        SQLiteDatabase db = conexion.getWritableDatabase();
 
         et1 = (EditText)findViewById(R.id.etTiempoImpartir);
         et2 = (EditText)findViewById(R.id.etDiaSemanaImpartir);
@@ -45,6 +40,11 @@ public class Impartir extends AppCompatActivity {
         String lugar [] = {"Hall CCFP", "Online"};
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_cursos, lugar);
         spinner2.setAdapter(adapter2);
+    }
+
+    public void RegistrarImpartir(View view){
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        SQLiteDatabase db = conexion.getWritableDatabase();
 
         String tiempoImpartir = et1.getText().toString();
         String calendario = et2.getText().toString();
