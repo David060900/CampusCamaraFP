@@ -60,7 +60,7 @@
                 int aaa = 1;
                     bd.execSQL("update alumnos set faltas = " + aaa
                             + " where correo = '" + alumno.getCorreo() + "';");
-                Toast.makeText(PasarLista.this, "Hola ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PasarLista.this, "Guardar Faltas ", Toast.LENGTH_SHORT).show();
             });
         }
 

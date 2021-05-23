@@ -60,7 +60,7 @@ public class Inicio  extends AppCompatActivity {
             }
         });
         btn.setOnClickListener(v -> {
-            Toast.makeText(Inicio.this, "Hola " , Toast.LENGTH_SHORT).show();
+            Toast.makeText(Inicio.this, "Reservando disponibilidad" , Toast.LENGTH_SHORT).show();
             bd.execSQL("delete from impartir where correo_alumnos = '" + impartir.getCorreo_alumnos() + "';");
         });
     }
