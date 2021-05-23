@@ -7,11 +7,14 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.example.campuscamarafp.ayudas.AyudaInicioSesion;
 import com.example.campuscamarafp.entidades.Alumno;
 import com.example.campuscamarafp.entidades.Profesor;
 import com.example.campuscamarafp.utilidades.Utilidades;
@@ -102,5 +105,24 @@ public class InicioSesion extends AppCompatActivity {
         } catch (Exception e) {//capturamos los errores si hubieran
             Toast.makeText(this, "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
+    }
+
+    //método que muestra los botones de acción
+    public boolean onCreateOptionsMenu (Menu menu){
+        getMenuInflater().inflate(R.menu.menuayuda, menu);
+        return true;
+    }
+    //método para agregar las acciones de los botones de acción
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if (id == R.id.imgayuda) {
+            Toast.makeText(this,"Ayuda", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, AyudaInicioSesion.class);
+            startActivity(i);
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
