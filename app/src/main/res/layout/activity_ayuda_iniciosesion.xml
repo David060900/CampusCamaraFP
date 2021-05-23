@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:lineSpacingExtra="4sp"
-                android:text="@string/ayuda_consultar" />
+                android:text="@string/ayuda_iniciosesion" />
 
             <ImageView
                 android:id="@+id/imageView3"

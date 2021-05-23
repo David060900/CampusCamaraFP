@@ -20,6 +20,12 @@
         <activity android:name=".ayudas.AyudaInicioSesion"
             android:label=""
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"></activity>
+        <activity android:name=".ayudas.AyudaImpartir"
+            android:label=""
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog"></activity>
+        <activity android:name=".ayudas.AyudaPasarLista"
+            android:label=""
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog"></activity>
         <activity android:name=".InicioSesion"></activity>
         <activity android:name=".SplashActivity"
             android:theme="@style/Theme.CampusCamaraFP.NoActionBar"> <!-- Elimina la barra del sistema operativo -->

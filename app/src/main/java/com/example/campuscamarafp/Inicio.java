@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.campuscamarafp.ayudas.AyudaImpartir;
+import com.example.campuscamarafp.ayudas.AyudaInicioSesion;
+import com.example.campuscamarafp.ayudas.AyudaPasarLista;
 import com.example.campuscamarafp.entidades.Alumno;
 import com.example.campuscamarafp.entidades.ImpartirSerializable;
 import com.example.campuscamarafp.utilidades.Utilidades;
@@ -143,9 +146,16 @@ public class Inicio  extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void Ayuda(){
+        Toast.makeText(this,"Ayuda", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, AyudaImpartir.class);
+        startActivity(i);
+    }
+
     //método que muestra los botones de acción
     public boolean onCreateOptionsMenu (Menu menu){
         getMenuInflater().inflate(R.menu.menuacciones, menu);
+        getMenuInflater().inflate(R.menu.menuayuda, menu);
         return true;
     }
     //método para agregar las acciones de los botones de acción
@@ -153,6 +163,9 @@ public class Inicio  extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.imgperfil:
                 Perfil();
+                return true;
+            case R.id.imgayuda:
+                Ayuda();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
