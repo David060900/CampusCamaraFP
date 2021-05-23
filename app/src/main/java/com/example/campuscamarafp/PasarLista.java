@@ -14,7 +14,6 @@
 
     import androidx.appcompat.app.AppCompatActivity;
 
-    import com.example.campuscamarafp.ayudas.AyudaImpartir;
     import com.example.campuscamarafp.ayudas.AyudaPasarLista;
     import com.example.campuscamarafp.entidades.Alumno;
     import com.example.campuscamarafp.entidades.Profesor;
@@ -110,7 +109,7 @@
                     String cur = fila.getString(4);
                     profesorEnvia.setCurso(cur);
 
-                    Intent i = new Intent(this, Perfil.class);
+                    Intent i = new Intent(this, PerfilProfesor.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("datos_profesores", profesorEnvia);
                     i.putExtras(bundle);

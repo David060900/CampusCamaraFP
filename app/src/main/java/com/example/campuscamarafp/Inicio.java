@@ -16,8 +16,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.ayudas.AyudaImpartir;
-import com.example.campuscamarafp.ayudas.AyudaInicioSesion;
-import com.example.campuscamarafp.ayudas.AyudaPasarLista;
 import com.example.campuscamarafp.entidades.Alumno;
 import com.example.campuscamarafp.entidades.ImpartirSerializable;
 import com.example.campuscamarafp.utilidades.Utilidades;
@@ -119,7 +117,7 @@ public class Inicio  extends AppCompatActivity {
                 int faltas = fila.getInt(6);
                 alumnoEnvia.setFaltas(faltas);
 
-                Intent i = new Intent(this, Perfil.class);
+                Intent i = new Intent(this, PerfilAlumno.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("datos_alumnos", alumnoEnvia);
                 i.putExtras(bundle);

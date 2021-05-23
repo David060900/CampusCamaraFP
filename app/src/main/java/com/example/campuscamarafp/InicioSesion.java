@@ -79,7 +79,7 @@ public class InicioSesion extends AppCompatActivity {
                 if(correo.equals(cor) && password.equals(pass)){
                     Intent i = new Intent(this, Inicio.class);
                     Alumno alumnoEnvia = new Alumno();
-                    alumnoEnvia.setCorreo(correo);
+                    alumnoEnvia.setCorreo(cor);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("alumno_iniciosesion", alumnoEnvia);
                     i.putExtras(bundle);
@@ -106,7 +106,6 @@ public class InicioSesion extends AppCompatActivity {
             Toast.makeText(this, "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
-
     //método que muestra los botones de acción
     public boolean onCreateOptionsMenu (Menu menu){
         getMenuInflater().inflate(R.menu.menuayuda, menu);

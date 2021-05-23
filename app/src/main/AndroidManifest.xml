@@ -13,10 +13,12 @@
         android:theme="@style/Theme.CampusCamaraFP">
         <activity android:name=".RegistrarseAlumnos"></activity>
         <activity android:name=".Inicio"></activity>
-        <activity android:name=".Perfil"></activity>
+        <activity android:name=".PerfilAlumno"></activity>
         <activity android:name=".RegistrarseProfesores"></activity>
         <activity android:name=".Impartir"></activity>
         <activity android:name=".PasarLista"></activity>
+        <activity android:name=".PerfilProfesor"></activity>
+        <activity android:name=".CambiarPassword"></activity>
         <activity android:name=".ayudas.AyudaInicioSesion"
             android:label=""
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"></activity>

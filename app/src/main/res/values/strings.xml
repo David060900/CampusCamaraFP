@@ -23,6 +23,10 @@
     <string name="diasemanaimpartir">¿Qué día de la semana te viene bien?</string>
     <string name="quedar">Quedar</string>
     <string name="cambiarpass">Cambiar Contraseña</string>
+    <string name="guardar">Guardar</string>
+    <string name="guardarpass">Guardar Contraseña</string>
+    <string name="passvieja">Escribe tu contraseña:</string>
+    <string name="passnueva">Escribe tu nueva contraseña:</string>
 
     /**********************AYUDAS**********************/
 
