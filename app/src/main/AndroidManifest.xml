@@ -18,7 +18,8 @@
         <activity android:name=".Impartir"></activity>
         <activity android:name=".PasarLista"></activity>
         <activity android:name=".PerfilProfesor"></activity>
-        <activity android:name=".CambiarPassword"></activity>
+        <activity android:name=".CambiarPasswordProfesores"></activity>
+        <activity android:name=".CambiarPasswordAlumnos"></activity>
         <activity android:name=".ayudas.AyudaInicioSesion"
             android:label=""
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"></activity>
