@@ -37,14 +37,16 @@ public class InicioSesion extends AppCompatActivity {
 
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
     }
-    //método que abre la ventana para el registor de usuarios
+    //método que abre la ventana para el registro de usuarios
     public void Registrar (View view){
+        //condicion si el primer radio button esta seleccionado
         if(rb1.isChecked()) {
             Intent i = new Intent(this, RegistrarseAlumnos.class);
             i.putExtra("dato", et1.getText().toString());
             startActivity(i);
-            Toast.makeText(this,"Resgistro Alumnos",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Registro Alumnos",Toast.LENGTH_SHORT).show();
         }
+        //condicion si el segundo radio button esta seleccionado
         if(rb2.isChecked()){
             Intent i = new Intent(this, RegistrarseProfesores.class);
             i.putExtra("dato2", et1.getText().toString());
@@ -59,7 +61,7 @@ public class InicioSesion extends AppCompatActivity {
         
         String correo = et1.getText().toString();
         String password = et2.getText().toString();
-        //sentencia que comprueba en la base de datos el correo y la contraseña
+        //sentencias que comprueban en la base de datos el correo y la contraseña
         Cursor fila = bd.rawQuery("select " + Utilidades.CAMPO_CORREO_ALUMNOS +
                 ", " + Utilidades.CAMPO_PASSWORD_ALUMNOS + " from " + Utilidades.TABLA_ALUMNOS
                 + " where " + Utilidades.CAMPO_CORREO_ALUMNOS + " = '" + correo
@@ -114,14 +116,12 @@ public class InicioSesion extends AppCompatActivity {
     //método para agregar las acciones de los botones de acción
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
-
+        //clase ayuda que hace referencia a la ayuda del inicio de sesion
         if (id == R.id.imgayuda) {
             Toast.makeText(this,"Ayuda", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(this, AyudaInicioSesion.class);
             startActivity(i);
-
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

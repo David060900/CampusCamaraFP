@@ -33,7 +33,7 @@ public class Impartir extends AppCompatActivity {
         et2 = (EditText)findViewById(R.id.etDiaSemanaImpartir);
         spinner1 = (Spinner)findViewById(R.id.spinnerAsignaturas);
         spinner2 = (Spinner)findViewById(R.id.spinnerLugarQuedar);
-
+        //declaramos con adaptadores nuestros propios spinners
         String asignaturasArray [] = {"FOL", "Informática", "Matemáticas"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_cursos, asignaturasArray);
         spinner1.setAdapter(adapter);
@@ -41,7 +41,7 @@ public class Impartir extends AppCompatActivity {
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_cursos, lugar);
         spinner2.setAdapter(adapter2);
     }
-
+    //metodo que inserta en la tabla impartir de la base de datos
     public void RegistrarImpartir(View view){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();
@@ -50,14 +50,14 @@ public class Impartir extends AppCompatActivity {
         String calendario = et2.getText().toString();
         String asignaturas = spinner1.getSelectedItem().toString();
         String lugarQuedada = spinner2.getSelectedItem().toString();
-
+        //recibimos datos del alumno
         Bundle objEnviado = getIntent().getExtras();
         Alumno alumnoRecibe;
         alumnoRecibe = (Alumno) objEnviado.getSerializable("correo_impartir");
         String correo_alumno = alumnoRecibe.getCorreo();
 
         ContentValues values = new ContentValues();
-
+        //condicion mientras que no estén vacios los campos de texto
         if(!tiempoImpartir.isEmpty() || !et2.getText().toString().isEmpty()){
             values.put(Utilidades.CAMPO_TIEMPO_IMPARTIR, tiempoImpartir);
             values.put(Utilidades.CAMPO_DIA_IMPARTIR, calendario);
@@ -72,7 +72,7 @@ public class Impartir extends AppCompatActivity {
         db.close();
         finish();
     }
-
+    //metodo que abre el calendario de la caja de texto
     public void etCalendario(View view) {
         et2 = (EditText)findViewById(R.id.etDiaSemanaImpartir);
         Calendar cal = Calendar.getInstance();
