@@ -63,6 +63,7 @@ public class Inicio  extends AppCompatActivity {
             Toast.makeText(Inicio.this, "Reservando disponibilidad" , Toast.LENGTH_SHORT).show();
             bd.execSQL("delete from impartir where correo_alumnos = '" + impartir.getCorreo_alumnos() + "';");
         });
+        finish();
     }
 
     public ArrayList lvBanco(){

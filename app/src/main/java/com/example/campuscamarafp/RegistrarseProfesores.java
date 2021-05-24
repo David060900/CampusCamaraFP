@@ -61,6 +61,10 @@ public class RegistrarseProfesores extends AppCompatActivity {
         }
         db.insert(Utilidades.TABLA_PROFESORES, null, values);
         db.close();
+        etCorreo.setText("");
+        etApellido.setText("");
+        etNombre.setText("");
+        etPassword.setText("");
     }
 
 }

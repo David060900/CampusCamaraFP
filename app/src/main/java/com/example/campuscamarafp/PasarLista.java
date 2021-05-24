@@ -57,8 +57,15 @@
                 }
             });
             btn.setOnClickListener(v -> {
-                int aaa = 1;
-                    bd.execSQL("update alumnos set faltas = " + aaa
+                String faltas = "faltas";
+                Cursor cursor = bd.rawQuery("select " + faltas + " from alumnos where correo = '"
+                        + alumno.getCorreo() + "';",null);
+                if(cursor.moveToFirst()){
+                    if(faltas.isEmpty()){
+                        alumno.setFaltas(1);
+                    }
+                }
+                    bd.execSQL("update alumnos set faltas = " + alumno.getFaltas() + 1
                             + " where correo = '" + alumno.getCorreo() + "';");
                 Toast.makeText(PasarLista.this, "Guardar Faltas ", Toast.LENGTH_SHORT).show();
             });

@@ -82,6 +82,10 @@ public class RegistrarseAlumnos extends AppCompatActivity {
             }
             db.insert(Utilidades.TABLA_ALUMNOS, null, values);
             db.close();
+            etCorreo.setText("");
+            etApellido.setText("");
+            etNombre.setText("");
+            etPassword.setText("");
         }
 
     }

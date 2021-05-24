@@ -70,6 +70,7 @@ public class Impartir extends AppCompatActivity {
         }
         db.insert(Utilidades.TABLA_IMPARTIR, null, values);
         db.close();
+        finish();
     }
 
     public void etCalendario(View view) {
