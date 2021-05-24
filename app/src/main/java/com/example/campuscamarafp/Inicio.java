@@ -179,7 +179,7 @@ public class Inicio  extends AppCompatActivity {
             case R.id.imgperfil:
                 Perfil();
                 return true;
-                //clase ayuda
+            //clase ayuda
             case R.id.imgayuda:
                 Ayuda();
                 return true;
