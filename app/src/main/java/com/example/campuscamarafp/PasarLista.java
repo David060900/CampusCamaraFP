@@ -61,16 +61,6 @@ public class PasarLista extends AppCompatActivity {
             }
         });
         btn.setOnClickListener(v -> {
-            String faltas = "faltas";
-            //consulta de las faltas de los alumnos
-            Cursor cursor = bd.rawQuery("select " + faltas + " from alumnos where correo = '"
-                    + alumno.getCorreo() + "';",null);
-            if(cursor.moveToFirst()){
-                //comprobamos que si está vacío que ponga un 0
-                if(faltas == null){
-                    alumno.setFaltas(0);
-                }
-            }
             //instruccion que incrementa en 1 la columna de las faltas de los alumnos
             bd.execSQL("update alumnos set faltas = faltas + " + 1
                     + " where correo = '" + alumno.getCorreo() + "';");
