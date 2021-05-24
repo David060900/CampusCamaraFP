@@ -1,7 +1,7 @@
 package com.example.campuscamarafp.entidades;
 
 import java.io.Serializable;
-
+//clase serializable de impartir
 public class ImpartirSerializable implements Serializable {
 
     private String asignatura;
@@ -9,7 +9,7 @@ public class ImpartirSerializable implements Serializable {
     private String lugar;
     private String dia;
     private String correo_alumnos;
-
+    //constructor
     public ImpartirSerializable(String asignatura, String tiempo, String lugar, String dia, String correo_alumnos) {
         this.asignatura = asignatura;
         this.tiempo = tiempo;
@@ -21,7 +21,7 @@ public class ImpartirSerializable implements Serializable {
     public ImpartirSerializable(){
 
     }
-
+    //getters y setters
     public String getAsignatura() {
         return asignatura;
     }

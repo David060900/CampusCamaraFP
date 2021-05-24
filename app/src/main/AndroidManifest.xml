@@ -31,7 +31,7 @@
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"></activity>
         <activity android:name=".InicioSesion"></activity>
         <activity android:name=".SplashActivity"
-            android:theme="@style/Theme.CampusCamaraFP.NoActionBar"> <!-- Elimina la barra del sistema operativo -->
+            android:theme="@style/Theme.CampusCamaraFP.NoActionBar"> <!-- Elimina la barra de la aplicación -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

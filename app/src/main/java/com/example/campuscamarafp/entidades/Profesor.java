@@ -1,7 +1,7 @@
 package com.example.campuscamarafp.entidades;
 
 import java.io.Serializable;
-
+//clase serializable de profesor
 public class Profesor implements Serializable {
 
     private String nombre;
@@ -9,7 +9,7 @@ public class Profesor implements Serializable {
     private String correo;
     private String password;
     private String curso;
-
+    //constructor
     public Profesor(String nombre, String apellidos, String correo, String password, String curso) {
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -21,7 +21,7 @@ public class Profesor implements Serializable {
     public Profesor(){
 
     }
-
+    //getters y setters
     public String getNombre() {
         return nombre;
     }
