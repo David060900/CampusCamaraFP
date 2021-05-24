@@ -52,6 +52,8 @@ public class CambiarPasswordProfesores extends AppCompatActivity {
                             + " where correo = '" + correo + "';");
                 }
             }
+            Toast.makeText(this, "Contraseña actualizada", Toast.LENGTH_LONG).show();
+            finish();
         } catch (Exception e) {//capturamos los errores si hubieran
             Toast.makeText(this, "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
