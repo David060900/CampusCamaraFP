@@ -65,10 +65,12 @@
                         alumno.setFaltas(1);
                     }
                 }
-                    bd.execSQL("update alumnos set faltas = " + alumno.getFaltas() + 1
+                    bd.execSQL("update alumnos set faltas = faltas + " + 1
                             + " where correo = '" + alumno.getCorreo() + "';");
                 Toast.makeText(PasarLista.this, "Guardar Faltas ", Toast.LENGTH_SHORT).show();
+                finish();
             });
+
         }
 
         public ArrayList llenar_lv(){
