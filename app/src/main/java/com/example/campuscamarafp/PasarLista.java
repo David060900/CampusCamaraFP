@@ -67,7 +67,7 @@ public class PasarLista extends AppCompatActivity {
                     + alumno.getCorreo() + "';",null);
             if(cursor.moveToFirst()){
                 //comprobamos que si está vacío que ponga un 0
-                if(faltas.isEmpty()){
+                if(faltas == null){
                     alumno.setFaltas(0);
                 }
             }
