@@ -22,6 +22,7 @@ public class PerfilProfesor extends AppCompatActivity{
         tv2 = (TextView)findViewById(R.id.tvPerfilApellidosU);
         tv3 = (TextView)findViewById(R.id.tvPerfilCorreoU);
 
+        //recoge los datos que se han enviado del profesor y los escribe en Text Views
         Bundle objEnviado = getIntent().getExtras();
         Profesor profesorRecibe;
         profesorRecibe = (Profesor) objEnviado.getSerializable("datos_profesores");
@@ -32,7 +33,7 @@ public class PerfilProfesor extends AppCompatActivity{
         tv2.setText(apellidoProfesor);
         tv3.setText(correoProfesor);
     }
-
+    //metodo que llama a la clase que cambia la contraseña
     public void CambiarPassword(View view){
         Intent i = new Intent(this, CambiarPasswordProfesores.class);
         Profesor profesorEnvia = new Profesor();

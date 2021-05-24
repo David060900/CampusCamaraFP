@@ -1,31 +1,59 @@
 <resources>
+
+    /**********************NOMBRE APLICACION**********************/
+
     <string name="app_name">CampusCamaraFP</string>
+
+    /**********************USUARIOS**********************/
+
     <string name="email">email</string>
+
     <string name="etpass">Contraseña</string>
+
     <string name="botoniniciar">Iniciar Sesión</string>
+
     <string name="registrarse">Registrarse</string>
+
     <string name="etnombre">Nombre</string>
+
     <string name="etapellidos">Apellidos</string>
+
     <string name="curso">Curso</string>
+
     <string name="primero">1ero</string>
+
     <string name="segundo">2do</string>
+
     <string name="boxalumno">Alumno/a</string>
+
     <string name="boxprofesor">Profesor/a</string>
-    <string name="buscar">Buscar</string>
-    <string name="compartir">Compartir</string>
-    <string name="opcion1">Opción 1</string>
-    <string name="opcion2">Opción 2</string>
+
+    /**********************IMPARTIR**********************/
+
     <string name="impartir">Impartir</string>
+
     <string name="aprender">Aprender</string>
+
     <string name="asigimpartir">¿Qué asignatura quieres impartir?</string>
+
     <string name="tiempoimpartir">¿Cuánto tiempo tienes para emplear en la asignatura?</string>
+
     <string name="lugarimpartir">¿Dónde te gustaría quedar para ayudar?</string>
+
     <string name="diasemanaimpartir">¿Qué día de la semana te viene bien?</string>
+
     <string name="quedar">Quedar</string>
+
+    /**********************PERFIL**********************/
+
     <string name="cambiarpass">Cambiar Contraseña</string>
+
     <string name="guardar">Guardar</string>
+
     <string name="guardarpass">Guardar Contraseña</string>
+
     <string name="passvieja">Escribe tu contraseña:</string>
+
     <string name="passnueva">Escribe tu nueva contraseña:</string>
 
     /**********************AYUDAS**********************/

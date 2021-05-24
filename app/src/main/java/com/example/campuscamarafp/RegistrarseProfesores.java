@@ -31,12 +31,13 @@ public class RegistrarseProfesores extends AppCompatActivity {
         etPassword = (EditText)findViewById(R.id.etPasswordRP);
         spinner1 = (Spinner)findViewById(R.id.spinnerCursos2);
 
+        //con un adapter adaptamos a nuestro gusto nuestro spinner
         String cursos [] = {"DAM", "Marketing y Publicidad", "Comercio Internacional", "Transporte y Logística"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_cursos, cursos);
         spinner1.setAdapter(adapter);
 
     }
-
+    //metodo que registra a los profesores
     public void registrarProfesores(View view){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();
@@ -48,7 +49,7 @@ public class RegistrarseProfesores extends AppCompatActivity {
         String curso = spinner1.getSelectedItem().toString();
 
         ContentValues values = new ContentValues();
-
+        //comprobamos que ninguno de los campos estan vacios
         if(!nombre.isEmpty() && !apellidos.isEmpty() && !correo.isEmpty() && !password.isEmpty()){
                 values.put(Utilidades.CAMPO_NOMBRE_PROFESORES, nombre);
                 values.put(Utilidades.CAMPO_APELLIDOS_PROFESORES, apellidos);
