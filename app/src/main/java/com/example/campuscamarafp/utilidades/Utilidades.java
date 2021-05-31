@@ -38,7 +38,7 @@ public class Utilidades {
             CAMPO_CURSO_ALUMNOS + " text, " +
             CAMPO_NUMCURSO_ALUMNOS + " text, " +
             CAMPO_FALTAS_ALUMNOS + " integer, " +
-            CAMPO_DIA_ALUMNOS + " text);";
+            CAMPO_DIA_ALUMNOS + " DEFAULT CURRENT_TIMESTAMP);";
 
     //sentencia que crea la tabla profesores
     public static final String CREAR_TABLA_PROFESOR = "create table if not exists " + TABLA_PROFESORES +

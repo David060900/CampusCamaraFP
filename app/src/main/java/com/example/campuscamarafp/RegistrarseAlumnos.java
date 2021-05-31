@@ -56,6 +56,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         String curso = spinner1.getSelectedItem().toString();
         String curso1 = cb1.getText().toString();
         String curso2 = cb2.getText().toString();
+        int faltas = 0;
 
         ContentValues values = new ContentValues();
         //comprobamos que ninguno de los campos estan vacios
@@ -67,6 +68,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
                 values.put(Utilidades.CAMPO_PASSWORD_ALUMNOS, password);
                 values.put(Utilidades.CAMPO_CURSO_ALUMNOS, curso);
                 values.put(Utilidades.CAMPO_NUMCURSO_ALUMNOS, curso1);
+                values.put(Utilidades.CAMPO_FALTAS_ALUMNOS, faltas);
                 Toast.makeText(this,"Alumno '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
             }
             if(!curso2.isEmpty()){
@@ -76,6 +78,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
                 values.put(Utilidades.CAMPO_PASSWORD_ALUMNOS, password);
                 values.put(Utilidades.CAMPO_CURSO_ALUMNOS, curso);
                 values.put(Utilidades.CAMPO_NUMCURSO_ALUMNOS, curso2);
+                values.put(Utilidades.CAMPO_FALTAS_ALUMNOS, faltas);
                 Toast.makeText(this,"Alumno '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
             }
         }else{
