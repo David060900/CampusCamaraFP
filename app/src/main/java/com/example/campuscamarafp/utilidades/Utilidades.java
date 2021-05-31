@@ -27,6 +27,7 @@ public class Utilidades {
     public static final String CAMPO_TIEMPO_IMPARTIR = "tiempo";
     public static final String CAMPO_LUGAR_IMPARTIR = "lugar";
     public static final String CAMPO_DIA_IMPARTIR = "dia";
+    public static final String CAMPO_ID_IMPARTIR = "id_impartir";
     public static final String CAMPO_FK_CORREO_ALUMNOS = "correo_alumnos";
 
     //sentencia que crea la tabla alumnos
@@ -48,9 +49,10 @@ public class Utilidades {
             CAMPO_PASSWORD_PROFESORES + " text, " +
             CAMPO_CURSO_PROFESORES + " text);";
 
-    //sentencia que crea la tabla asignsturas
+    //sentencia que crea la tabla asignaturas
     public static final String CREAR_TABLA_IMPARTIR = "create table if not exists " + TABLA_IMPARTIR +
-            "(" + CAMPO_NOMBRE_ASIGNATURA + " text, " +
+            "(" + CAMPO_ID_IMPARTIR + " integer primary key autoincrement, " +
+            CAMPO_NOMBRE_ASIGNATURA + " text, " +
             CAMPO_TIEMPO_IMPARTIR + " text, " +
             CAMPO_LUGAR_IMPARTIR + " text, " +
             CAMPO_DIA_IMPARTIR + " text, " +

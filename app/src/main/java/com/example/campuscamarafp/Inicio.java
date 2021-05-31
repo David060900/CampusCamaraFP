@@ -52,7 +52,7 @@ public class Inicio  extends AppCompatActivity {
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
         //consulta del correo del alumno de la base de datos impartir
-        Cursor fila = bd.rawQuery("select correo_alumnos from impartir", null);
+        Cursor fila = bd.rawQuery("select id_impartir from impartir", null);
 
         //llamamos a la clase serializable
         ImpartirSerializable impartir = new ImpartirSerializable();
@@ -61,8 +61,8 @@ public class Inicio  extends AppCompatActivity {
         lv.setOnItemClickListener((parent, view, position, id) -> {
             //condicion que recorre la posicion del elemento de la lista
             if (fila.moveToPosition(position)) {
-                String correo = fila.getString(0);
-                impartir.setCorreo_alumnos(correo);
+                int id_impartir = fila.getInt(0);
+                impartir.setId_impartir(id_impartir);
                 Toast.makeText(Inicio.this, "Correo: " + impartir.getCorreo_alumnos() , Toast.LENGTH_SHORT).show();
             }
         });
@@ -70,7 +70,7 @@ public class Inicio  extends AppCompatActivity {
         btn.setOnClickListener(v -> {
             Toast.makeText(Inicio.this, "Reservando disponibilidad" , Toast.LENGTH_SHORT).show();
             //instruccion que elimina de la base de datos
-            bd.execSQL("delete from impartir where correo_alumnos = '" + impartir.getCorreo_alumnos() + "';");
+            bd.execSQL("delete from impartir where id_impartir = '" + impartir.getId_impartir() + "';");
             finish();
         });
     }

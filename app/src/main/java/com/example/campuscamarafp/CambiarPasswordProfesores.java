@@ -1,6 +1,7 @@
 package com.example.campuscamarafp;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -48,17 +49,22 @@ public class CambiarPasswordProfesores extends AppCompatActivity {
 
         //corrección de errores
         try{
-            if(fila.moveToFirst()){
-                String pass = fila.getString(0);
-                //condicion si coincide, actualizamos a la nueva contraseña
-                if(password.equals(pass)){
-                    //instruccion sql que actualiza los valores en la base de datos
-                    bd.execSQL("update profesores set password = '" + passwordnueva + "' "
-                            + " where correo = '" + correo + "';");
+            if(!password.isEmpty() && !passwordnueva.isEmpty()){
+                if(fila.moveToFirst()){
+                    String pass = fila.getString(0);
+                    //condicion si coincide, actualizamos a la nueva contraseña
+                    if(password.equals(pass)){
+                        //instruccion sql que actualiza los valores en la base de datos
+                        bd.execSQL("update profesores set password = '" + passwordnueva + "' "
+                                + " where correo = '" + correo + "';");
+                        Intent i = new Intent(this, InicioSesion.class);
+                        startActivity(i);
+                        Toast.makeText(this, "Contraseña actualizada", Toast.LENGTH_LONG).show();
+                    }
                 }
+            }else{
+                Toast.makeText(this, "Escribe en los dos campos", Toast.LENGTH_SHORT).show();
             }
-            Toast.makeText(this, "Contraseña actualizada", Toast.LENGTH_LONG).show();
-            finish();
         } catch (Exception e) {//capturamos los errores si hubieran
             Toast.makeText(this, "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
         }

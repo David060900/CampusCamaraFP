@@ -57,7 +57,8 @@ public class PasarLista extends AppCompatActivity {
             if (fila.moveToPosition(position)) {
                 String correo = fila.getString(0);
                 alumno.setCorreo(correo);
-                Toast.makeText(PasarLista.this, "Correo: " + alumno.getCorreo() , Toast.LENGTH_SHORT).show();
+                lv.getItemIdAtPosition(position);
+                Toast.makeText(PasarLista.this, "Correo: " + position , Toast.LENGTH_SHORT).show();
             }
         });
         btn.setOnClickListener(v -> {
@@ -67,7 +68,6 @@ public class PasarLista extends AppCompatActivity {
             bd.execSQL("update alumnos set dia = datetime('now', 'localtime') " +
                     " where correo = '" + alumno.getCorreo() + "';");
             Toast.makeText(PasarLista.this, "Guardar Faltas ", Toast.LENGTH_SHORT).show();
-            finish();
         });
 
     }

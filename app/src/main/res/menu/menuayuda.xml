@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/imgayuda"
-        android:icon="@drawable/icono_ayuda"
+        android:icon="@drawable/icono_ayuda_2"
         android:title="Ayuda"
         app:showAsAction="always" />
 </menu>
