@@ -72,7 +72,9 @@ public class Impartir extends AppCompatActivity {
             values.put(Utilidades.CAMPO_LUGAR_IMPARTIR, lugarQuedada);
             values.put(Utilidades.CAMPO_FK_CORREO_ALUMNOS, correo_alumno);
             Toast.makeText(this,"Asignatura '" + asignaturas + "' lista para impartir", Toast.LENGTH_SHORT).show();
-            onRestart();
+            et1.setText("");
+            et2.setText("");
+            tv1.setText("");
             Intent i = new Intent(this, Inicio.class);
             startActivity(i);
         }else{

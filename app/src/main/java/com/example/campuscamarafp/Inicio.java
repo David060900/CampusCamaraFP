@@ -80,7 +80,7 @@ public class Inicio  extends AppCompatActivity {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
         //consulta de los valores que recoge de la base de datos
-        String tabla_lista = "select asignatura, correo_alumnos, dia, tiempo from impartir";
+        String tabla_lista = "select asignatura, correo_alumnos, tiempo, dia from impartir";
         Cursor registro = bd.rawQuery(tabla_lista, null);
         //condicion que recoge de la consulta para proyectar en la lista
         if(registro.moveToFirst()){
@@ -88,7 +88,7 @@ public class Inicio  extends AppCompatActivity {
                 lista.add(registro.getString(0)
                         + "\t\t"
                         + registro.getString(1)
-                        + "\t\t"
+                        + "\n"
                         + registro.getString(2)
                         + "\t\t"
                         + registro.getString(3));
