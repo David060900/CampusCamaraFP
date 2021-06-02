@@ -5,9 +5,12 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.ActionMode;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -21,12 +24,17 @@ import com.example.campuscamarafp.entidades.ImpartirSerializable;
 import com.example.campuscamarafp.utilidades.Utilidades;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Inicio  extends AppCompatActivity {
 
     private ListView lv;
     private Adaptador adaptador;
     private Button btn;
+
+    public static boolean isActionMode = false;
+    public static List<String> userSelection = new ArrayList<>();
+    public static ActionMode actionMode = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +43,57 @@ public class Inicio  extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         lv = (ListView)findViewById(R.id.listaBanco);
+        lv.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
+        lv.setMultiChoiceModeListener(modeListener);
 
-        adaptador = new Adaptador(consultarLista(), this, android.R.layout.simple_list_item_multiple_choice);
+        adaptador = new Adaptador(consultarLista(), this);
         lv.setAdapter(adaptador);
 
         Quedar();
     }
+
+    AbsListView.MultiChoiceModeListener modeListener = new AbsListView.MultiChoiceModeListener() {
+        @Override
+        public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+
+        }
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            MenuInflater inflater = mode.getMenuInflater();
+            inflater.inflate(R.menu.menuayuda, menu);
+
+            isActionMode = true;
+            actionMode = mode;
+
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch (item.getItemId()){
+                case R.id.btnQuedar:
+                    adaptador.removeItems(userSelection);
+                    mode.finish();
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            isActionMode = false;
+            actionMode = null;
+            userSelection.clear();
+        }
+    };
     //consulta los valores de la tabla impartir de la base de datos
     public ArrayList consultarLista() {
         ArrayList<ImpartirSerializable> lista = new ArrayList();
