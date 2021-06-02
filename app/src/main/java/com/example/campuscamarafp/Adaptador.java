@@ -44,10 +44,10 @@ public class Adaptador extends BaseAdapter {
 
         convertView = LayoutInflater.from(contexto).inflate(R.layout.elemento_lista, null);
         TextView tv1, tv2, tv3, tv4;
-        tv1 = convertView.findViewById(R.id.textView4);
-        tv2 = convertView.findViewById(R.id.textView5);
-        tv3 = convertView.findViewById(R.id.textView6);
-        tv4 = convertView.findViewById(R.id.textView7);
+        tv1 = convertView.findViewById(R.id.tvListaAsignatura);
+        tv2 = convertView.findViewById(R.id.tvListaCorreo);
+        tv3 = convertView.findViewById(R.id.tvListaDiaHora);
+        tv4 = convertView.findViewById(R.id.tvListaHoras);
 
         tv1.setText(impartir.getAsignatura());
         tv2.setText(impartir.getCorreo_alumnos());
