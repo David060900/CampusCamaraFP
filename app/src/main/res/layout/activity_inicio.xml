@@ -39,6 +39,7 @@
                 android:id="@+id/listaBanco"
                 android:layout_width="match_parent"
                 android:layout_height="480dp"
+                android:clickable="true"
                 tools:ignore="MissingConstraints" />
 
         </LinearLayout>

@@ -43,8 +43,8 @@ public class Inicio  extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         lv = (ListView)findViewById(R.id.listaBanco);
-        lv.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
-        lv.setMultiChoiceModeListener(modeListener);
+        //lv.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
+        //lv.setMultiChoiceModeListener(modeListener);
 
         adaptador = new Adaptador(consultarLista(), this);
         lv.setAdapter(adaptador);
@@ -52,7 +52,7 @@ public class Inicio  extends AppCompatActivity {
         Quedar();
     }
 
-    AbsListView.MultiChoiceModeListener modeListener = new AbsListView.MultiChoiceModeListener() {
+    /*AbsListView.MultiChoiceModeListener modeListener = new AbsListView.MultiChoiceModeListener() {
         @Override
         public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
 
@@ -93,7 +93,7 @@ public class Inicio  extends AppCompatActivity {
             actionMode = null;
             userSelection.clear();
         }
-    };
+    };*/
     //consulta los valores de la tabla impartir de la base de datos
     public ArrayList consultarLista() {
         ArrayList<ImpartirSerializable> lista = new ArrayList();
@@ -142,7 +142,7 @@ public class Inicio  extends AppCompatActivity {
             if (fila.moveToPosition(position)) {
                 int id_impartir = fila.getInt(0);
                 impartir.setId_impartir(id_impartir);
-                Toast.makeText(Inicio.this, "Correo: " + impartir.getCorreo_alumnos() , Toast.LENGTH_SHORT).show();
+                Toast.makeText(Inicio.this, "ID: " + impartir.getId_impartir() , Toast.LENGTH_SHORT).show();
             }
         });
         //le asignamos al boton una acción
@@ -150,6 +150,7 @@ public class Inicio  extends AppCompatActivity {
             Toast.makeText(Inicio.this, "Reservando disponibilidad" , Toast.LENGTH_SHORT).show();
             //instruccion que elimina de la base de datos
             bd.execSQL("delete from impartir where id_impartir = '" + impartir.getId_impartir() + "';");
+            //Toast.makeText(Inicio.this, "Adios", Toast.LENGTH_SHORT).show();
             finish();
         });
     }

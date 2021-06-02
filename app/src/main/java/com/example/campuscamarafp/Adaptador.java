@@ -52,7 +52,6 @@ public class Adaptador extends BaseAdapter {
 
         convertView = LayoutInflater.from(contexto).inflate(R.layout.elemento_lista, null);
         TextView tv1, tv2, tv3, tv4;
-        ImageView iv;
 
         tv1 = convertView.findViewById(R.id.tvListaAsignatura);
         tv2 = convertView.findViewById(R.id.tvListaCorreo);
@@ -65,6 +64,10 @@ public class Adaptador extends BaseAdapter {
         tv4.setText(impartir.getTiempo());
 
         CheckBox checkBox = convertView.findViewById(R.id.checkBox);
+        if(checkBox.isSelected()){
+            listItems.get(position);
+        }
+        /*CheckBox checkBox = convertView.findViewById(R.id.checkBox);
         checkBox.setTag(position);
         if(Inicio.isActionMode){
             checkBox.setVisibility(View.VISIBLE);
@@ -81,15 +84,15 @@ public class Adaptador extends BaseAdapter {
                 }
                 Inicio.actionMode.setTitle(Inicio.userSelection.size() + " items");
             }
-        });
+        });*/
 
         return convertView;
     }
 
-    public void removeItems (List<String> items){
+    /*public void removeItems (List<String> items){
         for(String item : items){
             this.listItems.remove(item);
         }
         notifyDataSetChanged();
-    }
+    }*/
 }
