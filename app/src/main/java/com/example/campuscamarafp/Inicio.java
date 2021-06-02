@@ -24,8 +24,8 @@ import java.util.ArrayList;
 
 public class Inicio  extends AppCompatActivity {
 
-    ArrayAdapter<String> adaptador;
     private ListView lv;
+    private Adaptador adaptador;
     private Button btn;
 
     @Override
@@ -34,14 +34,40 @@ public class Inicio  extends AppCompatActivity {
         setContentView(R.layout.activity_inicio);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        final ListView lv = (ListView)findViewById(R.id.listaBanco);
-        //la lista que hemos declarado la igualamos a la lista que recogemos con la consulta a la base de datos
-        final ArrayList<Impartir> lista;
-        lista = lvBanco();
-        adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, lista);
+        lv = (ListView)findViewById(R.id.listaBanco);
+
+        adaptador = new Adaptador(consultarLista(), this, android.R.layout.simple_list_item_multiple_choice);
         lv.setAdapter(adaptador);
 
         Quedar();
+    }
+    //consulta los valores de la tabla impartir de la base de datos
+    public ArrayList consultarLista() {
+        ArrayList<ImpartirSerializable> lista = new ArrayList();
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        SQLiteDatabase bd = conexion.getWritableDatabase();
+
+        ImpartirSerializable impartir = new ImpartirSerializable();
+        //consulta de los valores que recoge de la base de datos
+        Cursor registro = bd.rawQuery("select asignatura, correo_alumnos, dia, tiempo " +
+                "from impartir", null);
+
+        //condicion que recoge de la consulta para proyectar en la lista
+        if (registro.moveToFirst()) {
+            do {
+                String asignatura = registro.getString(0);
+                impartir.setAsignatura(asignatura);
+                String correo_alumnos = registro.getString(1);
+                impartir.setCorreo_alumnos(correo_alumnos);
+                String dia = registro.getString(2);
+                impartir.setDia(dia);
+                String tiempo = registro.getString(3);
+                impartir.setTiempo(tiempo);
+                lista.add(new ImpartirSerializable(asignatura,
+                        correo_alumnos, dia, tiempo));
+            } while (registro.moveToNext());
+        }
+        return lista;
     }
     //metodo que comprueba la posicion de la lista y elimina de la base de datos y de la lista
     public void Quedar(){
@@ -52,7 +78,7 @@ public class Inicio  extends AppCompatActivity {
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
         //consulta del correo del alumno de la base de datos impartir
-        Cursor fila = bd.rawQuery("select id_impartir from impartir", null);
+        Cursor fila = bd.rawQuery("select id_impartir from impartir;", null);
 
         //llamamos a la clase serializable
         ImpartirSerializable impartir = new ImpartirSerializable();
@@ -73,28 +99,6 @@ public class Inicio  extends AppCompatActivity {
             bd.execSQL("delete from impartir where id_impartir = '" + impartir.getId_impartir() + "';");
             finish();
         });
-    }
-    //lista que recoge los valores de la base de datos y los proyecta
-    public ArrayList lvBanco(){
-        ArrayList<String> lista = new ArrayList<>();
-        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
-        SQLiteDatabase bd = conexion.getWritableDatabase();
-        //consulta de los valores que recoge de la base de datos
-        String tabla_lista = "select asignatura, correo_alumnos, tiempo, dia from impartir";
-        Cursor registro = bd.rawQuery(tabla_lista, null);
-        //condicion que recoge de la consulta para proyectar en la lista
-        if(registro.moveToFirst()){
-            do{
-                lista.add(registro.getString(0)
-                        + "\t\t"
-                        + registro.getString(1)
-                        + "\n"
-                        + registro.getString(2)
-                        + "\t\t"
-                        + registro.getString(3));
-            }while(registro.moveToNext());
-        }
-        return lista;
     }
     //método que da paso a la actividad Perfil
     public void Perfil (){
