@@ -9,8 +9,8 @@ public class ImpartirSerializable implements Serializable {
     private String lugar;
     private String dia;
     private String correo_alumnos;
-
     private int id_impartir;
+
     //constructor
     public ImpartirSerializable(String asignatura, String tiempo, String lugar, String dia, String correo_alumnos, int id_impartir) {
         this.asignatura = asignatura;
@@ -24,6 +24,14 @@ public class ImpartirSerializable implements Serializable {
     public ImpartirSerializable(){
 
     }
+
+    public ImpartirSerializable(String asignatura, String correo_alumnos, String dia, String tiempo) {
+        this.asignatura = asignatura;
+        this.tiempo = tiempo;
+        this.dia = dia;
+        this.correo_alumnos = correo_alumnos;
+    }
+
     //getters y setters
     public String getAsignatura() {
         return asignatura;
