@@ -29,8 +29,12 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="410dp"
+        android:layout_height="565dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,22 +45,25 @@
                 android:id="@+id/lista"
                 android:layout_width="match_parent"
                 android:layout_height="480dp"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="20dp"
                 android:choiceMode="multipleChoice"
-                tools:ignore="MissingConstraints">
+                tools:ignore="MissingConstraints"></ListView>
 
-            </ListView>
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnPasarLista"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="505dp"
-        android:text="@string/guardar"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvApellidosPasarLista" />
+        app:maxImageSize="45dp"
+        app:rippleColor="@color/black"
+        app:srcCompat="@drawable/icono_save" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

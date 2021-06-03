@@ -18,6 +18,7 @@ import com.example.campuscamarafp.ayudas.AyudaPasarLista;
 import com.example.campuscamarafp.entidades.Alumno;
 import com.example.campuscamarafp.entidades.Profesor;
 import com.example.campuscamarafp.utilidades.Utilidades;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class PasarLista extends AppCompatActivity {
 
     ArrayAdapter<String> adaptador;
     private Button btn;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,8 @@ public class PasarLista extends AppCompatActivity {
     }
     //metodo que consulta los alumnos de la base de datos
     public void selectAlumnos(){
-        btn = (Button)findViewById(R.id.btnPasarLista);
+        //btn = (Button)findViewById(R.id.btnPasarLista);
+        fab = findViewById(R.id.floatingActionButton2);
         ListView lv = (ListView)findViewById(R.id.lista);
 
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
@@ -61,7 +64,7 @@ public class PasarLista extends AppCompatActivity {
                 Toast.makeText(PasarLista.this, "Correo: " + position , Toast.LENGTH_SHORT).show();
             }
         });
-        btn.setOnClickListener(v -> {
+        fab.setOnClickListener(v -> {
             //instruccion que incrementa en 1 la columna de las faltas de los alumnos
             bd.execSQL("update alumnos set faltas = faltas + " + 1
                     + " where correo = '" + alumno.getCorreo() + "';");

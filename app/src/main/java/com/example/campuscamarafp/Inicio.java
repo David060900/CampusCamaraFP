@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class Inicio  extends AppCompatActivity {
     private ListView lv;
     private Adaptador adaptador;
     private Button btn;
+    private CheckBox chkAll;
 
     public static boolean isActionMode = false;
     public static List<String> userSelection = new ArrayList<>();
@@ -43,7 +45,7 @@ public class Inicio  extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         lv = (ListView)findViewById(R.id.listaBanco);
-        lv.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
+        //lv.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
         //lv.setMultiChoiceModeListener(modeListener);
 
         adaptador = new Adaptador(consultarLista(), this);
@@ -131,7 +133,7 @@ public class Inicio  extends AppCompatActivity {
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
         //consulta del correo del alumno de la base de datos impartir
-        Cursor fila = bd.rawQuery("select id_impartir from impartir;", null);
+        Cursor fila = bd.rawQuery("select id_impartir, correo_alumnos from impartir;", null);
 
         //llamamos a la clase serializable
         ImpartirSerializable impartir = new ImpartirSerializable();
@@ -141,8 +143,9 @@ public class Inicio  extends AppCompatActivity {
             //condicion que recorre la posicion del elemento de la lista
             if (fila.moveToPosition(position)) {
                 int id_impartir = fila.getInt(0);
+                String correo = fila.getString(1);
                 impartir.setId_impartir(id_impartir);
-                Toast.makeText(Inicio.this, "Correo: " + impartir.getCorreo_alumnos() , Toast.LENGTH_SHORT).show();
+                Toast.makeText(Inicio.this, "Has elegido a " + impartir.getCorreo_alumnos(), Toast.LENGTH_SHORT).show();
             }
         });
         //le asignamos al boton una acción
