@@ -23,6 +23,7 @@ import com.example.campuscamarafp.ayudas.AyudaImpartir;
 import com.example.campuscamarafp.entidades.Alumno;
 import com.example.campuscamarafp.entidades.ImpartirSerializable;
 import com.example.campuscamarafp.utilidades.Utilidades;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class Inicio  extends AppCompatActivity {
     private ListView lv;
     private Adaptador adaptador;
     private Button btn;
+    private FloatingActionButton fab;
     private CheckBox chkAll;
 
     public static boolean isActionMode = false;
@@ -127,7 +129,8 @@ public class Inicio  extends AppCompatActivity {
     //metodo que comprueba la posicion de la lista y elimina de la base de datos y de la lista
     public void Quedar(){
         lv = (ListView)findViewById(R.id.listaBanco);
-        btn = (Button)findViewById(R.id.btnQuedar);
+        //btn = (Button)findViewById(R.id.btnQuedar);
+        fab = findViewById(R.id.floatingActionButton);
 
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(Inicio.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
@@ -145,11 +148,12 @@ public class Inicio  extends AppCompatActivity {
                 int id_impartir = fila.getInt(0);
                 String correo = fila.getString(1);
                 impartir.setId_impartir(id_impartir);
+                impartir.setCorreo_alumnos(correo);
                 Toast.makeText(Inicio.this, "Has elegido a " + impartir.getCorreo_alumnos(), Toast.LENGTH_SHORT).show();
             }
         });
         //le asignamos al boton una acción
-        btn.setOnClickListener(v -> {
+        fab.setOnClickListener(v -> {
             Toast.makeText(Inicio.this, "Reservando disponibilidad" , Toast.LENGTH_SHORT).show();
             //instruccion que elimina de la base de datos
             bd.execSQL("delete from impartir where id_impartir = '" + impartir.getId_impartir() + "';");

@@ -65,9 +65,6 @@ public class Adaptador extends BaseAdapter {
         tv2.setText(impartir.getCorreo_alumnos());
         tv3.setText(impartir.getDia());
         tv4.setText(impartir.getTiempo());
-
-        CheckBox checkBox = convertView.findViewById(R.id.checkBox);
-        checkBox.setTag(position);
         /*CheckBox checkBox = convertView.findViewById(R.id.checkBox);
         checkBox.setTag(position);
         if(Inicio.isActionMode){

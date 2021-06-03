@@ -8,7 +8,7 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="403dp"
-        android:layout_height="536dp"
+        android:layout_height="600dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -38,23 +38,23 @@
             <ListView
                 android:id="@+id/listaBanco"
                 android:layout_width="match_parent"
-                android:layout_height="480dp"
+                android:layout_height="550dp"
                 tools:ignore="MissingConstraints" />
 
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnQuedar"
-        android:layout_width="205dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:onClick="Quedar"
-        android:text="@string/quedar"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.543"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        tools:ignore="MissingConstraints" />
+        app:maxImageSize="45dp"
+        app:srcCompat="@drawable/icono_libro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

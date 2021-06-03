@@ -75,8 +75,7 @@ public class Impartir extends AppCompatActivity {
             et1.setText("");
             et2.setText("");
             tv1.setText("");
-            Intent i = new Intent(this, Inicio.class);
-            startActivity(i);
+            finish();
         }else{
             Toast.makeText(this,"Introduce todos los campos", Toast.LENGTH_SHORT).show();
         }
