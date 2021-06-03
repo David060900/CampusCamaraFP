@@ -64,7 +64,7 @@ public class Adaptador extends BaseAdapter {
         tv3.setText(impartir.getDia());
         tv4.setText(impartir.getTiempo());
 
-        CheckBox checkBox = convertView.findViewById(R.id.checkBox);
+        /*CheckBox checkBox = convertView.findViewById(R.id.checkBox);
         checkBox.setTag(position);
         if(Inicio.isActionMode){
             checkBox.setVisibility(View.VISIBLE);
@@ -81,15 +81,15 @@ public class Adaptador extends BaseAdapter {
                 }
                 Inicio.actionMode.setTitle(Inicio.userSelection.size() + " items");
             }
-        });
+        });*/
 
         return convertView;
     }
 
-    public void removeItems (List<String> items){
+    /*public void removeItems (List<String> items){
         for(String item : items){
             this.listItems.remove(item);
         }
         notifyDataSetChanged();
-    }
+    }*/
 }

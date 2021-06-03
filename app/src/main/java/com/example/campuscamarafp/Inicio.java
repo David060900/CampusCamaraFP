@@ -44,7 +44,7 @@ public class Inicio  extends AppCompatActivity {
 
         lv = (ListView)findViewById(R.id.listaBanco);
         lv.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
-        lv.setMultiChoiceModeListener(modeListener);
+        //lv.setMultiChoiceModeListener(modeListener);
 
         adaptador = new Adaptador(consultarLista(), this);
         lv.setAdapter(adaptador);
@@ -52,7 +52,7 @@ public class Inicio  extends AppCompatActivity {
         Quedar();
     }
 
-    AbsListView.MultiChoiceModeListener modeListener = new AbsListView.MultiChoiceModeListener() {
+    /*AbsListView.MultiChoiceModeListener modeListener = new AbsListView.MultiChoiceModeListener() {
         @Override
         public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
 
@@ -93,7 +93,7 @@ public class Inicio  extends AppCompatActivity {
             actionMode = null;
             userSelection.clear();
         }
-    };
+    };*/
     //consulta los valores de la tabla impartir de la base de datos
     public ArrayList consultarLista() {
         ArrayList<ImpartirSerializable> lista = new ArrayList();
