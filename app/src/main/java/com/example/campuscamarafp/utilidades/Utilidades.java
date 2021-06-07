@@ -4,6 +4,7 @@ public class Utilidades {
 
     //creamos campos estáticos para todos los alumnos
     public static final String TABLA_ALUMNOS = "alumnos";
+    public static final String CAMPO_DNI_ALUMNOS = "dni_alumnos";
     public static final String CAMPO_NOMBRE_ALUMNOS = "nombre";
     public static final String CAMPO_APELLIDOS_ALUMNOS = "apellidos";
     public static final String CAMPO_CORREO_ALUMNOS = "correo";
@@ -32,9 +33,10 @@ public class Utilidades {
 
     //sentencia que crea la tabla alumnos
     public static final String CREAR_TABLA_ALUMNO = "create table if not exists " + TABLA_ALUMNOS +
-            "(" + CAMPO_NOMBRE_ALUMNOS + " text, "
-            + CAMPO_APELLIDOS_ALUMNOS + " text, " +
-            CAMPO_CORREO_ALUMNOS + " text primary key, " +
+            "(" + CAMPO_DNI_ALUMNOS + " text primary key, " +
+            CAMPO_NOMBRE_ALUMNOS + " text, " +
+            CAMPO_APELLIDOS_ALUMNOS + " text, " +
+            CAMPO_CORREO_ALUMNOS + " text, " +
             CAMPO_PASSWORD_ALUMNOS + " text, " +
             CAMPO_CURSO_ALUMNOS + " text, " +
             CAMPO_NUMCURSO_ALUMNOS + " text, " +

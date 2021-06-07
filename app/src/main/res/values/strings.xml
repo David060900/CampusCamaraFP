@@ -28,6 +28,8 @@
 
     <string name="boxprofesor">Profesor/a</string>
 
+    <string name="dni">DNI</string>
+
     /**********************IMPARTIR**********************/
 
     <string name="impartir">Impartir</string>

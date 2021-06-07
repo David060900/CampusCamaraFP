@@ -24,7 +24,10 @@ public class Adaptador extends BaseAdapter {
 //https://elbauldelprogramador.com/adapter-personalizado-en-android/
     private ArrayList<ImpartirSerializable> listItems;
     private Context contexto;
-    private ArrayList<String> items;
+    //private ArrayList<String> items;
+    private LayoutInflater inflater;
+    private boolean[] itemSelection;
+
 
     public Adaptador(ArrayList<ImpartirSerializable> listItems, Context contexto) {
         this.listItems = listItems;
@@ -62,11 +65,6 @@ public class Adaptador extends BaseAdapter {
         tv2.setText(impartir.getCorreo_alumnos());
         tv3.setText(impartir.getDia());
         tv4.setText(impartir.getTiempo());
-
-        CheckBox checkBox = convertView.findViewById(R.id.checkBox);
-        if(checkBox.isSelected()){
-            listItems.get(position);
-        }
         /*CheckBox checkBox = convertView.findViewById(R.id.checkBox);
         checkBox.setTag(position);
         if(Inicio.isActionMode){
@@ -88,7 +86,6 @@ public class Adaptador extends BaseAdapter {
 
         return convertView;
     }
-
     /*public void removeItems (List<String> items){
         for(String item : items){
             this.listItems.remove(item);
