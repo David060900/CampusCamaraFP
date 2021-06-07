@@ -7,6 +7,7 @@ import android.os.Build;
 
 import androidx.annotation.Nullable;
 
+import com.example.campuscamarafp.utilidades.CrearTablas;
 import com.example.campuscamarafp.utilidades.Utilidades;
 
 import java.util.ArrayList;
@@ -31,9 +32,14 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     }
     @Override//creamos los scripts
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(Utilidades.CREAR_TABLA_ALUMNO);
-        db.execSQL(Utilidades.CREAR_TABLA_PROFESOR);
-        db.execSQL(Utilidades.CREAR_TABLA_IMPARTIR);
+        db.execSQL(CrearTablas.CREAR_TABLA_ALUMNOS);
+        db.execSQL(CrearTablas.CREAR_TABLA_PROFESORES);
+        db.execSQL(CrearTablas.CREAR_TABLA_FALTAS);
+        db.execSQL(CrearTablas.CREAR_TABLA_MODULO);
+        db.execSQL(CrearTablas.CREAR_TABLA_CURSO);
+        db.execSQL(CrearTablas.CREAR_TABLA_REPASO);
+        db.execSQL(CrearTablas.CREAR_TABLA_ESTUDIAN);
+        db.execSQL(CrearTablas.CREAR_TABLA_IMPARTEN);
     }
 
     @Override//verifica si existe una version antigua de la base de datos
@@ -41,7 +47,12 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS alumnos");
         db.execSQL("DROP TABLE IF EXISTS profesores");
-        db.execSQL("DROP TABLE IF EXISTS impartir");
+        db.execSQL("DROP TABLE IF EXISTS faltas");
+        db.execSQL("DROP TABLE IF EXISTS modulo");
+        db.execSQL("DROP TABLE IF EXISTS curso");
+        db.execSQL("DROP TABLE IF EXISTS repaso");
+        db.execSQL("DROP TABLE IF EXISTS estudian");
+        db.execSQL("DROP TABLE IF EXISTS imparten");
         onCreate(db);
     }
 }
