@@ -28,7 +28,6 @@ public class RegistrarseAlumnos extends AppCompatActivity {
     private Spinner spinner1;
     ArrayList<String> listaCursos;
     ArrayList<Curso> CursoLista;
-    Curso curso = new Curso();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +58,11 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         SQLiteDatabase db = conexion.getWritableDatabase();
 
         CursoLista = new ArrayList<Curso>();
-
+        Curso curso = null;
         Cursor cursor = db.rawQuery("select id_curso, nombre, num_curso from curso;", null);
 
         while(cursor.moveToNext()){
+            curso = new Curso();
             curso.setId_curso(cursor.getInt(0));
             curso.setNombre(cursor.getString(1));
             curso.setNum_curso(cursor.getString(2));
@@ -95,6 +95,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         String correo = etCorreo.getText().toString();
         String password = etPassword.getText().toString();
 
+        Curso curso = new Curso();
         ContentValues values = new ContentValues();
         ContentValues values1 = new ContentValues();
         //comprobamos que ninguno de los campos estan vacios
