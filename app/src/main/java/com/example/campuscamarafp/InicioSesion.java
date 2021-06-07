@@ -72,26 +72,20 @@ public class InicioSesion extends AppCompatActivity {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
         
-        String correo = et1.getText().toString();
+        String dni = et1.getText().toString();
         String password = et2.getText().toString();
-        //sentencias que comprueban en la base de datos el correo y la contraseña
-        Cursor fila = bd.rawQuery("select " + Utilidades.CAMPO_CORREO_ALUMNOS +
-                ", " + Utilidades.CAMPO_PASSWORD_ALUMNOS + " from " + Utilidades.TABLA_ALUMNOS
-                + " where " + Utilidades.CAMPO_CORREO_ALUMNOS + " = '" + correo
-                        + "' and " + Utilidades.CAMPO_PASSWORD_ALUMNOS + " = '" + password + "'"
-                , null);
-        Cursor fila2 = bd.rawQuery("select " + Utilidades.CAMPO_CORREO_PROFESORES +
-                        ", " + Utilidades.CAMPO_PASSWORD_PROFESORES + " from " + Utilidades.TABLA_PROFESORES
-                        + " where " + Utilidades.CAMPO_CORREO_PROFESORES + " = '" + correo
-                        + "' and " + Utilidades.CAMPO_PASSWORD_PROFESORES + " = '" + password + "'"
-                , null);
+        //sentencias que comprueban en la base de datos el dni y la contraseña
+        Cursor fila = bd.rawQuery("select dni_alumnos, password from alumnos where " +
+                        "dni_alumnos = '" + dni + "' and password = '" + password + "';", null);
+        Cursor fila2 = bd.rawQuery("select dni_profesores, password from profesores where " +
+                "dni_profesores = '" + dni + "' and password = '" + password + "';", null);
         //corrección de errores
         try{
             if(fila.moveToFirst()){
                 String cor = fila.getString(0);
                 String pass = fila.getString(1);
                 //condicion si coinciden los datos abrimos la siguiente ventana
-                if(correo.equals(cor) && password.equals(pass)){
+                if(dni.equals(cor) && password.equals(pass)){
                     Intent i = new Intent(this, Inicio.class);
                     Alumno alumnoEnvia = new Alumno();
                     alumnoEnvia.setCorreo(cor);
@@ -104,10 +98,10 @@ public class InicioSesion extends AppCompatActivity {
             }else if(fila2.moveToFirst()){
                 String cor2 = fila2.getString(0);
                 String pass2 = fila2.getString(1);
-                if(correo.equals(cor2) && password.equals(pass2)){
+                if(dni.equals(cor2) && password.equals(pass2)){
                     Intent i = new Intent(this, PasarLista.class);
                     Profesor profesorEnvia = new Profesor();
-                    profesorEnvia.setCorreo(correo);
+                    profesorEnvia.setCorreo(cor2);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("profesor_iniciosesion", profesorEnvia);
                     i.putExtras(bundle);

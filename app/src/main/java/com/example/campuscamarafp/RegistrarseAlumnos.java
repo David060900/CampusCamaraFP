@@ -100,11 +100,13 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         ContentValues values1 = new ContentValues();
         //comprobamos que ninguno de los campos estan vacios
         if(!dni.isEmpty() && !nombre.isEmpty() && !apellidos.isEmpty() && !correo.isEmpty() && !password.isEmpty()){
+            //tabla alumnos
             values.put("dni_alumnos", dni);
             values.put("nombre", nombre);
             values.put("apellidos", apellidos);
             values.put("correo_alumnos", correo);
             values.put("password", password);
+            //tabla estudian
             values1.put("id_curso", spinner1.getSelectedItemId() + 1);
             values1.put("dni_alumnos", dni);
             values1.put("id_modulo", 1);

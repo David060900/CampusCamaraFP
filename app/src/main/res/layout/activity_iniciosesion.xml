@@ -27,7 +27,7 @@
         android:layout_marginRight="40dp"
         android:ems="10"
         android:fontFamily="sans-serif"
-        android:hint="@string/email"
+        android:hint="@string/dni"
         android:inputType="textPersonName"
         android:textColor="@color/linea_escribir"
         android:textColorHint="@color/linea_escribir" />
