@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.entidades.Curso;
+import com.example.campuscamarafp.entidades.Modulo;
 import com.example.campuscamarafp.utilidades.CrearTablas;
 import com.example.campuscamarafp.utilidades.Utilidades;
 
@@ -95,7 +96,6 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         String correo = etCorreo.getText().toString();
         String password = etPassword.getText().toString();
 
-        Curso curso = new Curso();
         ContentValues values = new ContentValues();
         ContentValues values1 = new ContentValues();
         //comprobamos que ninguno de los campos estan vacios
@@ -105,7 +105,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
             values.put("apellidos", apellidos);
             values.put("correo_alumnos", correo);
             values.put("password", password);
-            values1.put("id_curso", curso.getId_curso());
+            values1.put("id_curso", spinner1.getSelectedItemId() + 1);
             values1.put("dni_alumnos", dni);
             values1.put("id_modulo", 1);
 
