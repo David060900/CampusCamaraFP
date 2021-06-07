@@ -36,7 +36,7 @@ public class InicioSesion extends AppCompatActivity {
         rb2 = (RadioButton) findViewById(R.id.rbProfesor);
 
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
-        SQLiteDatabase db = conexion.getWritableDatabase();
+        /*SQLiteDatabase db = conexion.getWritableDatabase();
         //inserts a modulo
         db.execSQL("insert into modulo values (1,'Programación');");
         db.execSQL("insert into modulo values (2,'FOL');");
@@ -48,7 +48,7 @@ public class InicioSesion extends AppCompatActivity {
         db.execSQL("insert into curso values (3,'Marketing', 'Primero');");
         db.execSQL("insert into curso values (4,'Marketing', 'Segundo');");
         db.execSQL("insert into curso values (5,'Comercio', 'Primero');");
-        db.execSQL("insert into curso values (6,'Comercio', 'Segundo');");
+        db.execSQL("insert into curso values (6,'Comercio', 'Segundo');");*/
     }
     //método que abre la ventana para el registro de usuarios
     public void Registrar (View view){

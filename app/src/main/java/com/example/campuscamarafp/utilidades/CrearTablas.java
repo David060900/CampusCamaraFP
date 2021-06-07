@@ -1,5 +1,9 @@
 package com.example.campuscamarafp.utilidades;
 
+import android.database.sqlite.SQLiteDatabase;
+
+import com.example.campuscamarafp.AdminSQLiteOpenHelper;
+
 public class CrearTablas {
 
     public static final String CREAR_TABLA_ALUMNOS = "create table if not exists alumnos(" +
@@ -11,7 +15,7 @@ public class CrearTablas {
             "nombre text, apellidos text, password text);";
 
     public static final String CREAR_TABLA_FALTAS = "create table if not exists faltas(" +
-            "id_falta integer primary key, num_falta integer, " +
+            "id_falta integer primary key autoincrement, num_falta integer, " +
             "dni_alumnos text, dni_profesores text, dia_hora DEFAULT CURRENT_TIMESTAMP, " +
             "foreign key (dni_alumnos) references alumnos(dni_alumnos), " +
             "foreign key (dni_profesores) references profesores(dni_profesores));";
@@ -41,6 +45,4 @@ public class CrearTablas {
             "foreign key (id_curso) references curso(id_curso), " +
             "foreign key (id_modulo) references modulo(id_modulo), " +
             "foreign key (dni_profesores) references profesores(dni_profesores));";
-
-    public static final String INSERT_MODULO = "insert into modulo values (1,Programación);";
 }

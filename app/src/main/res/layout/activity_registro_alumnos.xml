@@ -89,6 +89,7 @@
 
         <Spinner
             android:id="@+id/spinnerCursos"
+            style="@style/Widget.AppCompat.Spinner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -96,37 +97,6 @@
             tools:layout_conversion_absoluteWidth="114dp"
             tools:layout_editor_absoluteX="40dp"
             tools:layout_editor_absoluteY="360dp" />
-
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="-20dp"
-            android:layout_marginLeft="-20dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rbPrimero"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/primero"
-                tools:layout_conversion_absoluteHeight="48dp"
-                tools:layout_conversion_absoluteWidth="219dp"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="404dp" />
-
-            <RadioButton
-                android:id="@+id/rbSegundo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/segundo"
-                tools:layout_conversion_absoluteHeight="48dp"
-                tools:layout_conversion_absoluteWidth="219dp"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="452dp" />
-        </RadioGroup>
 
 
     </LinearLayout>
