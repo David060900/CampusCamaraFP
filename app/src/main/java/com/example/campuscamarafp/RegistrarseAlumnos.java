@@ -17,7 +17,7 @@ import com.example.campuscamarafp.utilidades.Utilidades;
 
 public class RegistrarseAlumnos extends AppCompatActivity {
 
-    private EditText etNombre, etApellido, etCorreo, etPassword;
+    private EditText etNombre, etApellido, etCorreo, etPassword, etDNI;
     private Spinner spinner1;
     private RadioButton cb1, cb2;
 

@@ -42,6 +42,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
         db.execSQL(CrearTablas.CREAR_TABLA_IMPARTEN);
     }
 
+
     @Override//verifica si existe una version antigua de la base de datos
     //refrescamos los scripts
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

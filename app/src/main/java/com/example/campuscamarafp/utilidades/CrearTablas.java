@@ -41,4 +41,6 @@ public class CrearTablas {
             "foreign key (id_curso) references curso(id_curso), " +
             "foreign key (id_modulo) references modulo(id_modulo), " +
             "foreign key (dni_profesores) references profesores(dni_profesores));";
+
+    public static final String INSERT_MODULO = "insert into modulo values (1,Programación);";
 }
