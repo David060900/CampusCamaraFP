@@ -55,7 +55,7 @@ public class CambiarPasswordProfesores extends AppCompatActivity {
                     //condicion si coincide, actualizamos a la nueva contraseña
                     if(password.equals(pass)){
                         //instruccion sql que actualiza los valores en la base de datos
-                        bd.execSQL("update profesores set password = '" + passwordnueva + "' "
+                        bd.execSQL("update profesores set password = '" + passwordnueva + "'"
                                 + " where dni_profesores = '" + dni + "';");
                         Intent i = new Intent(this, InicioSesion.class);
                         startActivity(i);
