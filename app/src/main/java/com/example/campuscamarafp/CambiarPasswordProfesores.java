@@ -25,8 +25,8 @@ public class CambiarPasswordProfesores extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cambiarpassword_profesores);
 
-        et1 = (EditText) findViewById(R.id.etPasswordAntigua);
-        et2 = (EditText) findViewById(R.id.etPasswordNueva);
+        et1 = findViewById(R.id.etPasswordAntiguaProfe);
+        et2 = findViewById(R.id.etPasswordNuevaProfe);
     }
     //metodo que comprueba la contraseña antigua y actualiza a la nueva
     public void comprobarPassword(View view){

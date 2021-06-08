@@ -35,7 +35,6 @@ public class InicioSesion extends AppCompatActivity {
         rb2 = (RadioButton) findViewById(R.id.rbProfesor);
 
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
-        //inserts();
 
     }
     //método que abre la ventana para el registro de usuarios
