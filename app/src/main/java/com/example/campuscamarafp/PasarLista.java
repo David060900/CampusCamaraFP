@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.ayudas.AyudaPasarLista;
@@ -21,6 +23,7 @@ import com.example.campuscamarafp.utilidades.Utilidades;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PasarLista extends AppCompatActivity {
 
@@ -28,6 +31,7 @@ public class PasarLista extends AppCompatActivity {
     private Button btn;
     private FloatingActionButton fab;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,7 @@ public class PasarLista extends AppCompatActivity {
         selectAlumnos();
     }
     //metodo que consulta los alumnos de la base de datos
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void selectAlumnos(){
         //btn = (Button)findViewById(R.id.btnPasarLista);
         fab = findViewById(R.id.floatingActionButton2);
@@ -53,23 +58,31 @@ public class PasarLista extends AppCompatActivity {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
         //consulta del correo de los alumnos
-        Cursor fila = bd.rawQuery("select correo from alumnos", null);
+        Cursor fila = bd.rawQuery("select correo_alumnos, dni_alumnos from alumnos", null);
         AlumnoSerial alumnoSerial = new AlumnoSerial();
         lv.setOnItemClickListener((parent, view, position, id) -> {
             //recoge la posicion de la fila
             if (fila.moveToPosition(position)) {
                 String correo = fila.getString(0);
+                String dni = fila.getString(1);
                 alumnoSerial.setCorreo(correo);
+                alumnoSerial.setDni_alumno(dni);
                 lv.getItemIdAtPosition(position);
-                Toast.makeText(PasarLista.this, "Correo: " + position , Toast.LENGTH_SHORT).show();
+                long[] posicion = lv.getCheckedItemIds();
+                for(int i = 0; i< Arrays.stream(posicion).count(); i++){
+                    Toast.makeText(PasarLista.this, "Has seleccionado: " + i, Toast.LENGTH_SHORT).show();
+                }
+                Toast.makeText(PasarLista.this, "Correo: " + correo , Toast.LENGTH_SHORT).show();
             }
         });
         fab.setOnClickListener(v -> {
+            Bundle objEnviado = getIntent().getExtras();
+            ProfesorSerial profesorSerialRecibe;
+            profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
             //instruccion que incrementa en 1 la columna de las faltas de los alumnos
-            bd.execSQL("update alumnos set faltas = faltas + " + 1
-                    + " where correo = '" + alumnoSerial.getCorreo() + "';");
-            bd.execSQL("update alumnos set dia = datetime('now', 'localtime') " +
-                    " where correo = '" + alumnoSerial.getCorreo() + "';");
+            bd.execSQL("insert into faltas (num_falta, dni_alumnos, dni_profesores, dia_hora) " +
+                    "values (1,'" + alumnoSerial.getDni_alumno() +"' " +
+                    ", '" + profesorSerialRecibe.getDni_profesores() + "', datetime('now', 'localtime'));");
             Toast.makeText(PasarLista.this, "Guardar Faltas ", Toast.LENGTH_SHORT).show();
         });
 

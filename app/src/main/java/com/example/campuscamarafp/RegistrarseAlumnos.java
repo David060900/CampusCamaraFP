@@ -111,6 +111,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         }
         db.insert("alumnos", null, values);
         db.insert("estudian", null, values1);
+        //db.execSQL("insert into faltas (num_faltas) values (0);");
         db.close();
         etDNI.setText("");
         etCorreo.setText("");
