@@ -15,8 +15,8 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.campuscamarafp.ayudas.AyudaInicioSesion;
-import com.example.campuscamarafp.serializable.Alumno;
-import com.example.campuscamarafp.serializable.Profesor;
+import com.example.campuscamarafp.serializable.AlumnoSerial;
+import com.example.campuscamarafp.serializable.ProfesorSerial;
 
 public class InicioSesion extends AppCompatActivity {
 
@@ -70,28 +70,28 @@ public class InicioSesion extends AppCompatActivity {
         //corrección de errores
         try{
             if(fila.moveToFirst()){
-                String cor = fila.getString(0);
+                String dni_bd = fila.getString(0);
                 String pass = fila.getString(1);
                 //condicion si coinciden los datos abrimos la siguiente ventana
-                if(dni.equals(cor) && password.equals(pass)){
+                if(dni.equals(dni_bd) && password.equals(pass)){
                     Intent i = new Intent(this, Inicio.class);
-                    Alumno alumnoEnvia = new Alumno();
-                    alumnoEnvia.setCorreo(cor);
+                    AlumnoSerial alumnoSerialEnvia = new AlumnoSerial();
+                    alumnoSerialEnvia.setDni_alumno(dni_bd);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("alumno_iniciosesion", alumnoEnvia);
+                    bundle.putSerializable("alumno_iniciosesion", alumnoSerialEnvia);
                     i.putExtras(bundle);
                     startActivity(i);
                     Toast.makeText(this,"Inicio",Toast.LENGTH_SHORT).show();
                 }
             }else if(fila2.moveToFirst()){
-                String cor2 = fila2.getString(0);
+                String dni_bd2 = fila2.getString(0);
                 String pass2 = fila2.getString(1);
-                if(dni.equals(cor2) && password.equals(pass2)){
+                if(dni.equals(dni_bd2) && password.equals(pass2)){
                     Intent i = new Intent(this, PasarLista.class);
-                    Profesor profesorEnvia = new Profesor();
-                    profesorEnvia.setCorreo(cor2);
+                    ProfesorSerial profesorSerialEnvia = new ProfesorSerial();
+                    profesorSerialEnvia.setDni_profesores(dni_bd2);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("profesor_iniciosesion", profesorEnvia);
+                    bundle.putSerializable("profesor_iniciosesion", profesorSerialEnvia);
                     i.putExtras(bundle);
                     startActivity(i);
                     Toast.makeText(this,"Lista",Toast.LENGTH_SHORT).show();

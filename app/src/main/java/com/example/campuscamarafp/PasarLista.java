@@ -15,8 +15,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.ayudas.AyudaPasarLista;
-import com.example.campuscamarafp.serializable.Alumno;
-import com.example.campuscamarafp.serializable.Profesor;
+import com.example.campuscamarafp.serializable.AlumnoSerial;
+import com.example.campuscamarafp.serializable.ProfesorSerial;
 import com.example.campuscamarafp.utilidades.Utilidades;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -35,7 +35,7 @@ public class PasarLista extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         final ListView lv = (ListView)findViewById(R.id.lista);
-        final ArrayList<Alumno> lista;
+        final ArrayList<AlumnoSerial> lista;
 
         //la lista que declaramos la igualamos a la lista que recoge los datos de la base de datos
         lista = llenar_lv();
@@ -54,12 +54,12 @@ public class PasarLista extends AppCompatActivity {
         SQLiteDatabase bd = conexion.getWritableDatabase();
         //consulta del correo de los alumnos
         Cursor fila = bd.rawQuery("select correo from alumnos", null);
-        Alumno alumno = new Alumno();
+        AlumnoSerial alumnoSerial = new AlumnoSerial();
         lv.setOnItemClickListener((parent, view, position, id) -> {
             //recoge la posicion de la fila
             if (fila.moveToPosition(position)) {
                 String correo = fila.getString(0);
-                alumno.setCorreo(correo);
+                alumnoSerial.setCorreo(correo);
                 lv.getItemIdAtPosition(position);
                 Toast.makeText(PasarLista.this, "Correo: " + position , Toast.LENGTH_SHORT).show();
             }
@@ -67,9 +67,9 @@ public class PasarLista extends AppCompatActivity {
         fab.setOnClickListener(v -> {
             //instruccion que incrementa en 1 la columna de las faltas de los alumnos
             bd.execSQL("update alumnos set faltas = faltas + " + 1
-                    + " where correo = '" + alumno.getCorreo() + "';");
+                    + " where correo = '" + alumnoSerial.getCorreo() + "';");
             bd.execSQL("update alumnos set dia = datetime('now', 'localtime') " +
-                    " where correo = '" + alumno.getCorreo() + "';");
+                    " where correo = '" + alumnoSerial.getCorreo() + "';");
             Toast.makeText(PasarLista.this, "Guardar Faltas ", Toast.LENGTH_SHORT).show();
         });
 
@@ -98,31 +98,29 @@ public class PasarLista extends AppCompatActivity {
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
         Bundle objEnviado = getIntent().getExtras();
-        Profesor profesorRecibe;
-        profesorRecibe = (Profesor) objEnviado.getSerializable("profesor_iniciosesion");
+        ProfesorSerial profesorSerialRecibe;
+        profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
 
         Cursor fila = bd.rawQuery("select * from " + Utilidades.TABLA_PROFESORES
-                        + " where " + Utilidades.CAMPO_CORREO_PROFESORES + " = '" + profesorRecibe.getCorreo()
+                        + " where " + Utilidades.CAMPO_CORREO_PROFESORES + " = '" + profesorSerialRecibe.getCorreo()
                         + "'"
                 , null);
         //corrección de errores
         try{
             if(fila.moveToFirst()){
-                Profesor profesorEnvia = new Profesor();
+                ProfesorSerial profesorSerialEnvia = new ProfesorSerial();
                 String nom = fila.getString(0);
-                profesorEnvia.setNombre(nom);
+                profesorSerialEnvia.setNombre(nom);
                 String ape = fila.getString(1);
-                profesorEnvia.setApellidos(ape);
+                profesorSerialEnvia.setApellidos(ape);
                 String cor= fila.getString(2);
-                profesorEnvia.setCorreo(cor);
+                profesorSerialEnvia.setCorreo(cor);
                 String pass = fila.getString(3);
-                profesorEnvia.setPassword(pass);
-                String cur = fila.getString(4);
-                profesorEnvia.setCurso(cur);
+                profesorSerialEnvia.setPassword(pass);
 
                 Intent i = new Intent(this, PerfilProfesor.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("datos_profesores", profesorEnvia);
+                bundle.putSerializable("datos_profesores", profesorSerialEnvia);
                 i.putExtras(bundle);
                 startActivity(i);
             }

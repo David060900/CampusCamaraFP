@@ -2,23 +2,23 @@ package com.example.campuscamarafp.serializable;
 
 import java.io.Serializable;
 //clase serializable de profesor
-public class Profesor implements Serializable {
+public class ProfesorSerial implements Serializable {
 
+    private String dni_profesores;
     private String nombre;
     private String apellidos;
     private String correo;
     private String password;
-    private String curso;
     //constructor
-    public Profesor(String nombre, String apellidos, String correo, String password, String curso) {
+    public ProfesorSerial(String nombre, String apellidos, String correo, String password, String dni_profesores) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
         this.password = password;
-        this.curso = curso;
+        this.dni_profesores = dni_profesores;
     }
 
-    public Profesor(){
+    public ProfesorSerial(){
 
     }
     //getters y setters
@@ -54,12 +54,12 @@ public class Profesor implements Serializable {
         this.password = password;
     }
 
-    public String getCurso() {
-        return curso;
+    public String getDni_profesores() {
+        return dni_profesores;
     }
 
-    public void setCurso(String curso) {
-        this.curso = curso;
+    public void setDni_profesores(String dni_profesores) {
+        this.dni_profesores = dni_profesores;
     }
 
 }

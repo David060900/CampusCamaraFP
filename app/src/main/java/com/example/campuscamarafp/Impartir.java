@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.campuscamarafp.serializable.Alumno;
+import com.example.campuscamarafp.serializable.AlumnoSerial;
 import com.example.campuscamarafp.utilidades.Utilidades;
 
 import java.util.Calendar;
@@ -55,9 +55,9 @@ public class Impartir extends AppCompatActivity {
         String lugarQuedada = spinner2.getSelectedItem().toString();
         //recibimos datos del alumno
         Bundle objEnviado = getIntent().getExtras();
-        Alumno alumnoRecibe;
-        alumnoRecibe = (Alumno) objEnviado.getSerializable("correo_impartir");
-        String correo_alumno = alumnoRecibe.getCorreo();
+        AlumnoSerial alumnoSerialRecibe;
+        alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("correo_impartir");
+        String correo_alumno = alumnoSerialRecibe.getCorreo();
 
         ContentValues values = new ContentValues();
         //condicion mientras que no estén vacios los campos de texto

@@ -2,7 +2,7 @@ package com.example.campuscamarafp.serializable;
 
 import java.io.Serializable;
 
-public class Modulo implements Serializable {
+public class ModuloSerial implements Serializable {
 
     private int id_modulo;
     private String nombre;
@@ -23,12 +23,12 @@ public class Modulo implements Serializable {
         this.nombre = nombre;
     }
 
-    public Modulo(int id_modulo, String nombre) {
+    public ModuloSerial(int id_modulo, String nombre) {
         this.id_modulo = id_modulo;
         this.nombre = nombre;
     }
 
-    public Modulo(){
+    public ModuloSerial(){
 
     }
 

@@ -2,19 +2,19 @@ package com.example.campuscamarafp.serializable;
 
 import java.io.Serializable;
 
-public class Curso implements Serializable {
+public class CursoSerial implements Serializable {
 
     private int id_curso;
     private String nombre;
     private String num_curso;
 
-    public Curso(int id_curso, String nombre, String num_curso) {
+    public CursoSerial(int id_curso, String nombre, String num_curso) {
         this.id_curso = id_curso;
         this.nombre = nombre;
         this.num_curso = num_curso;
     }
 
-    public Curso(){
+    public CursoSerial(){
 
     }
 

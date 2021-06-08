@@ -7,20 +7,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.campuscamarafp.serializable.Repaso;
+import com.example.campuscamarafp.serializable.RepasoSerial;
 
 import java.util.ArrayList;
 
 public class Adaptador extends BaseAdapter {
 //https://elbauldelprogramador.com/adapter-personalizado-en-android/
-    private ArrayList<Repaso> listItems;
+    private ArrayList<RepasoSerial> listItems;
     private Context contexto;
     //private ArrayList<String> items;
     private LayoutInflater inflater;
     private boolean[] itemSelection;
 
 
-    public Adaptador(ArrayList<Repaso> listItems, Context contexto) {
+    public Adaptador(ArrayList<RepasoSerial> listItems, Context contexto) {
         this.listItems = listItems;
         this.contexto = contexto;
     }
@@ -42,7 +42,7 @@ public class Adaptador extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Repaso repaso = (Repaso) getItem(position);
+        RepasoSerial repasoSerial = (RepasoSerial) getItem(position);
 
         convertView = LayoutInflater.from(contexto).inflate(R.layout.elemento_lista, null);
         TextView tv1, tv2, tv3, tv4;
@@ -52,10 +52,10 @@ public class Adaptador extends BaseAdapter {
         tv3 = convertView.findViewById(R.id.tvListaDiaHora);
         tv4 = convertView.findViewById(R.id.tvListaHoras);
 
-        tv1.setText(repaso.getAsignatura());
-        tv2.setText(repaso.getCorreo_alumnos());
-        tv3.setText(repaso.getDia());
-        tv4.setText(repaso.getTiempo());
+        tv1.setText(repasoSerial.getModulo());
+        tv2.setText(repasoSerial.getDni_alumnos());
+        tv3.setText(repasoSerial.getDia());
+        tv4.setText(repasoSerial.getTiempo());
         /*CheckBox checkBox = convertView.findViewById(R.id.checkBox);
         checkBox.setTag(position);
         if(Inicio.isActionMode){

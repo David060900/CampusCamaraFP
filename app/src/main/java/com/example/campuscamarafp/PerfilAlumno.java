@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.campuscamarafp.serializable.Alumno;
+import com.example.campuscamarafp.serializable.AlumnoSerial;
 
 public class PerfilAlumno extends AppCompatActivity{
 
@@ -25,25 +25,22 @@ public class PerfilAlumno extends AppCompatActivity{
 
         //recoge los datos que se han enviado del alumno y los escribe en Text Views
         Bundle objEnviado = getIntent().getExtras();
-        Alumno alumnoRecibe;
-        alumnoRecibe = (Alumno) objEnviado.getSerializable("datos_alumnos");
-        String nombre_alumno = alumnoRecibe.getNombre();
-        String apellido_alumno = alumnoRecibe.getApellidos();
-        String correo_alumno = alumnoRecibe.getCorreo();
-        int faltas = alumnoRecibe.getFaltas();
-        String faltasS = String.valueOf(faltas);
+        AlumnoSerial alumnoSerialRecibe;
+        alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("datos_alumnos");
+        String nombre_alumno = alumnoSerialRecibe.getNombre();
+        String apellido_alumno = alumnoSerialRecibe.getApellidos();
+        String correo_alumno = alumnoSerialRecibe.getCorreo();
         tv1.setText(nombre_alumno);
         tv2.setText(apellido_alumno);
         tv3.setText(correo_alumno);
-        tv4.setText(faltasS);
     }
     //metodo que llama a la clase que cambia la contraseña
     public void CambiarPassword(View view){
         Intent i = new Intent(this, CambiarPasswordAlumnos.class);
-        Alumno alumnoEnvia = new Alumno();
-        alumnoEnvia.setCorreo(tv3.getText().toString());
+        AlumnoSerial alumnoSerialEnvia = new AlumnoSerial();
+        alumnoSerialEnvia.setCorreo(tv3.getText().toString());
         Bundle bundle = new Bundle();
-        bundle.putSerializable("correo_alumno", alumnoEnvia);
+        bundle.putSerializable("correo_alumno", alumnoSerialEnvia);
         i.putExtras(bundle);
         startActivity(i);
     }

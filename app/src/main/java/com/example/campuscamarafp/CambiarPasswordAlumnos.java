@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.campuscamarafp.serializable.Alumno;
+import com.example.campuscamarafp.serializable.AlumnoSerial;
 
 public class CambiarPasswordAlumnos extends AppCompatActivity {
 
@@ -34,9 +34,9 @@ public class CambiarPasswordAlumnos extends AppCompatActivity {
 
         //recibimos los datos del alumno con el que se ha iniciado sesion
         Bundle objEnviado = getIntent().getExtras();
-        Alumno alumnoRecibe;
-        alumnoRecibe = (Alumno) objEnviado.getSerializable("correo_alumno");
-        String correo = alumnoRecibe.getCorreo();
+        AlumnoSerial alumnoSerialRecibe;
+        alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("correo_alumno");
+        String correo = alumnoSerialRecibe.getCorreo();
 
         //consulta a la base de datos de la contraseña
         Cursor fila = bd.rawQuery("select password from alumnos where password = '"

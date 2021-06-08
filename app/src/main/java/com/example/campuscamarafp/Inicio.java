@@ -14,9 +14,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.ayudas.AyudaImpartir;
-import com.example.campuscamarafp.serializable.Alumno;
-import com.example.campuscamarafp.serializable.Repaso;
-import com.example.campuscamarafp.utilidades.Utilidades;
+import com.example.campuscamarafp.serializable.AlumnoSerial;
+import com.example.campuscamarafp.serializable.RepasoSerial;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -44,11 +43,11 @@ public class Inicio  extends AppCompatActivity {
     }
     //consulta los valores de la tabla impartir de la base de datos
     public ArrayList consultarLista() {
-        ArrayList<Repaso> lista = new ArrayList();
+        ArrayList<RepasoSerial> lista = new ArrayList();
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
-        Repaso impartir = new Repaso();
+        RepasoSerial impartir = new RepasoSerial();
         //consulta de los valores que recoge de la base de datos
         Cursor registro = bd.rawQuery("select nombre_modulo, dni_alumnos, dia_hora, horas_repasar " +
                 "from repaso;", null);
@@ -57,14 +56,14 @@ public class Inicio  extends AppCompatActivity {
         if (registro.moveToFirst()) {
             do {
                 String modulo = registro.getString(0);
-                impartir.setAsignatura(modulo);
+                impartir.setModulo(modulo);
                 String dni_alumnos = registro.getString(1);
-                impartir.setCorreo_alumnos(dni_alumnos);
+                impartir.setDni_alumnos(dni_alumnos);
                 String dia = registro.getString(2);
                 impartir.setDia(dia);
                 String tiempo = registro.getString(3);
                 impartir.setTiempo(tiempo);
-                lista.add(new Repaso(modulo,
+                lista.add(new RepasoSerial(modulo,
                         dni_alumnos, dia, tiempo));
             } while (registro.moveToNext());
         }
@@ -83,7 +82,7 @@ public class Inicio  extends AppCompatActivity {
         Cursor fila = bd.rawQuery("select id_repaso, dni_alumnos from repaso;", null);
 
         //llamamos a la clase serializable
-        Repaso repaso = new Repaso();
+        RepasoSerial repasoSerial = new RepasoSerial();
 
         //le asignamos a la lista que escuche cuando se seleccione un item
         lv.setOnItemClickListener((parent, view, position, id) -> {
@@ -91,16 +90,16 @@ public class Inicio  extends AppCompatActivity {
             if (fila.moveToPosition(position)) {
                 int id_repaso = fila.getInt(0);
                 String dni_alumnos = fila.getString(1);
-                repaso.setId_impartir(id_repaso);
-                repaso.setCorreo_alumnos(dni_alumnos);
-                Toast.makeText(Inicio.this, "Has elegido a " + repaso.getCorreo_alumnos(), Toast.LENGTH_SHORT).show();
+                repasoSerial.setId_repaso(id_repaso);
+                repasoSerial.setDni_alumnos(dni_alumnos);
+                Toast.makeText(Inicio.this, "Has elegido a " + repasoSerial.getDni_alumnos(), Toast.LENGTH_SHORT).show();
             }
         });
         //le asignamos al boton una acción
         fab.setOnClickListener(v -> {
             Toast.makeText(Inicio.this, "Reservando disponibilidad" , Toast.LENGTH_SHORT).show();
             //instruccion que elimina de la base de datos
-            bd.execSQL("delete from repaso where id_repaso = '" + repaso.getId_impartir() + "';");
+            bd.execSQL("delete from repaso where id_repaso = '" + repasoSerial.getId_repaso() + "';");
             finish();
         });
     }
@@ -111,37 +110,31 @@ public class Inicio  extends AppCompatActivity {
 
         //recibe objetos de la clase alumno
         Bundle objEnviado = getIntent().getExtras();
-        Alumno alumnoRecibe;
-        alumnoRecibe = (Alumno) objEnviado.getSerializable("alumno_iniciosesion");
+        AlumnoSerial alumnoSerialRecibe;
+        alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("alumno_iniciosesion");
         //consulta a la base de datos todos los valores
-        Cursor fila = bd.rawQuery("select * from " + Utilidades.TABLA_ALUMNOS
-                        + " where " + Utilidades.CAMPO_CORREO_ALUMNOS + " = '" + alumnoRecibe.getCorreo()
-                        + "'"
+        Cursor fila = bd.rawQuery("select * from alumnos where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
                 , null);
         //corrección de errores
         try{
             //condicion que recoge esos valores y los inserta en la clase serializable alumno
             if(fila.moveToFirst()){
-                Alumno alumnoEnvia = new Alumno();
-                String nom = fila.getString(0);
-                alumnoEnvia.setNombre(nom);
-                String ape = fila.getString(1);
-                alumnoEnvia.setApellidos(ape);
-                String cor= fila.getString(2);
-                alumnoEnvia.setCorreo(cor);
-                String pass = fila.getString(3);
-                alumnoEnvia.setPassword(pass);
-                String cur = fila.getString(4);
-                alumnoEnvia.setCurso(cur);
-                String ncur = fila.getString(5);
-                alumnoEnvia.setNumcurso(ncur);
-                int faltas = fila.getInt(6);
-                alumnoEnvia.setFaltas(faltas);
+                AlumnoSerial alumnoSerialEnvia = new AlumnoSerial();
+                String dni = fila.getString(0);
+                alumnoSerialEnvia.setDni_alumno(dni);
+                String correo = fila.getString(1);
+                alumnoSerialEnvia.setCorreo(correo);
+                String nombre= fila.getString(2);
+                alumnoSerialEnvia.setNombre(nombre);
+                String apellidos = fila.getString(3);
+                alumnoSerialEnvia.setApellidos(apellidos);
+                String password = fila.getString(4);
+                alumnoSerialEnvia.setPassword(password);
 
                 //se envia los datos de los alumno a la clase del perfil del alumno
                 Intent i = new Intent(this, PerfilAlumno.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("datos_alumnos", alumnoEnvia);
+                bundle.putSerializable("datos_alumnos", alumnoSerialEnvia);
                 i.putExtras(bundle);
                 startActivity(i);
             }
@@ -155,15 +148,15 @@ public class Inicio  extends AppCompatActivity {
         Intent i = new Intent(this, Impartir.class);
         //se reciben objetos de la clase iniciar sesion de alumno
         Bundle objEnviado = getIntent().getExtras();
-        Alumno alumnoRecibe;
-        alumnoRecibe = (Alumno) objEnviado.getSerializable("alumno_iniciosesion");
-        String correo_alumno = alumnoRecibe.getCorreo();
+        AlumnoSerial alumnoSerialRecibe;
+        alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("alumno_iniciosesion");
+        String correo_alumno = alumnoSerialRecibe.getCorreo();
 
         //se envian objetos del alumno a la clase impartir
         Bundle bundle = new Bundle();
-        Alumno alumnoEnvia = new Alumno();
-        alumnoEnvia.setCorreo(correo_alumno);
-        bundle.putSerializable("correo_impartir", alumnoEnvia);
+        AlumnoSerial alumnoSerialEnvia = new AlumnoSerial();
+        alumnoSerialEnvia.setCorreo(correo_alumno);
+        bundle.putSerializable("correo_impartir", alumnoSerialEnvia);
         i.putExtras(bundle);
         startActivity(i);
     }

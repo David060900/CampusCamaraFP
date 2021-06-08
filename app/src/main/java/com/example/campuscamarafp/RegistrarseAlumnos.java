@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.campuscamarafp.serializable.Curso;
+import com.example.campuscamarafp.serializable.CursoSerial;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
     private EditText etNombre, etApellido, etCorreo, etPassword, etDNI;
     private Spinner spinner1;
     ArrayList<String> listaCursos;
-    ArrayList<Curso> CursoLista;
+    ArrayList<CursoSerial> cursoSerialLista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,17 +52,17 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();
 
-        CursoLista = new ArrayList<Curso>();
-        Curso curso = null;
+        cursoSerialLista = new ArrayList<CursoSerial>();
+        CursoSerial cursoSerial = null;
         Cursor cursor = db.rawQuery("select id_curso, nombre, num_curso from curso;", null);
 
         while(cursor.moveToNext()){
-            curso = new Curso();
-            curso.setId_curso(cursor.getInt(0));
-            curso.setNombre(cursor.getString(1));
-            curso.setNum_curso(cursor.getString(2));
+            cursoSerial = new CursoSerial();
+            cursoSerial.setId_curso(cursor.getInt(0));
+            cursoSerial.setNombre(cursor.getString(1));
+            cursoSerial.setNum_curso(cursor.getString(2));
 
-            CursoLista.add(curso);
+            cursoSerialLista.add(cursoSerial);
         }
         obtenerListaCurso();
     }
@@ -70,8 +70,8 @@ public class RegistrarseAlumnos extends AppCompatActivity {
     public void obtenerListaCurso(){
         listaCursos = new ArrayList<String>();
 
-        for(int i = 0;i<CursoLista.size();i++){
-            listaCursos.add(CursoLista.get(i).getNum_curso() + " ---- " + CursoLista.get(i).getNombre());
+        for(int i = 0; i< cursoSerialLista.size(); i++){
+            listaCursos.add(cursoSerialLista.get(i).getNum_curso() + " ---- " + cursoSerialLista.get(i).getNombre());
         }
     }
 
