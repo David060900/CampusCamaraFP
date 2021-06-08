@@ -7,6 +7,31 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tvPerfilDNIU2"
+        android:layout_width="260dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:text="dzamora@campuscamarafp.com"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilDNINU2" />
+
+    <TextView
+        android:id="@+id/tvPerfilDNINU2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/dni"
+        android:textColor="@color/azul"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilCorreoU" />
+
+    <TextView
         android:id="@+id/tvPerfilNombreNU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,13 +110,13 @@
         android:id="@+id/btnCambiarPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:onClick="CambiarPassword"
         android:text="@string/cambiarpass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilCorreoU" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilDNIU2" />
 
     <ImageView
         android:id="@+id/imageView2"

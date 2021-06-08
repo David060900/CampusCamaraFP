@@ -11,7 +11,7 @@ import com.example.campuscamarafp.serializable.ProfesorSerial;
 
 public class PerfilProfesor extends AppCompatActivity{
 
-    private TextView tv1, tv2, tv3;
+    private TextView tv1, tv2, tv3, tv4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,7 @@ public class PerfilProfesor extends AppCompatActivity{
         tv1 = (TextView)findViewById(R.id.tvPerfilNombreU);
         tv2 = (TextView)findViewById(R.id.tvPerfilApellidosU);
         tv3 = (TextView)findViewById(R.id.tvPerfilCorreoU);
+        tv4 = findViewById(R.id.tvPerfilDNIU2);
 
         //recoge los datos que se han enviado del profesor y los escribe en Text Views
         Bundle objEnviado = getIntent().getExtras();
@@ -29,15 +30,17 @@ public class PerfilProfesor extends AppCompatActivity{
         String nombreProfesor = profesorSerialRecibe.getNombre();
         String apellidoProfesor = profesorSerialRecibe.getApellidos();
         String correoProfesor = profesorSerialRecibe.getCorreo();
+        String dniProfesor = profesorSerialRecibe.getDni_profesores();
         tv1.setText(nombreProfesor);
         tv2.setText(apellidoProfesor);
         tv3.setText(correoProfesor);
+        tv4.setText(dniProfesor);
     }
     //metodo que llama a la clase que cambia la contraseña
     public void CambiarPassword(View view){
         Intent i = new Intent(this, CambiarPasswordProfesores.class);
         ProfesorSerial profesorSerialEnvia = new ProfesorSerial();
-        profesorSerialEnvia.setCorreo(tv3.getText().toString());
+        profesorSerialEnvia.setCorreo(tv4.getText().toString());
         Bundle bundle = new Bundle();
         bundle.putSerializable("correo_profesor", profesorSerialEnvia);
         i.putExtras(bundle);

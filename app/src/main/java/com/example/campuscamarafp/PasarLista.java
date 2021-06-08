@@ -110,33 +110,38 @@ public class PasarLista extends AppCompatActivity {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
+        //recibe objetos de la clase profesor
         Bundle objEnviado = getIntent().getExtras();
         ProfesorSerial profesorSerialRecibe;
         profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
-
-        Cursor fila = bd.rawQuery("select * from " + Utilidades.TABLA_PROFESORES
-                        + " where " + Utilidades.CAMPO_CORREO_PROFESORES + " = '" + profesorSerialRecibe.getCorreo()
-                        + "'"
+        //consulta a la base de datos todos los valores
+        Cursor fila = bd.rawQuery("select * from profesores where dni_profesores " +
+                        "= '" + profesorSerialRecibe.getDni_profesores() + "';"
                 , null);
         //corrección de errores
         try{
+            //condicion que recoge esos valores y los inserta en la clase serializable alumno
             if(fila.moveToFirst()){
                 ProfesorSerial profesorSerialEnvia = new ProfesorSerial();
-                String nom = fila.getString(0);
-                profesorSerialEnvia.setNombre(nom);
-                String ape = fila.getString(1);
-                profesorSerialEnvia.setApellidos(ape);
-                String cor= fila.getString(2);
-                profesorSerialEnvia.setCorreo(cor);
-                String pass = fila.getString(3);
-                profesorSerialEnvia.setPassword(pass);
+                String dni = fila.getString(0);
+                profesorSerialEnvia.setDni_profesores(dni);
+                String correo = fila.getString(1);
+                profesorSerialEnvia.setCorreo(correo);
+                String nombre= fila.getString(2);
+                profesorSerialEnvia.setNombre(nombre);
+                String apellidos = fila.getString(3);
+                profesorSerialEnvia.setApellidos(apellidos);
+                String password = fila.getString(4);
+                profesorSerialEnvia.setPassword(password);
 
+                //se envia los datos de los profesores a la clase del perfil del profesor
                 Intent i = new Intent(this, PerfilProfesor.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("datos_profesores", profesorSerialEnvia);
                 i.putExtras(bundle);
                 startActivity(i);
             }
+
         } catch (Exception e) {//capturamos los errores si hubieran
             Toast.makeText(this, "Error" + e.getMessage(), Toast.LENGTH_LONG).show();
         }

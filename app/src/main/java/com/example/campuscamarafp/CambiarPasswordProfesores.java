@@ -40,7 +40,7 @@ public class CambiarPasswordProfesores extends AppCompatActivity {
         Bundle objEnviado = getIntent().getExtras();
         ProfesorSerial profesorSerialRecibe;
         profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("correo_profesor");
-        String correo = profesorSerialRecibe.getCorreo();
+        String dni = profesorSerialRecibe.getDni_profesores();
 
         //consulta a la base de datos de la contraseña
         Cursor fila = bd.rawQuery("select password from profesores where password = '"
@@ -56,7 +56,7 @@ public class CambiarPasswordProfesores extends AppCompatActivity {
                     if(password.equals(pass)){
                         //instruccion sql que actualiza los valores en la base de datos
                         bd.execSQL("update profesores set password = '" + passwordnueva + "' "
-                                + " where correo = '" + correo + "';");
+                                + " where dni_profesores = '" + dni + "';");
                         Intent i = new Intent(this, InicioSesion.class);
                         startActivity(i);
                         Toast.makeText(this, "Contraseña actualizada", Toast.LENGTH_LONG).show();
