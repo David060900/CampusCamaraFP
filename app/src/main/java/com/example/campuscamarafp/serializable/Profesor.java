@@ -1,28 +1,24 @@
-package com.example.campuscamarafp.entidades;
+package com.example.campuscamarafp.serializable;
 
 import java.io.Serializable;
-//clase serializable de alumno
-public class Alumno implements Serializable {
+//clase serializable de profesor
+public class Profesor implements Serializable {
 
     private String nombre;
     private String apellidos;
     private String correo;
     private String password;
     private String curso;
-    private String numcurso;
-    private int faltas;
     //constructor
-    public Alumno(String nombre, String apellidos, String correo, String password, String curso, String numcurso, int faltas) {
+    public Profesor(String nombre, String apellidos, String correo, String password, String curso) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
         this.password = password;
         this.curso = curso;
-        this.numcurso = numcurso;
-        this.faltas = faltas;
     }
 
-    public Alumno(){
+    public Profesor(){
 
     }
     //getters y setters
@@ -64,22 +60,6 @@ public class Alumno implements Serializable {
 
     public void setCurso(String curso) {
         this.curso = curso;
-    }
-
-    public String getNumcurso() {
-        return numcurso;
-    }
-
-    public void setNumcurso(String numcurso) {
-        this.numcurso = numcurso;
-    }
-
-    public int getFaltas() {
-        return faltas;
-    }
-
-    public void setFaltas(int faltas) {
-        this.faltas = faltas;
     }
 
 }

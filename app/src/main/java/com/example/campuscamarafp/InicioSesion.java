@@ -15,9 +15,8 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.campuscamarafp.ayudas.AyudaInicioSesion;
-import com.example.campuscamarafp.entidades.Alumno;
-import com.example.campuscamarafp.entidades.Profesor;
-import com.example.campuscamarafp.utilidades.Utilidades;
+import com.example.campuscamarafp.serializable.Alumno;
+import com.example.campuscamarafp.serializable.Profesor;
 
 public class InicioSesion extends AppCompatActivity {
 
@@ -36,19 +35,8 @@ public class InicioSesion extends AppCompatActivity {
         rb2 = (RadioButton) findViewById(R.id.rbProfesor);
 
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
-        /*SQLiteDatabase db = conexion.getWritableDatabase();
-        //inserts a modulo
-        db.execSQL("insert into modulo values (1,'Programación');");
-        db.execSQL("insert into modulo values (2,'FOL');");
-        db.execSQL("insert into modulo values (3,'Políticas');");
-        db.execSQL("insert into modulo values (4,'Comercio');");
-        //inserts a curso
-        db.execSQL("insert into curso values (1,'DAM','Primero');");
-        db.execSQL("insert into curso values (2,'DAM', 'Segundo');");
-        db.execSQL("insert into curso values (3,'Marketing', 'Primero');");
-        db.execSQL("insert into curso values (4,'Marketing', 'Segundo');");
-        db.execSQL("insert into curso values (5,'Comercio', 'Primero');");
-        db.execSQL("insert into curso values (6,'Comercio', 'Segundo');");*/
+        //inserts();
+
     }
     //método que abre la ventana para el registro de usuarios
     public void Registrar (View view){
@@ -130,5 +118,22 @@ public class InicioSesion extends AppCompatActivity {
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void inserts(){
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        SQLiteDatabase db = conexion.getWritableDatabase();
+        //inserts a modulo
+        db.execSQL("insert into modulo values (1,'Programación');");
+        db.execSQL("insert into modulo values (2,'FOL');");
+        db.execSQL("insert into modulo values (3,'Políticas');");
+        db.execSQL("insert into modulo values (4,'Comercio');");
+        //inserts a curso
+        db.execSQL("insert into curso values (1,'DAM','Primero');");
+        db.execSQL("insert into curso values (2,'DAM', 'Segundo');");
+        db.execSQL("insert into curso values (3,'Marketing', 'Primero');");
+        db.execSQL("insert into curso values (4,'Marketing', 'Segundo');");
+        db.execSQL("insert into curso values (5,'Comercio', 'Primero');");
+        db.execSQL("insert into curso values (6,'Comercio', 'Segundo');");
     }
 }

@@ -5,40 +5,27 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.ActionMode;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.ayudas.AyudaImpartir;
-import com.example.campuscamarafp.entidades.Alumno;
-import com.example.campuscamarafp.entidades.ImpartirSerializable;
+import com.example.campuscamarafp.serializable.Alumno;
+import com.example.campuscamarafp.serializable.Repaso;
 import com.example.campuscamarafp.utilidades.Utilidades;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Inicio  extends AppCompatActivity {
 
     private ListView lv;
     private Adaptador adaptador;
-    private Button btn;
     private FloatingActionButton fab;
-    private CheckBox chkAll;
-
-    public static boolean isActionMode = false;
-    public static List<String> userSelection = new ArrayList<>();
-    public static ActionMode actionMode = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,73 +42,30 @@ public class Inicio  extends AppCompatActivity {
 
         Quedar();
     }
-
-    /*AbsListView.MultiChoiceModeListener modeListener = new AbsListView.MultiChoiceModeListener() {
-        @Override
-        public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
-
-        }
-
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            MenuInflater inflater = mode.getMenuInflater();
-            inflater.inflate(R.menu.menuayuda, menu);
-
-            isActionMode = true;
-            actionMode = mode;
-
-            return true;
-        }
-
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            return false;
-        }
-
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            switch (item.getItemId()){
-                case R.id.btnQuedar:
-                    adaptador.removeItems(userSelection);
-                    mode.finish();
-                    return true;
-
-                default:
-                    return false;
-            }
-        }
-
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
-            isActionMode = false;
-            actionMode = null;
-            userSelection.clear();
-        }
-    };*/
     //consulta los valores de la tabla impartir de la base de datos
     public ArrayList consultarLista() {
-        ArrayList<ImpartirSerializable> lista = new ArrayList();
+        ArrayList<Repaso> lista = new ArrayList();
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
-        ImpartirSerializable impartir = new ImpartirSerializable();
+        Repaso impartir = new Repaso();
         //consulta de los valores que recoge de la base de datos
-        Cursor registro = bd.rawQuery("select asignatura, correo_alumnos, dia, tiempo " +
-                "from impartir", null);
+        Cursor registro = bd.rawQuery("select nombre_modulo, dni_alumnos, dia_hora, horas_repasar " +
+                "from repaso;", null);
 
         //condicion que recoge de la consulta para proyectar en la lista
         if (registro.moveToFirst()) {
             do {
-                String asignatura = registro.getString(0);
-                impartir.setAsignatura(asignatura);
-                String correo_alumnos = registro.getString(1);
-                impartir.setCorreo_alumnos(correo_alumnos);
+                String modulo = registro.getString(0);
+                impartir.setAsignatura(modulo);
+                String dni_alumnos = registro.getString(1);
+                impartir.setCorreo_alumnos(dni_alumnos);
                 String dia = registro.getString(2);
                 impartir.setDia(dia);
                 String tiempo = registro.getString(3);
                 impartir.setTiempo(tiempo);
-                lista.add(new ImpartirSerializable(asignatura,
-                        correo_alumnos, dia, tiempo));
+                lista.add(new Repaso(modulo,
+                        dni_alumnos, dia, tiempo));
             } while (registro.moveToNext());
         }
         return lista;
@@ -135,28 +79,28 @@ public class Inicio  extends AppCompatActivity {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(Inicio.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
-        //consulta del correo del alumno de la base de datos impartir
-        Cursor fila = bd.rawQuery("select id_impartir, correo_alumnos from impartir;", null);
+        //consulta del correo del alumno de la base de datos repaso
+        Cursor fila = bd.rawQuery("select id_repaso, dni_alumnos from repaso;", null);
 
         //llamamos a la clase serializable
-        ImpartirSerializable impartir = new ImpartirSerializable();
+        Repaso repaso = new Repaso();
 
         //le asignamos a la lista que escuche cuando se seleccione un item
         lv.setOnItemClickListener((parent, view, position, id) -> {
             //condicion que recorre la posicion del elemento de la lista
             if (fila.moveToPosition(position)) {
-                int id_impartir = fila.getInt(0);
-                String correo = fila.getString(1);
-                impartir.setId_impartir(id_impartir);
-                impartir.setCorreo_alumnos(correo);
-                Toast.makeText(Inicio.this, "Has elegido a " + impartir.getCorreo_alumnos(), Toast.LENGTH_SHORT).show();
+                int id_repaso = fila.getInt(0);
+                String dni_alumnos = fila.getString(1);
+                repaso.setId_impartir(id_repaso);
+                repaso.setCorreo_alumnos(dni_alumnos);
+                Toast.makeText(Inicio.this, "Has elegido a " + repaso.getCorreo_alumnos(), Toast.LENGTH_SHORT).show();
             }
         });
         //le asignamos al boton una acción
         fab.setOnClickListener(v -> {
             Toast.makeText(Inicio.this, "Reservando disponibilidad" , Toast.LENGTH_SHORT).show();
             //instruccion que elimina de la base de datos
-            bd.execSQL("delete from impartir where id_impartir = '" + impartir.getId_impartir() + "';");
+            bd.execSQL("delete from repaso where id_repaso = '" + repaso.getId_impartir() + "';");
             finish();
         });
     }

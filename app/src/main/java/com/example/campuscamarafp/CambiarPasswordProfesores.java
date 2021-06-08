@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.example.campuscamarafp.entidades.Profesor;
+import com.example.campuscamarafp.serializable.Profesor;
 
 
 public class CambiarPasswordProfesores extends AppCompatActivity {

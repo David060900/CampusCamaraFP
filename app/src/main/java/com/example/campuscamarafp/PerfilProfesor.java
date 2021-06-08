@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.campuscamarafp.entidades.Profesor;
+import com.example.campuscamarafp.serializable.Profesor;
 
 public class PerfilProfesor extends AppCompatActivity{
 

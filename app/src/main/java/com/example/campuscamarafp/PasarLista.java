@@ -15,8 +15,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.ayudas.AyudaPasarLista;
-import com.example.campuscamarafp.entidades.Alumno;
-import com.example.campuscamarafp.entidades.Profesor;
+import com.example.campuscamarafp.serializable.Alumno;
+import com.example.campuscamarafp.serializable.Profesor;
 import com.example.campuscamarafp.utilidades.Utilidades;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

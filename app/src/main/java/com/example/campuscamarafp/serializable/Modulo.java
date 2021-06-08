@@ -1,4 +1,4 @@
-package com.example.campuscamarafp.entidades;
+package com.example.campuscamarafp.serializable;
 
 import java.io.Serializable;
 

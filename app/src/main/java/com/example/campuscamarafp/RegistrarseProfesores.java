@@ -13,8 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.campuscamarafp.entidades.Curso;
-import com.example.campuscamarafp.utilidades.Utilidades;
+import com.example.campuscamarafp.serializable.Curso;
 
 import java.util.ArrayList;
 
@@ -87,8 +86,8 @@ public class RegistrarseProfesores extends AppCompatActivity {
         String correo = etCorreo.getText().toString();
         String password = etPassword.getText().toString();
 
-        ContentValues values = new ContentValues();
-        ContentValues values1 = new ContentValues();
+        ContentValues values = new ContentValues();//valores para alumnos
+        ContentValues values1 = new ContentValues();//valores para imparten
         //comprobamos que ninguno de los campos estan vacios
         if(!dni.isEmpty() && !nombre.isEmpty() && !apellidos.isEmpty() && !correo.isEmpty() && !password.isEmpty()){
             //tabla alumnos
@@ -97,7 +96,7 @@ public class RegistrarseProfesores extends AppCompatActivity {
             values.put("apellidos", apellidos);
             values.put("correo_profesores", correo);
             values.put("password", password);
-            //tabla estudian
+            //tabla imparten
             values1.put("id_curso", spinner1.getSelectedItemId() + 1);
             values1.put("dni_profesores", dni);
             values1.put("id_modulo", 1);

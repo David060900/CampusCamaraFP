@@ -1,35 +1,26 @@
 package com.example.campuscamarafp;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
+import com.example.campuscamarafp.serializable.Repaso;
 
-import com.example.campuscamarafp.entidades.ImpartirSerializable;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Adaptador extends BaseAdapter {
 //https://elbauldelprogramador.com/adapter-personalizado-en-android/
-    private ArrayList<ImpartirSerializable> listItems;
+    private ArrayList<Repaso> listItems;
     private Context contexto;
     //private ArrayList<String> items;
     private LayoutInflater inflater;
     private boolean[] itemSelection;
 
 
-    public Adaptador(ArrayList<ImpartirSerializable> listItems, Context contexto) {
+    public Adaptador(ArrayList<Repaso> listItems, Context contexto) {
         this.listItems = listItems;
         this.contexto = contexto;
     }
@@ -51,7 +42,7 @@ public class Adaptador extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImpartirSerializable impartir = (ImpartirSerializable) getItem(position);
+        Repaso repaso = (Repaso) getItem(position);
 
         convertView = LayoutInflater.from(contexto).inflate(R.layout.elemento_lista, null);
         TextView tv1, tv2, tv3, tv4;
@@ -61,10 +52,10 @@ public class Adaptador extends BaseAdapter {
         tv3 = convertView.findViewById(R.id.tvListaDiaHora);
         tv4 = convertView.findViewById(R.id.tvListaHoras);
 
-        tv1.setText(impartir.getAsignatura());
-        tv2.setText(impartir.getCorreo_alumnos());
-        tv3.setText(impartir.getDia());
-        tv4.setText(impartir.getTiempo());
+        tv1.setText(repaso.getAsignatura());
+        tv2.setText(repaso.getCorreo_alumnos());
+        tv3.setText(repaso.getDia());
+        tv4.setText(repaso.getTiempo());
         /*CheckBox checkBox = convertView.findViewById(R.id.checkBox);
         checkBox.setTag(position);
         if(Inicio.isActionMode){

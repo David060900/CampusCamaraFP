@@ -5,21 +5,15 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.campuscamarafp.entidades.Curso;
-import com.example.campuscamarafp.entidades.Modulo;
-import com.example.campuscamarafp.utilidades.CrearTablas;
-import com.example.campuscamarafp.utilidades.Utilidades;
+import com.example.campuscamarafp.serializable.Curso;
 
 import java.util.ArrayList;
 

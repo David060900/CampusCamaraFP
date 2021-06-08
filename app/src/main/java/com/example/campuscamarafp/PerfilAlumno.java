@@ -7,8 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.campuscamarafp.entidades.Alumno;
-import com.example.campuscamarafp.entidades.Profesor;
+import com.example.campuscamarafp.serializable.Alumno;
 
 public class PerfilAlumno extends AppCompatActivity{
 
