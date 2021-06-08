@@ -15,10 +15,6 @@ public class Adaptador extends BaseAdapter {
 //https://elbauldelprogramador.com/adapter-personalizado-en-android/
     private ArrayList<RepasoSerial> listItems;
     private Context contexto;
-    //private ArrayList<String> items;
-    private LayoutInflater inflater;
-    private boolean[] itemSelection;
-
 
     public Adaptador(ArrayList<RepasoSerial> listItems, Context contexto) {
         this.listItems = listItems;
@@ -56,31 +52,7 @@ public class Adaptador extends BaseAdapter {
         tv2.setText(repasoSerial.getDni_alumnos());
         tv3.setText(repasoSerial.getDia());
         tv4.setText(repasoSerial.getTiempo());
-        /*CheckBox checkBox = convertView.findViewById(R.id.checkBox);
-        checkBox.setTag(position);
-        if(Inicio.isActionMode){
-            checkBox.setVisibility(View.VISIBLE);
-        }else{
-            checkBox.setVisibility(View.GONE);
-        }
-
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                int position = (int) buttonView.getTag();
-                if(Inicio.userSelection.contains(listItems.get(position))){
-                    Inicio.userSelection.remove(listItems.get(position));
-                }
-                Inicio.actionMode.setTitle(Inicio.userSelection.size() + " items");
-            }
-        });*/
 
         return convertView;
     }
-    /*public void removeItems (List<String> items){
-        for(String item : items){
-            this.listItems.remove(item);
-        }
-        notifyDataSetChanged();
-    }*/
 }

@@ -15,7 +15,7 @@
         <activity android:name=".Inicio"></activity>
         <activity android:name=".PerfilAlumno"></activity>
         <activity android:name=".RegistrarseProfesores"></activity>
-        <activity android:name=".Impartir"></activity>
+        <activity android:name=".Repaso"></activity>
         <activity android:name=".PasarLista"></activity>
         <activity android:name=".PerfilProfesor"></activity>
         <activity android:name=".CambiarPasswordProfesores"></activity>

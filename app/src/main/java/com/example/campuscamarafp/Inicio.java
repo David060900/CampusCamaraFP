@@ -79,7 +79,7 @@ public class Inicio  extends AppCompatActivity {
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
         //consulta del correo del alumno de la base de datos repaso
-        Cursor fila = bd.rawQuery("select id_repaso, dni_alumnos from repaso;", null);
+        Cursor fila = bd.rawQuery("select id_repaso from repaso;", null);
 
         //llamamos a la clase serializable
         RepasoSerial repasoSerial = new RepasoSerial();
@@ -89,10 +89,8 @@ public class Inicio  extends AppCompatActivity {
             //condicion que recorre la posicion del elemento de la lista
             if (fila.moveToPosition(position)) {
                 int id_repaso = fila.getInt(0);
-                String dni_alumnos = fila.getString(1);
                 repasoSerial.setId_repaso(id_repaso);
-                repasoSerial.setDni_alumnos(dni_alumnos);
-                Toast.makeText(Inicio.this, "Has elegido a " + repasoSerial.getDni_alumnos(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Inicio.this, "Has elegido a " + repasoSerial.getId_repaso(), Toast.LENGTH_SHORT).show();
             }
         });
         //le asignamos al boton una acción
@@ -145,18 +143,18 @@ public class Inicio  extends AppCompatActivity {
     }
     //metodo que llama a la clase impartir
     public void Impartir(View view){
-        Intent i = new Intent(this, Impartir.class);
+        Intent i = new Intent(this, Repaso.class);
         //se reciben objetos de la clase iniciar sesion de alumno
         Bundle objEnviado = getIntent().getExtras();
         AlumnoSerial alumnoSerialRecibe;
         alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("alumno_iniciosesion");
-        String correo_alumno = alumnoSerialRecibe.getCorreo();
+        String dni_alumno = alumnoSerialRecibe.getDni_alumno();
 
         //se envian objetos del alumno a la clase impartir
         Bundle bundle = new Bundle();
         AlumnoSerial alumnoSerialEnvia = new AlumnoSerial();
-        alumnoSerialEnvia.setCorreo(correo_alumno);
-        bundle.putSerializable("correo_impartir", alumnoSerialEnvia);
+        alumnoSerialEnvia.setDni_alumno(dni_alumno);
+        bundle.putSerializable("dni_impartir", alumnoSerialEnvia);
         i.putExtras(bundle);
         startActivity(i);
     }

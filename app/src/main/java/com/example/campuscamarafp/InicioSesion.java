@@ -76,7 +76,7 @@ public class InicioSesion extends AppCompatActivity {
                 if(dni.equals(dni_bd) && password.equals(pass)){
                     Intent i = new Intent(this, Inicio.class);
                     AlumnoSerial alumnoSerialEnvia = new AlumnoSerial();
-                    alumnoSerialEnvia.setDni_alumno(dni_bd);
+                    alumnoSerialEnvia.setDni_alumno(dni);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("alumno_iniciosesion", alumnoSerialEnvia);
                     i.putExtras(bundle);
