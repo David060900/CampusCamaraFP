@@ -1,6 +1,8 @@
 package com.example.campuscamarafp;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -11,7 +13,7 @@ import com.example.campuscamarafp.serializable.AlumnoSerial;
 
 public class PerfilAlumno extends AppCompatActivity{
 
-    private TextView tv1, tv2, tv3, tv4;
+    private TextView tv1, tv2, tv3, tv4, tv5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class PerfilAlumno extends AppCompatActivity{
         tv2 = (TextView)findViewById(R.id.tvPerfilApellidosU);
         tv3 = (TextView)findViewById(R.id.tvPerfilCorreoU);
         tv4 = (TextView)findViewById(R.id.tvTotalFaltasU);
+        tv5 = findViewById(R.id.tvPerfilDNIU);
 
         //recoge los datos que se han enviado del alumno y los escribe en Text Views
         Bundle objEnviado = getIntent().getExtras();
@@ -30,18 +33,33 @@ public class PerfilAlumno extends AppCompatActivity{
         String nombre_alumno = alumnoSerialRecibe.getNombre();
         String apellido_alumno = alumnoSerialRecibe.getApellidos();
         String correo_alumno = alumnoSerialRecibe.getCorreo();
+        String dni_alumno = alumnoSerialRecibe.getDni_alumno();
         tv1.setText(nombre_alumno);
         tv2.setText(apellido_alumno);
         tv3.setText(correo_alumno);
+        tv5.setText(dni_alumno);
+        //verFaltas();
     }
     //metodo que llama a la clase que cambia la contraseña
     public void CambiarPassword(View view){
         Intent i = new Intent(this, CambiarPasswordAlumnos.class);
         AlumnoSerial alumnoSerialEnvia = new AlumnoSerial();
-        alumnoSerialEnvia.setCorreo(tv3.getText().toString());
+        alumnoSerialEnvia.setDni_alumno(tv5.getText().toString());
         Bundle bundle = new Bundle();
         bundle.putSerializable("correo_alumno", alumnoSerialEnvia);
         i.putExtras(bundle);
         startActivity(i);
+    }
+    public void verFaltas(){
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        SQLiteDatabase bd = conexion.getWritableDatabase();
+
+        Bundle objEnviado = getIntent().getExtras();
+        AlumnoSerial alumnoSerialRecibe;
+        alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("datos_alumnos");
+        Cursor fila = bd.rawQuery("select num_falta from faltas where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
+                , null);
+        int num_faltas = fila.getInt(0);
+        tv4.setText(num_faltas);
     }
 }

@@ -60,6 +60,8 @@
 
     <string name="passnueva">Escribe tu nueva contraseña:</string>
 
+    <string name="verfaltas">Visualizar Faltas</string>
+
     /**********************AYUDAS**********************/
 
     <string name="tituloayuda">Ayuda</string>
