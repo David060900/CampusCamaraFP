@@ -30,10 +30,10 @@
         android:textColor="@color/azul"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilCorreoU" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilCorreoAlumU" />
 
     <TextView
-        android:id="@+id/tvPerfilNombreU"
+        android:id="@+id/tvPerfilNombreAlumU"
         android:layout_width="220dp"
         android:layout_height="25dp"
         android:layout_marginStart="172dp"
@@ -55,10 +55,10 @@
         android:textColor="@color/azul"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreU" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreAlumU" />
 
     <TextView
-        android:id="@+id/tvPerfilApellidosU"
+        android:id="@+id/tvPerfilApellidosAlumU"
         android:layout_width="260dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
@@ -80,10 +80,10 @@
         android:textColor="@color/azul"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilApellidosU" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilApellidosAlumU" />
 
     <TextView
-        android:id="@+id/tvPerfilCorreoU"
+        android:id="@+id/tvPerfilCorreoAlumU"
         android:layout_width="376dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPerfilCorreoNU" />
 
     <TextView
-        android:id="@+id/tvPerfilDNIU"
+        android:id="@+id/tvPerfilDNIAlumU"
         android:layout_width="260dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
@@ -115,7 +115,7 @@
         android:text="@string/cambiarpass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilDNIU" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilDNIAlumU" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -139,17 +139,17 @@
         android:textColor="@color/azul"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/tvPerfilApellidosNU"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreU" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreAlumU" />
 
     <TextView
-        android:id="@+id/tvTotalFaltasU"
+        android:id="@+id/tvTotalFaltasAlumU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginLeft="56dp"
         android:layout_marginTop="36dp"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/tvPerfilApellidosU"
+        app:layout_constraintStart_toEndOf="@+id/tvPerfilApellidosAlumU"
         app:layout_constraintTop_toBottomOf="@+id/tvTotalFaltasNU" />
 
     <Button

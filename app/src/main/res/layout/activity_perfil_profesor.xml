@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tvPerfilDNIU2"
+        android:id="@+id/tvPerfilDNIProfeU"
         android:layout_width="260dp"
         android:layout_height="24dp"
         android:layout_marginStart="152dp"
@@ -30,7 +30,7 @@
         android:textColor="@color/azul"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreU" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreProfeU" />
 
     <TextView
         android:id="@+id/tvPerfilNombreNU"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvPerfilNombreU"
+        android:id="@+id/tvPerfilNombreProfeU"
         android:layout_width="220dp"
         android:layout_height="25dp"
         android:layout_marginStart="192dp"
@@ -68,10 +68,10 @@
         android:textColor="@color/azul"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreU" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreProfeU" />
 
     <TextView
-        android:id="@+id/tvPerfilApellidosU"
+        android:id="@+id/tvPerfilApellidosProfeU"
         android:layout_width="220dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
@@ -93,10 +93,10 @@
         android:textColor="@color/azul"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilApellidosU" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilApellidosProfeU" />
 
     <TextView
-        android:id="@+id/tvPerfilCorreoU"
+        android:id="@+id/tvPerfilCorreoProfeU"
         android:layout_width="376dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
@@ -117,7 +117,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilCorreoU" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilCorreoProfeU" />
 
     <ImageView
         android:id="@+id/imageView2"

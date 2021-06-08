@@ -18,10 +18,10 @@ public class PerfilProfesor extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_profesor);
 
-        tv1 = (TextView)findViewById(R.id.tvPerfilNombreU);
-        tv2 = (TextView)findViewById(R.id.tvPerfilApellidosU);
-        tv3 = (TextView)findViewById(R.id.tvPerfilCorreoU);
-        tv4 = findViewById(R.id.tvPerfilDNIU2);
+        tv1 = (TextView)findViewById(R.id.tvPerfilNombreProfeU);
+        tv2 = (TextView)findViewById(R.id.tvPerfilApellidosProfeU);
+        tv3 = (TextView)findViewById(R.id.tvPerfilCorreoProfeU);
+        tv4 = findViewById(R.id.tvPerfilDNIProfeU);
 
         //recoge los datos que se han enviado del profesor y los escribe en Text Views
         Bundle objEnviado = getIntent().getExtras();
