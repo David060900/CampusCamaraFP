@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.campuscamarafp.ayudas.AyudaPasarLista;
 import com.example.campuscamarafp.serializable.AlumnoSerial;
 import com.example.campuscamarafp.serializable.ProfesorSerial;
-import com.example.campuscamarafp.utilidades.Utilidades;
+import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.serializable.CursoSerial;
+import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 
 import java.util.ArrayList;
 

@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.serializable.AlumnoSerial;
+import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 
 public class CambiarPasswordAlumnos extends AppCompatActivity {
 

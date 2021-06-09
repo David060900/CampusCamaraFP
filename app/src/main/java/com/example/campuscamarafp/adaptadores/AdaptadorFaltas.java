@@ -1,4 +1,4 @@
-package com.example.campuscamarafp;
+package com.example.campuscamarafp.adaptadores;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.campuscamarafp.R;
 import com.example.campuscamarafp.serializable.FaltasSerial;
 
 import java.util.ArrayList;

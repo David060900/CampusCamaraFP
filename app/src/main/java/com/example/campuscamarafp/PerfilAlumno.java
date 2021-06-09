@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.serializable.AlumnoSerial;
+import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 
 public class PerfilAlumno extends AppCompatActivity{
 

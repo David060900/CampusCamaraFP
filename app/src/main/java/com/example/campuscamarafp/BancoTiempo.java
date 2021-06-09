@@ -13,9 +13,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.campuscamarafp.adaptadores.Adaptador;
 import com.example.campuscamarafp.ayudas.AyudaImpartir;
 import com.example.campuscamarafp.serializable.AlumnoSerial;
 import com.example.campuscamarafp.serializable.RepasoSerial;
+import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class BancoTiempo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio);
+        setContentView(R.layout.activity_bancotiempo);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         lv = (ListView)findViewById(R.id.listaBanco);

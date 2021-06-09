@@ -1,4 +1,4 @@
-package com.example.campuscamarafp;
+package com.example.campuscamarafp.sqlite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,9 +8,6 @@ import android.os.Build;
 import androidx.annotation.Nullable;
 
 import com.example.campuscamarafp.utilidades.CrearTablas;
-import com.example.campuscamarafp.utilidades.Utilidades;
-
-import java.util.ArrayList;
 
 public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 

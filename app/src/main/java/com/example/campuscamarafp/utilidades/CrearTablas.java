@@ -1,9 +1,5 @@
 package com.example.campuscamarafp.utilidades;
 
-import android.database.sqlite.SQLiteDatabase;
-
-import com.example.campuscamarafp.AdminSQLiteOpenHelper;
-
 public class CrearTablas {
 
     public static final String CREAR_TABLA_ALUMNOS = "create table if not exists alumnos(" +

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.example.campuscamarafp.serializable.ProfesorSerial;
+import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 
 
 public class CambiarPasswordProfesores extends AppCompatActivity {

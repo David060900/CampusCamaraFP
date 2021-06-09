@@ -16,8 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.serializable.AlumnoSerial;
 import com.example.campuscamarafp.serializable.ModuloSerial;
-import com.example.campuscamarafp.utilidades.CrearTablas;
-import com.example.campuscamarafp.utilidades.Utilidades;
+import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,7 +32,7 @@ public class Repaso extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_impartir);
+        setContentView(R.layout.activity_repaso);
 
         et1 = (EditText)findViewById(R.id.etTiempoImpartir);
         tv1 = findViewById(R.id.tvDiaSemanaU);

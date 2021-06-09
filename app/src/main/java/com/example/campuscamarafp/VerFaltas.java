@@ -1,6 +1,5 @@
 package com.example.campuscamarafp;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -9,9 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.campuscamarafp.adaptadores.AdaptadorFaltas;
 import com.example.campuscamarafp.serializable.AlumnoSerial;
 import com.example.campuscamarafp.serializable.FaltasSerial;
-import com.example.campuscamarafp.serializable.RepasoSerial;
+import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 
 import java.util.ArrayList;
 
