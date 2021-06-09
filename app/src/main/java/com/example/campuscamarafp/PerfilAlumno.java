@@ -59,7 +59,10 @@ public class PerfilAlumno extends AppCompatActivity{
         alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("datos_alumnos");
         Cursor fila = bd.rawQuery("select num_falta from faltas where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
                 , null);
-        int num_faltas = fila.getInt(0);
+        int num_faltas = 0;
+        while(fila.moveToNext()){
+            num_faltas = fila.getInt(0);
+        }
         tv4.setText(num_faltas);
     }
 }

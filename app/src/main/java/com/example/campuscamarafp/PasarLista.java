@@ -92,16 +92,27 @@ public class PasarLista extends AppCompatActivity {
         ArrayList<String> lista = new ArrayList<>();
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
-        //consulta que recoge el nombre y apellidos de los alumnos
+        Bundle objEnviado = getIntent().getExtras();
+        ProfesorSerial profesorSerialRecibe;
+        profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
+        Cursor curso = bd.rawQuery("select id_curso from imparten " +
+                "where dni_profesores = '" + profesorSerialRecibe.getDni_profesores() + "';",null);
+        int idcurso = 0;
+        while(curso.moveToNext()){
+            idcurso = curso.getInt(0);
+        }
+        Cursor alumnos = bd.rawQuery("select nombre, apellidos from alumnos left join estudian on" +
+                " alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_curso = '" + idcurso + "';", null);
+        /*//consulta que recoge el nombre y apellidos de los alumnos
         String tabla_lista = "select nombre, apellidos from alumnos";
         Cursor registro = bd.rawQuery(tabla_lista, null);
-        //condicion que añade lo consultado en la lista
-        if(registro.moveToFirst()){
+        //condicion que añade lo consultado en la lista*/
+        if(alumnos.moveToFirst()){
             do{
-                lista.add(registro.getString(0)
+                lista.add(alumnos.getString(0)
                         + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                        + registro.getString(1));
-            }while(registro.moveToNext());
+                        + alumnos.getString(1));
+            }while(alumnos.moveToNext());
         }
         return lista;
     }
