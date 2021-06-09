@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class FaltasSerial implements Serializable {
 
     private int id_faltas;
-    private String num_falta;
+    private int num_falta;
     private String dni_alumnos;
     private String dni_profesores;
     private String dia_hora;
 
-    public FaltasSerial(int id_faltas, String num_falta, String dni_alumnos, String dni_profesores, String dia_hora) {
+    public FaltasSerial(int id_faltas, int num_falta, String dni_alumnos, String dni_profesores, String dia_hora) {
         this.id_faltas = id_faltas;
         this.num_falta = num_falta;
         this.dni_alumnos = dni_alumnos;
@@ -18,7 +18,7 @@ public class FaltasSerial implements Serializable {
         this.dia_hora = dia_hora;
     }
 
-    public FaltasSerial(String num_falta, String dni_profesores, String dia_hora) {
+    public FaltasSerial(int num_falta, String dni_profesores, String dia_hora) {
         this.id_faltas = id_faltas;
         this.num_falta = num_falta;
         this.dni_alumnos = dni_alumnos;
@@ -38,11 +38,11 @@ public class FaltasSerial implements Serializable {
         this.id_faltas = id_faltas;
     }
 
-    public String getNum_falta() {
+    public int getNum_falta() {
         return num_falta;
     }
 
-    public void setNum_falta(String num_falta) {
+    public void setNum_falta(int num_falta) {
         this.num_falta = num_falta;
     }
 

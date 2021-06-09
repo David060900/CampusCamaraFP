@@ -53,6 +53,11 @@ public class PerfilAlumno extends AppCompatActivity{
 
     public void visualizarFaltas(View view){
         Intent i = new Intent(this, VerFaltas.class);
+        AlumnoSerial alumnoSerialEnvia = new AlumnoSerial();
+        alumnoSerialEnvia.setDni_alumno(tv5.getText().toString());
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("correo_alumno", alumnoSerialEnvia);
+        i.putExtras(bundle);
         startActivity(i);
     }
 

@@ -1,12 +1,17 @@
 package com.example.campuscamarafp;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.campuscamarafp.serializable.AlumnoSerial;
 import com.example.campuscamarafp.serializable.FaltasSerial;
+import com.example.campuscamarafp.serializable.RepasoSerial;
 
 import java.util.ArrayList;
 
@@ -31,10 +36,30 @@ public class VerFaltas extends AppCompatActivity {
     }
 
     private void llenarLista() {
-        listaFaltas.add(new FaltasSerial("", "hola", "si"));
-        listaFaltas.add(new FaltasSerial("", "hola", "si"));
-        listaFaltas.add(new FaltasSerial("", "hola", "si"));
-        listaFaltas.add(new FaltasSerial("", "hola", "si"));
-        listaFaltas.add(new FaltasSerial("", "hola", "si"));
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        SQLiteDatabase bd = conexion.getWritableDatabase();
+
+        Bundle objEnviado = getIntent().getExtras();
+        AlumnoSerial alumnoSerialRecibe;
+        alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("correo_alumno");
+
+        FaltasSerial faltasSerial = new FaltasSerial();
+
+        Cursor faltas = bd.rawQuery("select num_falta, dni_profesores, dia_hora " +
+                "from faltas where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';",null);
+        //condicion que recoge de la consulta para proyectar en la lista
+        if (faltas.moveToFirst()) {
+            do {
+                int num_falta = faltas.getInt(0);
+                faltasSerial.setNum_falta(num_falta);
+                String dni_profesores = faltas.getString(1);
+                faltasSerial.setDni_profesores(dni_profesores);
+                String dia_hora = faltas.getString(2);
+                faltasSerial.setDia_hora(dia_hora);
+                listaFaltas.add(new FaltasSerial(num_falta,
+                        dni_profesores, dia_hora));
+            } while (faltas.moveToNext());
+        }
+
     }
 }
