@@ -40,9 +40,9 @@ public class PerfilProfesor extends AppCompatActivity{
     public void CambiarPassword(View view){
         Intent i = new Intent(this, CambiarPasswordProfesores.class);
         ProfesorSerial profesorSerialEnvia = new ProfesorSerial();
-        profesorSerialEnvia.setCorreo(tv4.getText().toString());
+        profesorSerialEnvia.setDni_profesores(tv4.getText().toString());
         Bundle bundle = new Bundle();
-        bundle.putSerializable("correo_profesor", profesorSerialEnvia);
+        bundle.putSerializable("dni_profesor", profesorSerialEnvia);
         i.putExtras(bundle);
         startActivity(i);
     }

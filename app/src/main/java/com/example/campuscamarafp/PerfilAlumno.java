@@ -38,7 +38,7 @@ public class PerfilAlumno extends AppCompatActivity{
         tv2.setText(apellido_alumno);
         tv3.setText(correo_alumno);
         tv5.setText(dni_alumno);
-        //verFaltas();
+        verFaltas();
     }
     //metodo que llama a la clase que cambia la contraseña
     public void CambiarPassword(View view){
@@ -68,12 +68,13 @@ public class PerfilAlumno extends AppCompatActivity{
         Bundle objEnviado = getIntent().getExtras();
         AlumnoSerial alumnoSerialRecibe;
         alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("datos_alumnos");
-        Cursor fila = bd.rawQuery("select num_falta from faltas where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
+        Cursor fila = bd.rawQuery("select count(num_falta) from faltas where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
                 , null);
-        int num_faltas = 0;
         while(fila.moveToNext()){
-            num_faltas = fila.getInt(0);
+            int numfaltas = fila.getInt(0);
+            String numfaltasS = String.valueOf(numfaltas);
+            tv4.setText(numfaltasS);
         }
-        tv4.setText(num_faltas);
+
     }
 }

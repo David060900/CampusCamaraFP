@@ -134,16 +134,16 @@ public class PasarLista extends AppCompatActivity {
             //condicion que recoge esos valores y los inserta en la clase serializable alumno
             if(fila.moveToFirst()){
                 ProfesorSerial profesorSerialEnvia = new ProfesorSerial();
-                String dni = fila.getString(0);
-                profesorSerialEnvia.setDni_profesores(dni);
+                String dnii = fila.getString(0);
+                profesorSerialEnvia.setDni_profesores(dnii);
                 String correo = fila.getString(1);
                 profesorSerialEnvia.setCorreo(correo);
                 String nombre= fila.getString(2);
                 profesorSerialEnvia.setNombre(nombre);
                 String apellidos = fila.getString(3);
                 profesorSerialEnvia.setApellidos(apellidos);
-                String password = fila.getString(4);
-                profesorSerialEnvia.setPassword(password);
+                String passwordd = fila.getString(4);
+                profesorSerialEnvia.setPassword(passwordd);
 
                 //se envia los datos de los profesores a la clase del perfil del profesor
                 Intent i = new Intent(this, PerfilProfesor.class);
