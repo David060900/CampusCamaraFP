@@ -20,7 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class Inicio  extends AppCompatActivity {
+public class BancoTiempo extends AppCompatActivity {
 
     private ListView lv;
     private Adaptador adaptador;
@@ -75,7 +75,7 @@ public class Inicio  extends AppCompatActivity {
         //btn = (Button)findViewById(R.id.btnQuedar);
         fab = findViewById(R.id.floatingActionButton);
 
-        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(Inicio.this, "campus", null, 1);
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(BancoTiempo.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
         //consulta del correo del alumno de la base de datos repaso
@@ -90,12 +90,12 @@ public class Inicio  extends AppCompatActivity {
             if (fila.moveToPosition(position)) {
                 int id_repaso = fila.getInt(0);
                 repasoSerial.setId_repaso(id_repaso);
-                Toast.makeText(Inicio.this, "Has elegido a " + repasoSerial.getId_repaso(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(BancoTiempo.this, "Has elegido a " + repasoSerial.getId_repaso(), Toast.LENGTH_SHORT).show();
             }
         });
         //le asignamos al boton una acción
         fab.setOnClickListener(v -> {
-            Toast.makeText(Inicio.this, "Reservando disponibilidad" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(BancoTiempo.this, "Reservando disponibilidad" , Toast.LENGTH_SHORT).show();
             //instruccion que elimina de la base de datos
             bd.execSQL("delete from repaso where id_repaso = '" + repasoSerial.getId_repaso() + "';");
             finish();

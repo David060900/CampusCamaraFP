@@ -35,6 +35,7 @@ public class InicioSesion extends AppCompatActivity {
         rb2 = (RadioButton) findViewById(R.id.rbProfesor);
 
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+
     }
     //método que abre la ventana para el registro de usuarios
     public void Registrar (View view){
@@ -72,7 +73,7 @@ public class InicioSesion extends AppCompatActivity {
                 String pass = fila.getString(1);
                 //condicion si coinciden los datos abrimos la siguiente ventana
                 if(dni.equals(dni_bd) && password.equals(pass)){
-                    Intent i = new Intent(this, Inicio.class);
+                    Intent i = new Intent(this, BancoTiempo.class);
                     AlumnoSerial alumnoSerialEnvia = new AlumnoSerial();
                     alumnoSerialEnvia.setDni_alumno(dni);
                     Bundle bundle = new Bundle();
