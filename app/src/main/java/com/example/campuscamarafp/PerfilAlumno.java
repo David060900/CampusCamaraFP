@@ -50,6 +50,12 @@ public class PerfilAlumno extends AppCompatActivity{
         i.putExtras(bundle);
         startActivity(i);
     }
+
+    public void visualizarFaltas(View view){
+        Intent i = new Intent(this, VerFaltas.class);
+        startActivity(i);
+    }
+
     public void verFaltas(){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();

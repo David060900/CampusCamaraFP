@@ -20,6 +20,7 @@
         <activity android:name=".PerfilProfesor"></activity>
         <activity android:name=".CambiarPasswordProfesores"></activity>
         <activity android:name=".CambiarPasswordAlumnos"></activity>
+        <activity android:name=".VerFaltas"></activity>
         <activity android:name=".ayudas.AyudaInicioSesion"
             android:label=""
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"></activity>
