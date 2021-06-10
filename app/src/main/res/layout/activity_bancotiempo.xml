@@ -31,7 +31,7 @@
                     android:layout_marginStart="102dp"
                     android:layout_marginLeft="102dp"
                     android:onClick="Impartir"
-                    android:text="@string/impartir" />
+                    android:text="@string/repasar" />
 
             </LinearLayout>
 

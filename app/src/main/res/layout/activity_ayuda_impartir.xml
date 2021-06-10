@@ -38,7 +38,7 @@
                 android:layout_height="338dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/ayuda_repaso_definitiva" />
+                app:srcCompat="@drawable/ayuda_bancotiempo" />
         </LinearLayout>
     </ScrollView>
 

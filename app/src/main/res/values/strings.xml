@@ -30,11 +30,13 @@
 
     <string name="dni">DNI</string>
 
-    /**********************IMPARTIR**********************/
+    /**********************REPASAR**********************/
 
-    <string name="impartir">Impartir</string>
+    <string name="repasar">Repasar</string>
 
     <string name="aprender">Aprender</string>
+
+    <string name="impartir">Impartir</string>
 
     <string name="asigimpartir">¿Qué asignatura quieres impartir?</string>
 
