@@ -80,11 +80,7 @@ public class PasarLista extends AppCompatActivity {
                 String dni = fila.getString(1);
                 alumnoSerial.setCorreo(correo);
                 alumnoSerial.setDni_alumno(dni);
-                lv.getItemIdAtPosition(position);
-                long[] posicion = lv.getCheckedItemIds();
-                for(int i = 0; i< Arrays.stream(posicion).count(); i++){
-                    Toast.makeText(PasarLista.this, "Has seleccionado: " + i, Toast.LENGTH_SHORT).show();
-                }
+                //lv.getItemsCanFocus();
                 Toast.makeText(PasarLista.this, "Correo: " + correo , Toast.LENGTH_SHORT).show();
             }
         });
