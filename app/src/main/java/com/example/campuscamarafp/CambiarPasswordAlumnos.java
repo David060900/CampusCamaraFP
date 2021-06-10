@@ -33,10 +33,10 @@ public class CambiarPasswordAlumnos extends AppCompatActivity {
         String password = et1.getText().toString();
         String passwordnueva = et2.getText().toString();
 
-        //recibimos los datos del alumno con el que se ha iniciado sesion
+        //recibimos el dni del alumno de la clase objeto
         Bundle objEnviado = getIntent().getExtras();
         AlumnoSerial alumnoSerialRecibe;
-        alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("correo_alumno");
+        alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("dni_alumno");
         String dni = alumnoSerialRecibe.getDni_alumno();
 
         //consulta a la base de datos de la contraseña

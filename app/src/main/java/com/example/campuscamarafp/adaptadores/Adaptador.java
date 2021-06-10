@@ -13,7 +13,6 @@ import com.example.campuscamarafp.serializable.RepasoSerial;
 import java.util.ArrayList;
 
 public class Adaptador extends BaseAdapter {
-//https://elbauldelprogramador.com/adapter-personalizado-en-android/
     private ArrayList<RepasoSerial> listItems;
     private Context contexto;
 

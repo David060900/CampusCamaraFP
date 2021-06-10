@@ -30,10 +30,10 @@ public class InicioSesion extends AppCompatActivity {
         setContentView(R.layout.activity_iniciosesion);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        et1 = (EditText)findViewById(R.id.etCorreoIS);
-        et2 = (EditText)findViewById(R.id.etPasswordIS);
-        rb1 = (RadioButton) findViewById(R.id.rbAlumno);
-        rb2 = (RadioButton) findViewById(R.id.rbProfesor);
+        et1 = findViewById(R.id.etCorreoIS);
+        et2 = findViewById(R.id.etPasswordIS);
+        rb1 = findViewById(R.id.rbAlumno);
+        rb2 = findViewById(R.id.rbProfesor);
 
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
     }
@@ -118,7 +118,7 @@ public class InicioSesion extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    //inserts a la base de datos
     public void inserts(){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();

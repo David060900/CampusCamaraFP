@@ -26,7 +26,7 @@ public class VerFaltas extends AppCompatActivity {
         setContentView(R.layout.activity_verfaltas);
 
         listaFaltas = new ArrayList<>();
-        recyclerFaltas = (RecyclerView) findViewById(R.id.recyclerFaltas);
+        recyclerFaltas = findViewById(R.id.recyclerFaltas);
         recyclerFaltas.setLayoutManager(new LinearLayoutManager(this));
 
         llenarLista();
@@ -34,14 +34,14 @@ public class VerFaltas extends AppCompatActivity {
         AdaptadorFaltas adapter = new AdaptadorFaltas(listaFaltas);
         recyclerFaltas.setAdapter(adapter);
     }
-
+    //metodo que llena la lista de faltas con un RecyclerView
     private void llenarLista() {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
         Bundle objEnviado = getIntent().getExtras();
         AlumnoSerial alumnoSerialRecibe;
-        alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("correo_alumno");
+        alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("dni_alumno");
 
         FaltasSerial faltasSerial = new FaltasSerial();
 

@@ -32,23 +32,20 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         etDNI = findViewById(R.id.etDNIAlumnos);
-        etNombre = (EditText)findViewById(R.id.etNombre);
-        etApellido = (EditText)findViewById(R.id.etApellidos);
-        etCorreo = (EditText)findViewById(R.id.etCorreoR);
-        etPassword = (EditText)findViewById(R.id.etPasswordR);
-        spinner1 = (Spinner)findViewById(R.id.spinnerCursos);
-
-        /*//con un adapter adaptamos a nuestro gusto nuestro spinner
-        String cursos [] = {"DAM", "Marketing y Publicidad", "Comercio Internacional", "Transporte y Logística"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_cursos, cursos);
-        spinner1.setAdapter(adapter);*/
+        etNombre = findViewById(R.id.etNombre);
+        etApellido = findViewById(R.id.etApellidos);
+        etCorreo = findViewById(R.id.etCorreoR);
+        etPassword = findViewById(R.id.etPasswordR);
+        spinner1 = findViewById(R.id.spinnerCursos);
 
         consultarCursos();
+
+        //adaptador para el spinner de cursos
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, listaCursos);
         spinner1.setAdapter(adaptador);
     }
-
+    //metodo que consulta los cursos para establecerlos en el spinner
     private void consultarCursos() {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();
@@ -67,7 +64,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         }
         obtenerListaCurso();
     }
-
+    //obtiene los datos de la consulta y los aplica en un array
     public void obtenerListaCurso(){
         listaCursos = new ArrayList<String>();
 
@@ -112,7 +109,6 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         }
         db.insert("alumnos", null, values);
         db.insert("estudian", null, values1);
-        //db.execSQL("insert into faltas (num_faltas) values (0);");
         db.close();
         etDNI.setText("");
         etCorreo.setText("");

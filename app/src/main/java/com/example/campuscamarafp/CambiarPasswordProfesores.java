@@ -37,7 +37,7 @@ public class CambiarPasswordProfesores extends AppCompatActivity {
         String password = et1.getText().toString();
         String passwordnueva = et2.getText().toString();
 
-        //recibimos los datos del profesor con el que se ha iniciado sesion
+        //recibimos el dni del alumno de la clase objeto
         Bundle objEnviado = getIntent().getExtras();
         ProfesorSerial profesorSerialRecibe;
         profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("dni_profesor");

@@ -34,10 +34,8 @@ public class BancoTiempo extends AppCompatActivity {
         setContentView(R.layout.activity_bancotiempo);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        lv = (ListView)findViewById(R.id.listaBanco);
-        //lv.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
-        //lv.setMultiChoiceModeListener(modeListener);
-
+        lv = findViewById(R.id.listaBanco);
+        //adaptador
         adaptador = new Adaptador(consultarLista(), this);
         lv.setAdapter(adaptador);
 
@@ -45,11 +43,12 @@ public class BancoTiempo extends AppCompatActivity {
     }
     //consulta los valores de la tabla impartir de la base de datos
     public ArrayList consultarLista() {
-        ArrayList<RepasoSerial> lista = new ArrayList();
-        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(getApplicationContext(), "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
+        ArrayList<RepasoSerial> lista = new ArrayList();
         RepasoSerial impartir = new RepasoSerial();
+
         //consulta de los valores que recoge de la base de datos
         Cursor registro = bd.rawQuery("select nombre_modulo, dni_alumnos, dia_hora, horas_repasar " +
                 "from repaso;", null);
@@ -73,15 +72,14 @@ public class BancoTiempo extends AppCompatActivity {
     }
     //metodo que comprueba la posicion de la lista y elimina de la base de datos y de la lista
     public void Quedar(){
-        lv = (ListView)findViewById(R.id.listaBanco);
-        //btn = (Button)findViewById(R.id.btnQuedar);
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(getApplicationContext(), "campus", null, 1);
+        SQLiteDatabase bd = conexion.getWritableDatabase();
+        lv = findViewById(R.id.listaBanco);
         fab = findViewById(R.id.floatingActionButton);
 
-        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(BancoTiempo.this, "campus", null, 1);
-        SQLiteDatabase bd = conexion.getWritableDatabase();
-
-        //consulta del correo del alumno de la base de datos repaso
+        //consulta el id_repaso para posteriormente eliminar
         Cursor fila = bd.rawQuery("select id_repaso from repaso;", null);
+
 
         //llamamos a la clase serializable
         RepasoSerial repasoSerial = new RepasoSerial();
@@ -92,23 +90,28 @@ public class BancoTiempo extends AppCompatActivity {
             if (fila.moveToPosition(position)) {
                 int id_repaso = fila.getInt(0);
                 repasoSerial.setId_repaso(id_repaso);
-                Toast.makeText(BancoTiempo.this, "Has elegido a " + repasoSerial.getId_repaso(), Toast.LENGTH_SHORT).show();
+                Cursor fila2 = bd.rawQuery("select correo_alumnos from alumnos left join" +
+                        " repaso on alumnos.dni_alumnos = repaso.dni_alumnos where" +
+                        " repaso.id_repaso = '" + repasoSerial.getId_repaso() + "';",null);
+                while(fila2.moveToNext()){
+                    String correo = fila2.getString(0);
+                    Toast.makeText(BancoTiempo.this, "Enviar correo a: " + correo, Toast.LENGTH_LONG).show();
+                }
             }
         });
         //le asignamos al boton una acción
         fab.setOnClickListener(v -> {
-            Toast.makeText(BancoTiempo.this, "Reservando disponibilidad" , Toast.LENGTH_SHORT).show();
             //instruccion que elimina de la base de datos
             bd.execSQL("delete from repaso where id_repaso = '" + repasoSerial.getId_repaso() + "';");
+            Toast.makeText(BancoTiempo.this, "Reservando disponibilidad" , Toast.LENGTH_SHORT).show();
             finish();
         });
     }
     //método que da paso a la actividad Perfil
     public void Perfil (){
-        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(getApplicationContext(), "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
-
-        //recibe objetos de la clase alumno
+        //recibe objetos de alumno de la clase inicio sesion
         Bundle objEnviado = getIntent().getExtras();
         AlumnoSerial alumnoSerialRecibe;
         alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("alumno_iniciosesion");
@@ -146,13 +149,13 @@ public class BancoTiempo extends AppCompatActivity {
     //metodo que llama a la clase impartir
     public void Impartir(View view){
         Intent i = new Intent(this, Repaso.class);
-        //se reciben objetos de la clase iniciar sesion de alumno
+        //recibe objetos de alumno de la clase inicio sesion
         Bundle objEnviado = getIntent().getExtras();
         AlumnoSerial alumnoSerialRecibe;
         alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("alumno_iniciosesion");
         String dni_alumno = alumnoSerialRecibe.getDni_alumno();
 
-        //se envian objetos del alumno a la clase impartir
+        //se envian objetos del alumno a la clase repaso
         Bundle bundle = new Bundle();
         AlumnoSerial alumnoSerialEnvia = new AlumnoSerial();
         alumnoSerialEnvia.setDni_alumno(dni_alumno);
@@ -166,7 +169,6 @@ public class BancoTiempo extends AppCompatActivity {
         Intent i = new Intent(this, AyudaImpartir.class);
         startActivity(i);
     }
-
     //método que muestra los botones de acción
     public boolean onCreateOptionsMenu (Menu menu){
         getMenuInflater().inflate(R.menu.menuacciones, menu);

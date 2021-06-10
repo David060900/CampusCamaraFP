@@ -32,11 +32,11 @@ public class RegistrarseProfesores extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         etDni = findViewById(R.id.etDNIProfesores);
-        etNombre = (EditText)findViewById(R.id.etNombreP);
-        etApellido = (EditText)findViewById(R.id.etApellidosP);
-        etCorreo = (EditText)findViewById(R.id.etCorreoRP);
-        etPassword = (EditText)findViewById(R.id.etPasswordRP);
-        spinner1 = (Spinner)findViewById(R.id.spinnerCursos2);
+        etNombre = findViewById(R.id.etNombreP);
+        etApellido = findViewById(R.id.etApellidosP);
+        etCorreo = findViewById(R.id.etCorreoRP);
+        etPassword = findViewById(R.id.etPasswordRP);
+        spinner1 = findViewById(R.id.spinnerCursos2);
 
         //con un adapter adaptamos a nuestro gusto nuestro spinner
         String cursos [] = {"DAM", "Marketing y Publicidad", "Comercio Internacional", "Transporte y Logística"};
@@ -44,12 +44,13 @@ public class RegistrarseProfesores extends AppCompatActivity {
         spinner1.setAdapter(adapter);
 
         consultarCursos();
+
+        //adaptador para el spinner de cursos
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, listaCursos);
         spinner1.setAdapter(adaptador);
-
     }
-
+    //metodo que consulta los cursos para establecerlos en el spinner
     private void consultarCursos() {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();
@@ -68,7 +69,7 @@ public class RegistrarseProfesores extends AppCompatActivity {
         }
         obtenerListaCurso();
     }
-
+    //obtiene los datos de la consulta y los aplica en un array
     public void obtenerListaCurso(){
         listaCursos = new ArrayList<String>();
 

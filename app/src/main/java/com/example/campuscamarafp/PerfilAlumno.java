@@ -21,24 +21,27 @@ public class PerfilAlumno extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_alumno);
 
-        tv1 = (TextView)findViewById(R.id.tvPerfilNombreAlumU);
-        tv2 = (TextView)findViewById(R.id.tvPerfilApellidosAlumU);
-        tv3 = (TextView)findViewById(R.id.tvPerfilCorreoAlumU);
-        tv4 = (TextView)findViewById(R.id.tvTotalFaltasAlumU);
+        tv1 = findViewById(R.id.tvPerfilNombreAlumU);
+        tv2 = findViewById(R.id.tvPerfilApellidosAlumU);
+        tv3 = findViewById(R.id.tvPerfilCorreoAlumU);
+        tv4 = findViewById(R.id.tvTotalFaltasAlumU);
         tv5 = findViewById(R.id.tvPerfilDNIAlumU);
 
         //recoge los datos que se han enviado del alumno y los escribe en Text Views
         Bundle objEnviado = getIntent().getExtras();
         AlumnoSerial alumnoSerialRecibe;
         alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("datos_alumnos");
+
         String nombre_alumno = alumnoSerialRecibe.getNombre();
         String apellido_alumno = alumnoSerialRecibe.getApellidos();
         String correo_alumno = alumnoSerialRecibe.getCorreo();
         String dni_alumno = alumnoSerialRecibe.getDni_alumno();
+
         tv1.setText(nombre_alumno);
         tv2.setText(apellido_alumno);
         tv3.setText(correo_alumno);
         tv5.setText(dni_alumno);
+
         verFaltas();
     }
     //metodo que llama a la clase que cambia la contraseña
@@ -47,17 +50,17 @@ public class PerfilAlumno extends AppCompatActivity{
         AlumnoSerial alumnoSerialEnvia = new AlumnoSerial();
         alumnoSerialEnvia.setDni_alumno(tv5.getText().toString());
         Bundle bundle = new Bundle();
-        bundle.putSerializable("correo_alumno", alumnoSerialEnvia);
+        bundle.putSerializable("dni_alumno", alumnoSerialEnvia);
         i.putExtras(bundle);
         startActivity(i);
     }
-
+    //metodo que abre una clase RecyclerView que plasma las faltas del alumno
     public void visualizarFaltas(View view){
         Intent i = new Intent(this, VerFaltas.class);
         AlumnoSerial alumnoSerialEnvia = new AlumnoSerial();
         alumnoSerialEnvia.setDni_alumno(tv5.getText().toString());
         Bundle bundle = new Bundle();
-        bundle.putSerializable("correo_alumno", alumnoSerialEnvia);
+        bundle.putSerializable("dni_alumno", alumnoSerialEnvia);
         i.putExtras(bundle);
         startActivity(i);
     }
@@ -65,10 +68,11 @@ public class PerfilAlumno extends AppCompatActivity{
     public void verFaltas(){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
-
+        //recibimos los datos de los alumnos
         Bundle objEnviado = getIntent().getExtras();
         AlumnoSerial alumnoSerialRecibe;
         alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("datos_alumnos");
+        //consulta que hace un count de las faltas de cada alumno
         Cursor fila = bd.rawQuery("select count(num_falta) from faltas where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
                 , null);
         while(fila.moveToNext()){

@@ -28,7 +28,6 @@ import java.util.Arrays;
 public class PasarLista extends AppCompatActivity {
 
     ArrayAdapter<String> adaptador;
-    private Button btn;
     private FloatingActionButton fab;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -38,7 +37,7 @@ public class PasarLista extends AppCompatActivity {
         setContentView(R.layout.activity_pasarlista);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        final ListView lv = (ListView)findViewById(R.id.lista);
+        final ListView lv = findViewById(R.id.lista);
         final ArrayList<AlumnoSerial> lista;
 
         //la lista que declaramos la igualamos a la lista que recoge los datos de la base de datos
@@ -51,14 +50,28 @@ public class PasarLista extends AppCompatActivity {
     //metodo que consulta los alumnos de la base de datos
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void selectAlumnos(){
-        //btn = (Button)findViewById(R.id.btnPasarLista);
-        fab = findViewById(R.id.floatingActionButton2);
-        ListView lv = (ListView)findViewById(R.id.lista);
-
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
+
+        fab = findViewById(R.id.floatingActionButton2);
+        ListView lv = findViewById(R.id.lista);
+
+        //recibimos objetos de la clase inicio sesion
+        Bundle objEnviado = getIntent().getExtras();
+        ProfesorSerial profesorSerialRecibe;
+        profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
+
+        //consulta el id del curso al que pertenece el profesor que ha iniciado sesion
+        Cursor curso = bd.rawQuery("select id_curso from imparten " +
+                "where dni_profesores = '" + profesorSerialRecibe.getDni_profesores() + "';",null);
+        int idcurso = 0;
+        while(curso.moveToNext()){
+            idcurso = curso.getInt(0);
+        }
+
         //consulta del correo de los alumnos
-        Cursor fila = bd.rawQuery("select correo_alumnos, dni_alumnos from alumnos", null);
+        Cursor fila = bd.rawQuery("select correo_alumnos, alumnos.dni_alumnos from alumnos left join estudian on " +
+                "alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_curso = '" + idcurso + "';" , null);
         AlumnoSerial alumnoSerial = new AlumnoSerial();
         lv.setOnItemClickListener((parent, view, position, id) -> {
             //recoge la posicion de la fila
@@ -76,9 +89,6 @@ public class PasarLista extends AppCompatActivity {
             }
         });
         fab.setOnClickListener(v -> {
-            Bundle objEnviado = getIntent().getExtras();
-            ProfesorSerial profesorSerialRecibe;
-            profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
             //instruccion que incrementa en 1 la columna de las faltas de los alumnos
             bd.execSQL("insert into faltas (num_falta, dni_alumnos, dni_profesores, dia_hora) " +
                     "values (1,'" + alumnoSerial.getDni_alumno() +"' " +
@@ -89,24 +99,27 @@ public class PasarLista extends AppCompatActivity {
     }
     //metodo que recoge los valores de la base de datos y los proyecta en una lista
     public ArrayList llenar_lv(){
-        ArrayList<String> lista = new ArrayList<>();
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
+
+        ArrayList<String> lista = new ArrayList<>();
+
+        //recibimos objetos de la clase inicio sesion
         Bundle objEnviado = getIntent().getExtras();
         ProfesorSerial profesorSerialRecibe;
         profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
+
+        //consulta el id del curso al que pertenece el profesor que ha iniciado sesion
         Cursor curso = bd.rawQuery("select id_curso from imparten " +
                 "where dni_profesores = '" + profesorSerialRecibe.getDni_profesores() + "';",null);
         int idcurso = 0;
         while(curso.moveToNext()){
             idcurso = curso.getInt(0);
         }
+        //consulta el nombre y los apellidos de los alumnos que estudian el curso que imparte el profesor
         Cursor alumnos = bd.rawQuery("select nombre, apellidos from alumnos left join estudian on" +
                 " alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_curso = '" + idcurso + "';", null);
-        /*//consulta que recoge el nombre y apellidos de los alumnos
-        String tabla_lista = "select nombre, apellidos from alumnos";
-        Cursor registro = bd.rawQuery(tabla_lista, null);
-        //condicion que añade lo consultado en la lista*/
+        //condicion que añade lo consultado en la lista
         if(alumnos.moveToFirst()){
             do{
                 lista.add(alumnos.getString(0)

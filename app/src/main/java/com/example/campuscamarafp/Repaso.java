@@ -34,27 +34,32 @@ public class Repaso extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repaso);
 
-        et1 = (EditText)findViewById(R.id.etTiempoImpartir);
+        et1 = findViewById(R.id.etTiempoImpartir);
         tv1 = findViewById(R.id.tvDiaSemanaU);
         et2 = findViewById(R.id.etHoraU);
-        spinner1 = (Spinner)findViewById(R.id.spinnerAsignaturas);
-        spinner2 = (Spinner)findViewById(R.id.spinnerLugarQuedar);
+        spinner1 = findViewById(R.id.spinnerAsignaturas);
+        spinner2 = findViewById(R.id.spinnerLugarQuedar);
         //declaramos con adaptadores nuestros propios spinners
         consultarModulos();
+
+        //adaptador para el spinner
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, listaModulo);
         spinner1.setAdapter(adaptador);
+
+        //spinner para decidir el lugar donde quedar
         String lugar [] = {"Hall CCFP", "Online"};
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_cursos, lugar);
         spinner2.setAdapter(adapter2);
     }
-
+    //consulta los modulos para posteriormente añadirlo en el spinner
     private void consultarModulos() {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();
 
         moduloLista = new ArrayList<ModuloSerial>();
         ModuloSerial modulo = null;
+        //consulta el id del modulo y el nombre
         Cursor cursor = db.rawQuery("select id_modulo, nombre from modulo;", null);
 
         while(cursor.moveToNext()){
@@ -66,7 +71,7 @@ public class Repaso extends AppCompatActivity {
         }
         obtenerListaModulo();
     }
-
+    //inserta los valores en el spinner
     public void obtenerListaModulo(){
         listaModulo = new ArrayList<String>();
 
@@ -86,6 +91,7 @@ public class Repaso extends AppCompatActivity {
         String diahora = calendario + " " + hora;
         String modulo = spinner1.getSelectedItem().toString();
         String lugarQuedada = spinner2.getSelectedItem().toString();
+
         //recibimos datos del alumno
         Bundle objEnviado = getIntent().getExtras();
         AlumnoSerial alumnoSerialRecibe;
@@ -100,6 +106,7 @@ public class Repaso extends AppCompatActivity {
             values.put("lugar", lugarQuedada);
             values.put("horas_repasar", tiempo_repaso);
             values.put("dni_alumnos", dni_alumno);
+
             Toast.makeText(this,"Asignatura '" + modulo + "' lista para impartir", Toast.LENGTH_SHORT).show();
             et1.setText("");
             et2.setText("");
