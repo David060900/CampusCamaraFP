@@ -38,7 +38,7 @@
                 android:layout_height="338dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                app:srcCompat="@drawable/iniciosesionayuda" />
+                app:srcCompat="@drawable/ayuda_inicio_definitiva" />
         </LinearLayout>
     </ScrollView>
 

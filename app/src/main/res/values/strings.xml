@@ -74,19 +74,19 @@
 
     <string name="tituloayuda">Ayuda</string>
 
-    <string name="ayuda_iniciosesion"><b>Iniciar Sesión</b>\n\nDesde esta pestaña puedes iniciar sesión y registrarte\n\nPara poder registrarte tanto como profesor o como alumnoSerial,
+    <string name="ayuda_iniciosesion"><b>Iniciar Sesión</b>\n\nDesde esta pestaña puedes iniciar sesión y registrarte\n\nPara poder registrarte tanto como profesor o como alumno,
         debes seleccionar el check box correspondiente.\nUna vez seleccionado el check box, puedes hacer click en registrarse y te llevará a la pestaña del registro.
         \n\nUna vez te has registrado ya puedes iniciar sesión con tus datos.</string>
 
     <string name="ayuda_impartir"><b>Impartir y Quedar</b>\n\nEsta pestaña es la perteneciente al Banco de Tiempo. Podemos apreciar dos botones.
-        \n\nEl botón Impartir te lleva a una pestaña en la que como alumnoSerial, puedes elegir que asignatura, cuánto tiempo, el día y el lugar, puedes enseñar a otro alumnoSerial.
+        \n\nEl botón Impartir te lleva a una pestaña en la que como alumno, puedes elegir que asignatura, cuánto tiempo, el día y el lugar, puedes enseñar a otro alumno.
         De esta manera aparecerá una lista de los alumnos que imparten una asignatura.
         \n\nFinalmente, en el botón Quedar, debes seleccionar un elemento de la lista, en este caso la persona que quiere aprender sobre esa asignatura.
-        Una vez seleccionado deberás enviarle un correo al alumnoSerial y hacer click en quedar para que se elimine de la lista.</string>
+        Una vez seleccionado deberás enviarle un correo al alumno y hacer click en quedar para que se elimine de la lista.</string>
 
     <string name="ayuda_pasarlista"><b>Pasar Lista</b>\n\nEsta pestaña es la perteneciente a Pasar Lista, ideada para los profesores. Podemos apreciar un botón y una lista.
-        \n\nEn la lista se cargan el nombre y apellidos de los alumnos del cursoSerial al que pertenece. En la derecha podemos ver que hay unas casillas que se marcarán
-        en caso de que el alumnoSerial no haya asistido a clase.
-        \n\nUna vez se ha pasado la lista y marcado a los alumnos que han faltado, pulsaremos el borón guardar que este actualizará la columna de faltas perteneciente a la base de datos.
-        Esto nos sirve para contar la cantidad de faltas de cada alumnoSerial y más adelante hacer su porcentaje.</string>
+        \n\nEn la lista se cargan el nombre y apellidos de los alumnos del curso al que pertenece. En la derecha podemos ver que hay unas casillas que se marcarán
+        en caso de que el alumno no haya asistido a clase.
+        \n\nUna vez se ha pasado la lista y marcado a los alumnos que han faltado, pulsaremos el botón flotante guardar que hará insertar faltas a los alumnos.
+        Esto nos sirve para contar la cantidad de faltas de cada alumno y más adelante hacer su porcentaje.</string>
 </resources>

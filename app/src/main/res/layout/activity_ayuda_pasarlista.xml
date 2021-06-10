@@ -37,8 +37,8 @@
                 android:layout_width="244dp"
                 android:layout_height="338dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                app:srcCompat="@drawable/ayudapasarlista" />
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/ayuda_pasarlista_definitiva" />
         </LinearLayout>
     </ScrollView>
 
