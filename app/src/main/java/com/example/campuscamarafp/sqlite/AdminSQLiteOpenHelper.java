@@ -37,9 +37,25 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
         db.execSQL(CrearTablas.CREAR_TABLA_REPASO);
         db.execSQL(CrearTablas.CREAR_TABLA_ESTUDIAN);
         db.execSQL(CrearTablas.CREAR_TABLA_IMPARTEN);
+        cargarDatos(db);
     }
 
+    public void cargarDatos(SQLiteDatabase db){
+        //inserts a modulo
+        db.execSQL("insert into modulo values (1,'Programación');");
+        db.execSQL("insert into modulo values (2,'FOL');");
+        db.execSQL("insert into modulo values (3,'Políticas');");
+        db.execSQL("insert into modulo values (4,'Comercio');");
+        //inserts a curso
+        db.execSQL("insert into curso values (1,'DAM','Primero');");
+        db.execSQL("insert into curso values (2,'DAM', 'Segundo');");
+        db.execSQL("insert into curso values (3,'Marketing', 'Primero');");
+        db.execSQL("insert into curso values (4,'Marketing', 'Segundo');");
+        db.execSQL("insert into curso values (5,'Comercio', 'Primero');");
+        db.execSQL("insert into curso values (6,'Comercio', 'Segundo');");
 
+        System.out.println("HA CARGADO");
+    }
     @Override//verifica si existe una version antigua de la base de datos
     //refrescamos los scripts
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

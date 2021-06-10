@@ -118,21 +118,4 @@ public class InicioSesion extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    //inserts a la base de datos
-    public void inserts(){
-        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
-        SQLiteDatabase db = conexion.getWritableDatabase();
-        //inserts a modulo
-        db.execSQL("insert into modulo values (1,'Programación');");
-        db.execSQL("insert into modulo values (2,'FOL');");
-        db.execSQL("insert into modulo values (3,'Políticas');");
-        db.execSQL("insert into modulo values (4,'Comercio');");
-        //inserts a curso
-        db.execSQL("insert into curso values (1,'DAM','Primero');");
-        db.execSQL("insert into curso values (2,'DAM', 'Segundo');");
-        db.execSQL("insert into curso values (3,'Marketing', 'Primero');");
-        db.execSQL("insert into curso values (4,'Marketing', 'Segundo');");
-        db.execSQL("insert into curso values (5,'Comercio', 'Primero');");
-        db.execSQL("insert into curso values (6,'Comercio', 'Segundo');");
-    }
 }
