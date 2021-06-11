@@ -49,10 +49,12 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
         //inserts a curso
         db.execSQL("insert into curso values (1,'DAM','Primero');");
         db.execSQL("insert into curso values (2,'DAM', 'Segundo');");
-        db.execSQL("insert into curso values (3,'Marketing', 'Primero');");
-        db.execSQL("insert into curso values (4,'Marketing', 'Segundo');");
-        db.execSQL("insert into curso values (5,'Comercio', 'Primero');");
-        db.execSQL("insert into curso values (6,'Comercio', 'Segundo');");
+        db.execSQL("insert into curso values (3,'Marketing y Publicidad', 'Primero');");
+        db.execSQL("insert into curso values (4,'Marketing y Publicidad', 'Segundo');");
+        db.execSQL("insert into curso values (5,'Comercio Internacional', 'Primero');");
+        db.execSQL("insert into curso values (6,'Comercio Internacional', 'Segundo');");
+        db.execSQL("insert into curso values (7,'Transporte y Logística', 'Primero');");
+        db.execSQL("insert into curso values (8,'Transporte y Logística', 'Segundo');");
 
         System.out.println("HA CARGADO");
     }
