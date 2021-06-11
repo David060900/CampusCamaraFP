@@ -31,7 +31,7 @@ public class AdaptadorFaltas extends RecyclerView.Adapter<AdaptadorFaltas.ViewHo
         int faltas = listaFaltas.get(position).getNum_falta();
         String faltasS = String.valueOf(faltas);
         holder.tv1.setText(faltasS);
-        holder.tv2.setText(listaFaltas.get(position).getDni_profesores());
+        holder.tv2.setText(listaFaltas.get(position).getNombre() + " " + listaFaltas.get(position).getApellidos());
         holder.tv3.setText(listaFaltas.get(position).getDia_hora());
     }
 

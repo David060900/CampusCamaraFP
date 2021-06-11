@@ -45,19 +45,22 @@ public class VerFaltas extends AppCompatActivity {
 
         FaltasSerial faltasSerial = new FaltasSerial();
 
-        Cursor faltas = bd.rawQuery("select num_falta, dni_profesores, dia_hora " +
-                "from faltas where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';",null);
+        Cursor faltas = bd.rawQuery("select num_falta, profesores.nombre, profesores.apellidos, dia_hora " +
+                "from faltas left join profesores on faltas.dni_profesores = profesores.dni_profesores " +
+                "where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';",null);
         //condicion que recoge de la consulta para proyectar en la lista
         if (faltas.moveToFirst()) {
             do {
                 int num_falta = faltas.getInt(0);
                 faltasSerial.setNum_falta(num_falta);
-                String dni_profesores = faltas.getString(1);
-                faltasSerial.setDni_profesores(dni_profesores);
-                String dia_hora = faltas.getString(2);
+                String nombre = faltas.getString(1);
+                faltasSerial.setNombre(nombre);
+                String apellidos = faltas.getString(2);
+                faltasSerial.setApellidos(apellidos);
+                String dia_hora = faltas.getString(3);
                 faltasSerial.setDia_hora(dia_hora);
                 listaFaltas.add(new FaltasSerial(num_falta,
-                        dni_profesores, dia_hora));
+                        nombre, apellidos, dia_hora));
             } while (faltas.moveToNext());
         }
 

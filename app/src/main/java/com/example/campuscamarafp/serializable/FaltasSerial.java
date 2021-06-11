@@ -8,6 +8,8 @@ public class FaltasSerial implements Serializable {
     private int num_falta;
     private String dni_alumnos;
     private String dni_profesores;
+    private String nombre;
+    private String apellidos;
     private String dia_hora;
 
     public FaltasSerial(int id_faltas, int num_falta, String dni_alumnos, String dni_profesores, String dia_hora) {
@@ -18,11 +20,10 @@ public class FaltasSerial implements Serializable {
         this.dia_hora = dia_hora;
     }
 
-    public FaltasSerial(int num_falta, String dni_profesores, String dia_hora) {
-        this.id_faltas = id_faltas;
+    public FaltasSerial(int num_falta, String nombre, String apellidos, String dia_hora) {
         this.num_falta = num_falta;
-        this.dni_alumnos = dni_alumnos;
-        this.dni_profesores = dni_profesores;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
         this.dia_hora = dia_hora;
     }
 
@@ -69,4 +70,21 @@ public class FaltasSerial implements Serializable {
     public void setDia_hora(String dia_hora) {
         this.dia_hora = dia_hora;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
 }
