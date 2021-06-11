@@ -64,11 +64,13 @@
 
     <string name="verfaltas">Visualizar Faltas</string>
 
-    /**********************PERFIL**********************/
+    /**********************FALTAS**********************/
 
-    <string name="numfaltas">Faltas</string>
+    <string name="numfaltas">Faltas:</string>
 
-    <string name="dniprofe">Profesor/a</string>
+    <string name="faltas">Faltas</string>
+
+    <string name="dniprofe">Profesor/a:</string>
 
     <string name="diahora">Dia y Hora: </string>
 
