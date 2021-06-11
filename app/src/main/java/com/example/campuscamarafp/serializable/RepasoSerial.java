@@ -27,11 +27,12 @@ public class RepasoSerial implements Serializable {
 
     }
 
-    public RepasoSerial(String modulo, String dni_alumnos, String dia, String tiempo) {
+    public RepasoSerial(String modulo, String nombre, String apellidos, String dia, String tiempo) {
         this.modulo = modulo;
         this.tiempo = tiempo;
         this.dia = dia;
-        this.dni_alumnos = dni_alumnos;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
     }
 
     //getters y setters

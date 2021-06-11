@@ -49,7 +49,7 @@ public class Adaptador extends BaseAdapter {
         tv4 = convertView.findViewById(R.id.tvListaHoras);
 
         tv1.setText(repasoSerial.getModulo());
-        tv2.setText(repasoSerial.getDni_alumnos());
+        tv2.setText(repasoSerial.getNombre() + " " + repasoSerial.getApellidos());
         tv3.setText(repasoSerial.getDia());
         tv4.setText(repasoSerial.getTiempo());
 

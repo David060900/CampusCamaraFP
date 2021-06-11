@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.serializable.AlumnoSerial;
 import com.example.campuscamarafp.serializable.ModuloSerial;
+import com.example.campuscamarafp.serializable.RepasoSerial;
 import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 
 import java.util.ArrayList;
@@ -72,14 +73,13 @@ public class Repaso extends AppCompatActivity {
         obtenerListaModulo();
     }
     //inserta los valores en el spinner
-    public void obtenerListaModulo(){
+    public void obtenerListaModulo() {
         listaModulo = new ArrayList<String>();
 
-        for(int i = 0; i< moduloLista.size(); i++){
+        for (int i = 0; i < moduloLista.size(); i++) {
             listaModulo.add(moduloLista.get(i).getNombre());
         }
     }
-
     //metodo que inserta en la tabla impartir de la base de datos
     public void RegistrarImpartir(View view){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
@@ -91,12 +91,25 @@ public class Repaso extends AppCompatActivity {
         String diahora = calendario + " " + hora;
         String modulo = spinner1.getSelectedItem().toString();
         String lugarQuedada = spinner2.getSelectedItem().toString();
+        String nombre = "";
+        String apellidos = "";
 
         //recibimos datos del alumno
         Bundle objEnviado = getIntent().getExtras();
         AlumnoSerial alumnoSerialRecibe;
         alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("dni_impartir");
         String dni_alumno = alumnoSerialRecibe.getDni_alumno();
+
+        RepasoSerial repasoSerial = new RepasoSerial();
+        Cursor fila = db.rawQuery("select nombre, apellidos from alumnos where dni_alumnos = '" + dni_alumno + "';"
+                , null);
+        //condicion que recoge esos valores y los inserta en la clase serializable alumno
+        if(fila.moveToFirst()){
+            nombre = fila.getString(0);
+            repasoSerial.setNombre(nombre);
+            apellidos = fila.getString(1);
+            repasoSerial.setApellidos(apellidos);
+        }
 
         ContentValues values = new ContentValues();
         //condicion mientras que no estén vacios los campos de texto
@@ -106,6 +119,8 @@ public class Repaso extends AppCompatActivity {
             values.put("lugar", lugarQuedada);
             values.put("horas_repasar", tiempo_repaso);
             values.put("dni_alumnos", dni_alumno);
+            values.put("nombre", nombre);
+            values.put("apellidos", apellidos);
 
             Toast.makeText(this,"Asignatura '" + modulo + "' lista para impartir", Toast.LENGTH_SHORT).show();
             et1.setText("");

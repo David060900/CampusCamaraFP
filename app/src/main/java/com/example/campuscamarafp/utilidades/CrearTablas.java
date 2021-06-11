@@ -24,7 +24,7 @@ public class CrearTablas {
     //tabla repaso
     public static final String CREAR_TABLA_REPASO = "create table if not exists repaso(" +
             "id_repaso integer primary key autoincrement, nombre_modulo text, horas_repasar text, " +
-            "dia_hora text, lugar text, dni_alumnos text, id_modulo integer, " +
+            "dia_hora text, lugar text, dni_alumnos text, id_modulo integer, nombre text, apellidos text, " +
             "foreign key (dni_alumnos) references alumnos(dni_alumnos), " +
             "foreign key (id_modulo) references modulo(id_modulo));";
     //tabla estudian

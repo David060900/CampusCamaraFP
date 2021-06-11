@@ -47,25 +47,27 @@ public class BancoTiempo extends AppCompatActivity {
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
         ArrayList<RepasoSerial> lista = new ArrayList();
-        RepasoSerial impartir = new RepasoSerial();
+        RepasoSerial repasoSerial = new RepasoSerial();
 
         //consulta de los valores que recoge de la base de datos
-        Cursor registro = bd.rawQuery("select nombre_modulo, dni_alumnos, dia_hora, horas_repasar " +
+        Cursor registro = bd.rawQuery("select nombre_modulo, dia_hora, horas_repasar, nombre, apellidos " +
                 "from repaso;", null);
 
         //condicion que recoge de la consulta para proyectar en la lista
         if (registro.moveToFirst()) {
             do {
                 String modulo = registro.getString(0);
-                impartir.setModulo(modulo);
-                String dni_alumnos = registro.getString(1);
-                impartir.setDni_alumnos(dni_alumnos);
-                String dia = registro.getString(2);
-                impartir.setDia(dia);
-                String tiempo = registro.getString(3);
-                impartir.setTiempo(tiempo);
+                repasoSerial.setModulo(modulo);
+                String dia = registro.getString(1);
+                repasoSerial.setDia(dia);
+                String tiempo = registro.getString(2);
+                repasoSerial.setTiempo(tiempo);
+                String nombre = registro.getString(3);
+                repasoSerial.setNombre(nombre);
+                String apellidos = registro.getString(4);
+                repasoSerial.setApellidos(apellidos);
                 lista.add(new RepasoSerial(modulo,
-                        dni_alumnos, dia, tiempo));
+                        nombre, apellidos, dia, tiempo));
             } while (registro.moveToNext());
         }
         return lista;
