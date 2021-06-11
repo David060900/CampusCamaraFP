@@ -23,8 +23,8 @@ public class CrearTablas {
             "id_curso integer primary key, nombre text, num_curso text);";
     //tabla repaso
     public static final String CREAR_TABLA_REPASO = "create table if not exists repaso(" +
-            "id_repaso integer primary key autoincrement, nombre_modulo text, horas_repasar text," +
-            "dia_hora text, lugar text, dni_alumnos text, id_modulo integer," +
+            "id_repaso integer primary key autoincrement, nombre_modulo text, horas_repasar text, " +
+            "dia_hora text, lugar text, dni_alumnos text, id_modulo integer, " +
             "foreign key (dni_alumnos) references alumnos(dni_alumnos), " +
             "foreign key (id_modulo) references modulo(id_modulo));";
     //tabla estudian

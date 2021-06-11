@@ -44,7 +44,7 @@ public class Adaptador extends BaseAdapter {
         TextView tv1, tv2, tv3, tv4;
 
         tv1 = convertView.findViewById(R.id.tvListaAsignatura);
-        tv2 = convertView.findViewById(R.id.tvListaCorreo);
+        tv2 = convertView.findViewById(R.id.tvListaNombre);
         tv3 = convertView.findViewById(R.id.tvListaDiaHora);
         tv4 = convertView.findViewById(R.id.tvListaHoras);
 

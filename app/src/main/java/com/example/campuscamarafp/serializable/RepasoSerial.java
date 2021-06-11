@@ -9,6 +9,8 @@ public class RepasoSerial implements Serializable {
     private String lugar;
     private String dia;
     private String dni_alumnos;
+    private String nombre;
+    private String apellidos;
     private int id_repaso;
 
     //constructor
@@ -79,5 +81,23 @@ public class RepasoSerial implements Serializable {
 
     public void setId_repaso(int id_repaso) {
         this.id_repaso = id_repaso;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 }

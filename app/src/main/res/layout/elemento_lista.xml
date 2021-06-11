@@ -9,8 +9,8 @@
         android:id="@+id/tvListaAsignatura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginStart="292dp"
+        android:layout_marginLeft="292dp"
         android:layout_marginTop="28dp"
         android:text="TextView"
         android:textColor="@color/azul"
@@ -19,25 +19,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvListaCorreo"
+        android:id="@+id/tvListaNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="28dp"
         android:text="TextView"
         android:textColor="@color/azul"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvListaAsignatura" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvListaDiaHora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="276dp"
-        android:layout_marginLeft="276dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="68dp"
         android:text="TextView"
         android:textColor="@color/azul"
         android:textSize="16sp"
@@ -48,13 +48,13 @@
         android:id="@+id/tvListaHoras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="276dp"
-        android:layout_marginLeft="276dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="248dp"
+        android:layout_marginLeft="248dp"
+        android:layout_marginTop="68dp"
         android:text="TextView"
         android:textColor="@color/azul"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvListaDiaHora" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

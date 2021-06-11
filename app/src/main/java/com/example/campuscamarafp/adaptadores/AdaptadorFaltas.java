@@ -28,9 +28,9 @@ public class AdaptadorFaltas extends RecyclerView.Adapter<AdaptadorFaltas.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolderFaltas holder, int position) {
-        int hola = listaFaltas.get(position).getNum_falta();
-        String holaS = String.valueOf(hola);
-        holder.tv1.setText(holaS);
+        int faltas = listaFaltas.get(position).getNum_falta();
+        String faltasS = String.valueOf(faltas);
+        holder.tv1.setText(faltasS);
         holder.tv2.setText(listaFaltas.get(position).getDni_profesores());
         holder.tv3.setText(listaFaltas.get(position).getDia_hora());
     }
