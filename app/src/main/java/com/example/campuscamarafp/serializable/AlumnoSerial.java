@@ -68,12 +68,7 @@ public class AlumnoSerial implements Serializable {
         this.dni_alumno = dni_alumno;
     }
 
-
-    public boolean setSelected(boolean isChecked) {
-        return true;
-    }
-
     public boolean isSelected() {
-        return true;
+        return false;
     }
 }

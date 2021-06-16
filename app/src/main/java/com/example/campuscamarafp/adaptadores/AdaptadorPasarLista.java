@@ -8,14 +8,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.campuscamarafp.PasarLista;
 import com.example.campuscamarafp.R;
 import com.example.campuscamarafp.serializable.AlumnoSerial;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -31,7 +29,7 @@ public class AdaptadorPasarLista extends RecyclerView.Adapter<AdaptadorPasarList
 
     @Override
     public ViewHolderPasarLista onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_alumnos,null,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_alumnos, parent,false);
         return new ViewHolderPasarLista(view);
     }
 
@@ -40,12 +38,11 @@ public class AdaptadorPasarLista extends RecyclerView.Adapter<AdaptadorPasarList
         final AlumnoSerial alumnoSerial = listaAlumnos.get(position);
 
         holder.tv1.setText(listaAlumnos.get(position).getNombre() + " " + listaAlumnos.get(position).getApellidos());
-        holder.cb1.setOnCheckedChangeListener(null);
-
-
-
-        holder.cb1.setChecked(alumnoSerial.isSelected());
-        holder.cb1.setOnCheckedChangeListener((buttonView, isChecked) -> alumnoSerial.setSelected(isChecked));
+        if(alumnoSerial.isSelected()){
+            holder.cb1.setChecked(true);
+        }else{
+            holder.cb1.setChecked(false);
+        }
     }
 
     @Override
@@ -54,16 +51,24 @@ public class AdaptadorPasarLista extends RecyclerView.Adapter<AdaptadorPasarList
     }
 
     public class ViewHolderPasarLista extends RecyclerView.ViewHolder {
-
         TextView tv1;
         CheckBox cb1;
-        FloatingActionButton fab;
 
         public ViewHolderPasarLista(View itemView) {
             super(itemView);
             tv1 = itemView.findViewById(R.id.textView8);
             cb1 = itemView.findViewById(R.id.checkBox);
-            fab = itemView.findViewById(R.id.floatingActionButton2);
+
+            cb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked){
+                        Toast.makeText(AdaptadorPasarLista.this.context, "Alumno: " + tv1.getText(), Toast.LENGTH_SHORT).show();
+                    }else{
+
+                    }
+                }
+            });
 
         }
     }

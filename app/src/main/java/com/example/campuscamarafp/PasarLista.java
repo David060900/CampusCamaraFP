@@ -35,6 +35,7 @@ public class PasarLista extends AppCompatActivity {
 
     ArrayList<AlumnoSerial> listaAlumnos;
     RecyclerView recyclerAlumnos;
+    String [] alumnos;
 
     private CheckBox cb;
     private FloatingActionButton fab;
@@ -119,14 +120,14 @@ public class PasarLista extends AppCompatActivity {
         Cursor fila = bd.rawQuery("select correo_alumnos, alumnos.dni_alumnos from alumnos left join estudian on " +
                 "alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_curso = '" + idcurso + "';" , null);
         AlumnoSerial alumnoSerial = new AlumnoSerial();
-            //recoge la posicion de la fila
-            if (fila.moveToNext()) {
-                String correo = fila.getString(0);
-                String dni = fila.getString(1);
-                alumnoSerial.setCorreo(correo);
-                alumnoSerial.setDni_alumno(dni);
-                Toast.makeText(PasarLista.this, "Correo: " + correo, Toast.LENGTH_SHORT).show();
-            }
+        //recoge la posicion de la fila
+        if (fila.moveToNext()) {
+            String correo = fila.getString(0);
+            String dni = fila.getString(1);
+            alumnoSerial.setCorreo(correo);
+            alumnoSerial.setDni_alumno(dni);
+            Toast.makeText(PasarLista.this, "Correo: " + correo, Toast.LENGTH_SHORT).show();
+        }
         fab.setOnClickListener(v -> {
             //instruccion que incrementa en 1 la columna de las faltas de los alumnos
             bd.execSQL("insert into faltas (num_falta, dni_alumnos, dni_profesores, dia_hora) " +
