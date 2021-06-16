@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -59,14 +58,11 @@ public class AdaptadorPasarLista extends RecyclerView.Adapter<AdaptadorPasarList
             tv1 = itemView.findViewById(R.id.textView8);
             cb1 = itemView.findViewById(R.id.checkBox);
 
-            cb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(isChecked){
-                        Toast.makeText(AdaptadorPasarLista.this.context, "Alumno: " + tv1.getText(), Toast.LENGTH_SHORT).show();
-                    }else{
+            cb1.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if(isChecked){
+                    Toast.makeText(AdaptadorPasarLista.this.context, "Alumno: " + tv1.getText(), Toast.LENGTH_SHORT).show();
+                }else{
 
-                    }
                 }
             });
 
