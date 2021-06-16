@@ -69,5 +69,11 @@ public class AlumnoSerial implements Serializable {
     }
 
 
+    public boolean setSelected(boolean isChecked) {
+        return true;
+    }
 
+    public boolean isSelected() {
+        return true;
+    }
 }

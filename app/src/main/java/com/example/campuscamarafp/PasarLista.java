@@ -8,12 +8,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.collection.ArraySet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,7 +36,7 @@ public class PasarLista extends AppCompatActivity {
     ArrayList<AlumnoSerial> listaAlumnos;
     RecyclerView recyclerAlumnos;
 
-    ArrayAdapter<String> adaptador;
+    private CheckBox cb;
     private FloatingActionButton fab;
 
     @Override
@@ -42,26 +45,29 @@ public class PasarLista extends AppCompatActivity {
         setContentView(R.layout.activity_pasarlista);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        cb = findViewById(R.id.checkBox);
+
         listaAlumnos = new ArrayList<>();
         recyclerAlumnos = findViewById(R.id.recyclerAlumnos);
         recyclerAlumnos.setLayoutManager(new LinearLayoutManager(this));
 
         llenarListaAlumnos();
+        selectAlumnos();
 
-        AdaptadorPasarLista adapter = new AdaptadorPasarLista(listaAlumnos);
+        AdaptadorPasarLista adapter = new AdaptadorPasarLista(listaAlumnos, getApplicationContext());
         recyclerAlumnos.setAdapter(adapter);
 
-        /*final ListView lv = findViewById(R.id.lista);
-        final ArrayList<AlumnoSerial> lista;
+        /*fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(cb.isChecked()){
+                    listaAlumnos.get().getDni_alumno()
+                }
+            }
+        });*/
 
-        //la lista que declaramos la igualamos a la lista que recoge los datos de la base de datos
-        lista = llenar_lv();
-        adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, lista);
-        lv.setAdapter(adaptador);
-
-        selectAlumnos();*/
     }
-
+    //metodo que recoge los valores de la base de datos y los proyecta en una lista
     public void llenarListaAlumnos(){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
@@ -90,12 +96,11 @@ public class PasarLista extends AppCompatActivity {
         }
     }
     //metodo que consulta los alumnos de la base de datos
-    /*public void selectAlumnos(){
+    public void selectAlumnos(){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
         fab = findViewById(R.id.floatingActionButton2);
-        ListView lv = findViewById(R.id.lista);
 
         //recibimos objetos de la clase inicio sesion
         Bundle objEnviado = getIntent().getExtras();
@@ -114,17 +119,14 @@ public class PasarLista extends AppCompatActivity {
         Cursor fila = bd.rawQuery("select correo_alumnos, alumnos.dni_alumnos from alumnos left join estudian on " +
                 "alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_curso = '" + idcurso + "';" , null);
         AlumnoSerial alumnoSerial = new AlumnoSerial();
-        lv.setOnItemClickListener((parent, view, position, id) -> {
             //recoge la posicion de la fila
-            if (fila.moveToPosition(position)) {
+            if (fila.moveToNext()) {
                 String correo = fila.getString(0);
                 String dni = fila.getString(1);
                 alumnoSerial.setCorreo(correo);
                 alumnoSerial.setDni_alumno(dni);
-                //lv.getItemsCanFocus();
-                Toast.makeText(PasarLista.this, "Correo: " + correo , Toast.LENGTH_SHORT).show();
+                Toast.makeText(PasarLista.this, "Correo: " + correo, Toast.LENGTH_SHORT).show();
             }
-        });
         fab.setOnClickListener(v -> {
             //instruccion que incrementa en 1 la columna de las faltas de los alumnos
             bd.execSQL("insert into faltas (num_falta, dni_alumnos, dni_profesores, dia_hora) " +
@@ -133,37 +135,6 @@ public class PasarLista extends AppCompatActivity {
             Toast.makeText(PasarLista.this, "Guardar Faltas ", Toast.LENGTH_SHORT).show();
         });
 
-    }*/
-    //metodo que recoge los valores de la base de datos y los proyecta en una lista
-    public void llenar_lv(){
-        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
-        SQLiteDatabase bd = conexion.getWritableDatabase();
-
-        ArrayList<String> lista = new ArrayList<>();
-
-        //recibimos objetos de la clase inicio sesion
-        Bundle objEnviado = getIntent().getExtras();
-        ProfesorSerial profesorSerialRecibe;
-        profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
-
-        //consulta el id del curso al que pertenece el profesor que ha iniciado sesion
-        Cursor curso = bd.rawQuery("select id_curso from imparten " +
-                "where dni_profesores = '" + profesorSerialRecibe.getDni_profesores() + "';",null);
-        int idcurso = 0;
-        while(curso.moveToNext()){
-            idcurso = curso.getInt(0);
-        }
-        //consulta el nombre y los apellidos de los alumnos que estudian el curso que imparte el profesor
-        Cursor alumnos = bd.rawQuery("select nombre, apellidos from alumnos left join estudian on" +
-                " alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_curso = '" + idcurso + "';", null);
-        //condicion que añade lo consultado en la lista
-        if(alumnos.moveToFirst()){
-            do{
-                lista.add(alumnos.getString(0)
-                        + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                        + alumnos.getString(1));
-            }while(alumnos.moveToNext());
-        }
     }
     //método que da paso a la actividad Perfil
     public void Perfil (){
