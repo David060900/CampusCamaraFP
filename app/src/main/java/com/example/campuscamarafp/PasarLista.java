@@ -13,11 +13,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.campuscamarafp.adaptadores.AdaptadorPasarLista;
 import com.example.campuscamarafp.ayudas.AyudaPasarLista;
 import com.example.campuscamarafp.serializable.AlumnoSerial;
+import com.example.campuscamarafp.serializable.FaltasSerial;
 import com.example.campuscamarafp.serializable.ProfesorSerial;
 import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,17 +30,28 @@ import java.util.Arrays;
 
 public class PasarLista extends AppCompatActivity {
 
+    ArrayList<AlumnoSerial> listaAlumnos;
+    RecyclerView recyclerAlumnos;
+
     ArrayAdapter<String> adaptador;
     private FloatingActionButton fab;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pasarlista);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        final ListView lv = findViewById(R.id.lista);
+        listaAlumnos = new ArrayList<>();
+        recyclerAlumnos = findViewById(R.id.recyclerAlumnos);
+        recyclerAlumnos.setLayoutManager(new LinearLayoutManager(this));
+
+        llenarListaAlumnos();
+
+        AdaptadorPasarLista adapter = new AdaptadorPasarLista(listaAlumnos);
+        recyclerAlumnos.setAdapter(adapter);
+
+        /*final ListView lv = findViewById(R.id.lista);
         final ArrayList<AlumnoSerial> lista;
 
         //la lista que declaramos la igualamos a la lista que recoge los datos de la base de datos
@@ -45,11 +59,38 @@ public class PasarLista extends AppCompatActivity {
         adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, lista);
         lv.setAdapter(adaptador);
 
-        selectAlumnos();
+        selectAlumnos();*/
+    }
+
+    public void llenarListaAlumnos(){
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
+        SQLiteDatabase bd = conexion.getWritableDatabase();
+
+        //recibimos objetos de la clase inicio sesion
+        Bundle objEnviado = getIntent().getExtras();
+        ProfesorSerial profesorSerialRecibe;
+        profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
+
+        //consulta el id del curso al que pertenece el profesor que ha iniciado sesion
+        Cursor curso = bd.rawQuery("select id_curso from imparten " +
+                "where dni_profesores = '" + profesorSerialRecibe.getDni_profesores() + "';",null);
+        int idcurso = 0;
+        while(curso.moveToNext()){
+            idcurso = curso.getInt(0);
+        }
+        //consulta el nombre y los apellidos de los alumnos que estudian el curso que imparte el profesor
+        Cursor alumnos = bd.rawQuery("select nombre, apellidos from alumnos left join estudian on" +
+                " alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_curso = '" + idcurso + "';", null);
+        if(alumnos.moveToFirst()){
+            do{
+                String nombre = alumnos.getString(0);
+                String apellidos = alumnos.getString(1);
+                listaAlumnos.add(new AlumnoSerial(nombre, apellidos));
+            }while(alumnos.moveToNext());
+        }
     }
     //metodo que consulta los alumnos de la base de datos
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void selectAlumnos(){
+    /*public void selectAlumnos(){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
@@ -92,9 +133,9 @@ public class PasarLista extends AppCompatActivity {
             Toast.makeText(PasarLista.this, "Guardar Faltas ", Toast.LENGTH_SHORT).show();
         });
 
-    }
+    }*/
     //metodo que recoge los valores de la base de datos y los proyecta en una lista
-    public ArrayList llenar_lv(){
+    public void llenar_lv(){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
@@ -123,7 +164,6 @@ public class PasarLista extends AppCompatActivity {
                         + alumnos.getString(1));
             }while(alumnos.moveToNext());
         }
-        return lista;
     }
     //método que da paso a la actividad Perfil
     public void Perfil (){

@@ -21,6 +21,12 @@ public class AlumnoSerial implements Serializable {
     public AlumnoSerial(){
 
     }
+
+    public AlumnoSerial(String nombre, String apellidos) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+    }
+
     //getters y setters
     public String getNombre() {
         return nombre;

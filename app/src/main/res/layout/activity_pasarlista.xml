@@ -27,7 +27,7 @@
         app:layout_constraintStart_toEndOf="@+id/tvNombrePasarLista"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
+    <!--<ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="410dp"
         android:layout_height="565dp"
@@ -50,7 +50,18 @@
                 tools:ignore="MissingConstraints"></ListView>
 
         </LinearLayout>
-    </ScrollView>
+    </ScrollView>!-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerAlumnos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton2"
