@@ -35,10 +35,7 @@ public class PasarLista extends AppCompatActivity {
 
     ArrayList<AlumnoSerial> listaAlumnos;
     RecyclerView recyclerAlumnos;
-    String [] alumnos;
-
-    private CheckBox cb;
-    private FloatingActionButton fab;
+    StringBuffer sb = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,28 +43,48 @@ public class PasarLista extends AppCompatActivity {
         setContentView(R.layout.activity_pasarlista);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        cb = findViewById(R.id.checkBox);
-
         listaAlumnos = new ArrayList<>();
+        llenarListaAlumnos();
+        AdaptadorPasarLista adapter = new AdaptadorPasarLista(listaAlumnos, getApplicationContext());
+
+        FloatingActionButton fab = findViewById(R.id.floatingActionButton2);
+        fab.setOnClickListener(v -> {
+            sb = new StringBuffer();
+
+            for(AlumnoSerial alumnoSerial : adapter.checkedAlumnos){
+                sb.append(alumnoSerial.getNombre());//dni
+                sb.append("\n");
+                insertarFaltas(alumnoSerial.getNombre());
+            }
+
+            if(adapter.checkedAlumnos.size()>0){
+                Toast.makeText(PasarLista.this, sb.toString(), Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(PasarLista.this, "Selecciona algo", Toast.LENGTH_SHORT).show();
+            }
+        });
         recyclerAlumnos = findViewById(R.id.recyclerAlumnos);
         recyclerAlumnos.setLayoutManager(new LinearLayoutManager(this));
-
-        llenarListaAlumnos();
-        selectAlumnos();
-
-        AdaptadorPasarLista adapter = new AdaptadorPasarLista(listaAlumnos, getApplicationContext());
         recyclerAlumnos.setAdapter(adapter);
-
-        /*fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(cb.isChecked()){
-                    listaAlumnos.get().getDni_alumno()
-                }
-            }
-        });*/
-
     }
+
+    private void llenarAlumnos() {
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        SQLiteDatabase bd = conexion.getWritableDatabase();
+
+        Cursor fila = bd.rawQuery("select nombre, apellidos from alumnos", null);
+        if(fila.moveToFirst()){
+            do{
+                String nombre = fila.getString(0);
+                String apellidos = fila.getString(1);
+                listaAlumnos.add(new AlumnoSerial(nombre,apellidos));
+            }while(fila.moveToNext());
+        }
+    }
+
+    private void insertarFaltas(String nombre) {
+    }
+
     //metodo que recoge los valores de la base de datos y los proyecta en una lista
     public void llenarListaAlumnos(){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
@@ -97,7 +114,7 @@ public class PasarLista extends AppCompatActivity {
         }
     }
     //metodo que consulta los alumnos de la base de datos
-    public void selectAlumnos(){
+    /*public void selectAlumnos(){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
@@ -136,7 +153,7 @@ public class PasarLista extends AppCompatActivity {
             Toast.makeText(PasarLista.this, "Guardar Faltas ", Toast.LENGTH_SHORT).show();
         });
 
-    }
+    }*/
     //método que da paso a la actividad Perfil
     public void Perfil (){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);

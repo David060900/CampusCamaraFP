@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.campuscamarafp.ItemClickListener;
 import com.example.campuscamarafp.R;
 import com.example.campuscamarafp.serializable.AlumnoSerial;
 
@@ -17,8 +18,9 @@ import java.util.ArrayList;
 
 public class AdaptadorPasarLista extends RecyclerView.Adapter<AdaptadorPasarLista.ViewHolderPasarLista> {
 
-    private ArrayList<AlumnoSerial> listaAlumnos;
-    private Context context;
+    ArrayList<AlumnoSerial> listaAlumnos;
+    Context context;
+    public ArrayList<AlumnoSerial> checkedAlumnos = new ArrayList<>();
 
     public AdaptadorPasarLista(ArrayList<AlumnoSerial> listaAlumnos, Context context){
         this.listaAlumnos = listaAlumnos;
@@ -33,14 +35,21 @@ public class AdaptadorPasarLista extends RecyclerView.Adapter<AdaptadorPasarList
 
     @Override
     public void onBindViewHolder(ViewHolderPasarLista holder, final int position) {
-        final AlumnoSerial alumnoSerial = listaAlumnos.get(position);
-
         holder.tv1.setText(listaAlumnos.get(position).getNombre() + " " + listaAlumnos.get(position).getApellidos());
-        if(alumnoSerial.isSelected()){
-            holder.cb1.setChecked(true);
-        }else{
-            holder.cb1.setChecked(false);
-        }
+
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int pos) {
+                CheckBox checkBox = (CheckBox) view;
+
+                //check if it is else if not
+                if(checkBox.isChecked()){
+                    checkedAlumnos.add(listaAlumnos.get(pos));
+                }else if(!checkBox.isChecked()){
+                    checkedAlumnos.remove(listaAlumnos.get(pos));
+                }
+            }
+        });
     }
 
     @Override
@@ -48,23 +57,25 @@ public class AdaptadorPasarLista extends RecyclerView.Adapter<AdaptadorPasarList
         return listaAlumnos.size();
     }
 
-    public class ViewHolderPasarLista extends RecyclerView.ViewHolder {
+    public class ViewHolderPasarLista extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tv1;
         CheckBox cb1;
+        ItemClickListener itemClickListener;
 
         public ViewHolderPasarLista(View itemView) {
             super(itemView);
             tv1 = itemView.findViewById(R.id.textView8);
             cb1 = itemView.findViewById(R.id.checkBox);
 
-            cb1.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if(isChecked){
-                    Toast.makeText(AdaptadorPasarLista.this.context, "Alumno: " + tv1.getText(), Toast.LENGTH_SHORT).show();
-                }else{
+            cb1.setOnClickListener(this);
+        }
+        public void setItemClickListener(ItemClickListener ic){
+            this.itemClickListener = ic;
+        }
 
-                }
-            });
-
+        @Override
+        public void onClick(View v) {
+            this.itemClickListener.onItemClick(v,getLayoutPosition());
         }
     }
 }
