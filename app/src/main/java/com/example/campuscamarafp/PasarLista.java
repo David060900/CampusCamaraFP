@@ -47,6 +47,11 @@ public class PasarLista extends AppCompatActivity {
         llenarListaAlumnos();
         AdaptadorPasarLista adapter = new AdaptadorPasarLista(listaAlumnos, getApplicationContext());
 
+        //recibimos objetos de la clase inicio sesion
+        Bundle objEnviado = getIntent().getExtras();
+        ProfesorSerial profesorSerialRecibe;
+        profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
+
         FloatingActionButton fab = findViewById(R.id.floatingActionButton2);
         fab.setOnClickListener(v -> {
             sb = new StringBuffer();
@@ -54,7 +59,7 @@ public class PasarLista extends AppCompatActivity {
             for(AlumnoSerial alumnoSerial : adapter.checkedAlumnos){
                 sb.append(alumnoSerial.getNombre());//dni
                 sb.append("\n");
-                insertarFaltas(alumnoSerial.getNombre());
+                insertarFaltas(alumnoSerial.getNombre(),profesorSerialRecibe.getDni_profesores());
             }
 
             if(adapter.checkedAlumnos.size()>0){
@@ -68,21 +73,16 @@ public class PasarLista extends AppCompatActivity {
         recyclerAlumnos.setAdapter(adapter);
     }
 
-    private void llenarAlumnos() {
-        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+    private void insertarFaltas(String dni_al, String dni_prof) {
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
-        Cursor fila = bd.rawQuery("select nombre, apellidos from alumnos", null);
-        if(fila.moveToFirst()){
-            do{
-                String nombre = fila.getString(0);
-                String apellidos = fila.getString(1);
-                listaAlumnos.add(new AlumnoSerial(nombre,apellidos));
-            }while(fila.moveToNext());
-        }
-    }
-
-    private void insertarFaltas(String nombre) {
+        AlumnoSerial alumnoSerial = new AlumnoSerial();
+        //instruccion que incrementa en 1 la columna de las faltas de los alumnos
+        bd.execSQL("insert into faltas (num_falta, dni_alumnos, dni_profesores, dia_hora) " +
+                "values (1,'" + dni_al +"' " +
+                ", '" + dni_prof + "', datetime('now', 'localtime'));");
+        Toast.makeText(PasarLista.this, "Guardar Faltas ", Toast.LENGTH_SHORT).show();
     }
 
     //metodo que recoge los valores de la base de datos y los proyecta en una lista
@@ -114,11 +114,9 @@ public class PasarLista extends AppCompatActivity {
         }
     }
     //metodo que consulta los alumnos de la base de datos
-    /*public void selectAlumnos(){
+    public void selectAlumnos(){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
-
-        fab = findViewById(R.id.floatingActionButton2);
 
         //recibimos objetos de la clase inicio sesion
         Bundle objEnviado = getIntent().getExtras();
@@ -145,15 +143,8 @@ public class PasarLista extends AppCompatActivity {
             alumnoSerial.setDni_alumno(dni);
             Toast.makeText(PasarLista.this, "Correo: " + correo, Toast.LENGTH_SHORT).show();
         }
-        fab.setOnClickListener(v -> {
-            //instruccion que incrementa en 1 la columna de las faltas de los alumnos
-            bd.execSQL("insert into faltas (num_falta, dni_alumnos, dni_profesores, dia_hora) " +
-                    "values (1,'" + alumnoSerial.getDni_alumno() +"' " +
-                    ", '" + profesorSerialRecibe.getDni_profesores() + "', datetime('now', 'localtime'));");
-            Toast.makeText(PasarLista.this, "Guardar Faltas ", Toast.LENGTH_SHORT).show();
-        });
 
-    }*/
+    }
     //método que da paso a la actividad Perfil
     public void Perfil (){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
