@@ -109,7 +109,7 @@
                     android:layout_marginTop="-24dp"
                     android:baselineAligned="false"
                     android:hapticFeedbackEnabled="true"
-                    android:visibility="invisible">
+                    android:visibility="gone">
 
                     <CheckBox
                         android:id="@+id/checkBox6"
@@ -147,7 +147,7 @@
                     android:id="@+id/btnRegistrarse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/radio"
+                    android:layout_below="@+id/spinnerCursos"
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:onClick="Registrarse"
