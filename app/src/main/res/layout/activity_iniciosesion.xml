@@ -63,14 +63,16 @@
                 android:layout_width="205dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/boxalumno" />
+                android:text="@string/boxalumno"
+                android:textColor="@color/azul" />
 
             <RadioButton
                 android:id="@+id/rbProfesor"
                 android:layout_width="205dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/boxprofesor" />
+                android:text="@string/boxprofesor"
+                android:textColor="@color/azul" />
         </RadioGroup>
 
     </LinearLayout>

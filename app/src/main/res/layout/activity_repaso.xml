@@ -1,75 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvImpartir"
         android:layout_width="362dp"
         android:layout_height="37dp"
+        android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:hint="@string/asigimpartir"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:hint="@string/asigimpartir" />
 
     <Spinner
         android:id="@+id/spinnerAsignaturas"
         android:layout_width="362dp"
         android:layout_height="49dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvImpartir" />
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:id="@+id/tvTiempoImpartir"
         android:layout_width="362dp"
         android:layout_height="37dp"
+        android:layout_gravity="center"
         android:layout_marginTop="24dp"
-        android:hint="@string/tiempoimpartir"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAsignaturas" />
+        android:hint="@string/tiempoimpartir" />
 
     <EditText
         android:id="@+id/etTiempoImpartir"
         android:layout_width="362dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:gravity="center"
         android:hint="2 horas"
         android:inputType="textPersonName"
-        android:textColor="@color/azul"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTiempoImpartir" />
+        android:textColor="@color/azul" />
 
     <TextView
         android:id="@+id/tvLugar"
         android:layout_width="362dp"
         android:layout_height="37dp"
+        android:layout_gravity="center"
         android:layout_marginTop="24dp"
-        android:hint="@string/lugarimpartir"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTiempoImpartir" />
+        android:hint="@string/lugarimpartir" />
 
     <Spinner
         android:id="@+id/spinnerLugarQuedar"
         android:layout_width="362dp"
         android:layout_height="49dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLugar" />
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:id="@+id/tvDia"
@@ -79,9 +64,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        android:hint="@string/diasemanaimpartir"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerLugarQuedar" />
+        android:hint="@string/diasemanaimpartir" />
 
     <ImageView
         android:id="@+id/ivCalendario"
@@ -89,63 +72,51 @@
         android:layout_height="85dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="20dp"
         android:onClick="etCalendario"
-        app:layout_constraintEnd_toStartOf="@+id/tvDiaSemanaU"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerLugarQuedar"
         app:srcCompat="@drawable/calendario" />
 
     <Button
         android:id="@+id/btnImpartirR"
         android:layout_width="155dp"
         android:layout_height="49dp"
-        android:layout_marginTop="28dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
         android:hint="@string/impartir"
         android:onClick="RegistrarImpartir"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etHoraU" />
+        android:textColorHint="@color/white" />
 
     <TextView
         android:id="@+id/tvDiaSemanaU"
         android:layout_width="79dp"
         android:layout_height="19dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginLeft="136dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="-120dp"
         android:gravity="center"
-        android:textColor="@color/azul"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDia" />
+        android:textColor="@color/azul" />
 
     <TextView
         android:id="@+id/tvHora"
         android:layout_width="102dp"
         android:layout_height="45dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="275dp"
+        android:layout_marginLeft="275dp"
+        android:layout_marginTop="-110dp"
         android:gravity="center"
-        android:text="@string/hora"
-        app:layout_constraintStart_toEndOf="@+id/tvDia"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerLugarQuedar" />
+        android:text="@string/hora" />
 
     <EditText
         android:id="@+id/etHoraU"
         android:layout_width="134dp"
         android:layout_height="39dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="255dp"
+        android:layout_marginLeft="255dp"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:gravity="center"
         android:hint="17:00"
         android:inputType="textPersonName"
-        android:textColor="@color/azul"
-        app:layout_constraintStart_toEndOf="@+id/tvDiaSemanaU"
-        app:layout_constraintTop_toBottomOf="@+id/tvHora" />
+        android:textColor="@color/azul" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

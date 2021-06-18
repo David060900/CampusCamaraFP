@@ -1,166 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/tvPerfilNombreNU"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginLeft="172dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/etnombre"
-        android:textColor="@color/azul"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvPerfilDNINU"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/dni"
-        android:textColor="@color/azul"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilCorreoAlumU" />
-
-    <TextView
-        android:id="@+id/tvPerfilNombreAlumU"
-        android:layout_width="220dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="172dp"
-        android:layout_marginLeft="172dp"
-        android:layout_marginTop="20dp"
-        android:text="Pepito"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreNU" />
-
-    <TextView
-        android:id="@+id/tvPerfilApellidosNU"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="52dp"
-        android:text="@string/etapellidos"
-        android:textColor="@color/azul"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreAlumU" />
-
-    <TextView
-        android:id="@+id/tvPerfilApellidosAlumU"
-        android:layout_width="260dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
-        android:text="Zamora Pérez"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilApellidosNU" />
-
-    <TextView
-        android:id="@+id/tvPerfilCorreoNU"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/email"
-        android:textColor="@color/azul"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilApellidosAlumU" />
-
-    <TextView
-        android:id="@+id/tvPerfilCorreoAlumU"
-        android:layout_width="376dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
-        android:text="dzamora@campuscamarafp.com"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilCorreoNU" />
-
-    <TextView
-        android:id="@+id/tvPerfilDNIAlumU"
-        android:layout_width="260dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
-        android:text="dzamora@campuscamarafp.com"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilDNINU" />
-
-    <Button
-        android:id="@+id/btnCambiarPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:onClick="CambiarPassword"
-        android:text="@string/cambiarpass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilDNIAlumU" />
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="145dp"
         android:layout_height="120dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icono_alumno" />
+
+    <TextView
+        android:id="@+id/tvPerfilNombreNU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_toEndOf="@+id/imageView2"
+        android:layout_toRightOf="@+id/imageView2"
+        android:text="@string/etnombre"
+        android:textColor="@color/azul"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvPerfilNombreAlumU"
+        android:layout_width="220dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tvPerfilNombreNU"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="22dp"
+        android:layout_toEndOf="@+id/imageView2"
+        android:layout_toRightOf="@+id/imageView2"
+        android:text="Pepito"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvPerfilApellidosNU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView2"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="43dp"
+        android:text="@string/etapellidos"
+        android:textColor="@color/azul"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvPerfilApellidosAlumU"
+        android:layout_width="260dp"
+        android:layout_height="24dp"
+        android:layout_below="@+id/tvPerfilApellidosNU"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="27dp"
+        android:text="Zamora Pérez"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvPerfilCorreoNU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPerfilApellidosAlumU"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="26dp"
+        android:text="@string/email"
+        android:textColor="@color/azul"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvPerfilCorreoAlumU"
+        android:layout_width="376dp"
+        android:layout_height="24dp"
+        android:layout_below="@+id/tvPerfilCorreoNU"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="dzamora@campuscamarafp.com"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvPerfilDNINU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPerfilCorreoAlumU"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/dni"
+        android:textColor="@color/azul"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvPerfilDNIAlumU"
+        android:layout_width="260dp"
+        android:layout_height="24dp"
+        android:layout_below="@+id/tvPerfilDNINU"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:text="dzamora@campuscamarafp.com"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tvTotalFaltasNU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
-        android:layout_marginLeft="152dp"
-        android:layout_marginTop="52dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="144dp"
+        android:layout_marginLeft="144dp"
+        android:layout_marginTop="177dp"
+        android:layout_toEndOf="@+id/tvPerfilApellidosNU"
+        android:layout_toRightOf="@+id/tvPerfilApellidosNU"
         android:text="Total de faltas"
         android:textColor="@color/azul"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/tvPerfilApellidosNU"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreAlumU" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tvTotalFaltasAlumU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="36dp"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/tvPerfilApellidosAlumU"
-        app:layout_constraintTop_toBottomOf="@+id/tvTotalFaltasNU" />
+        android:layout_below="@+id/tvTotalFaltasNU"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="53dp"
+        android:layout_toEndOf="@+id/tvPerfilApellidosAlumU"
+        android:layout_toRightOf="@+id/tvPerfilApellidosAlumU"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_below="@+id/tvPerfilDNIAlumU"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="33dp"
+        android:gravity="center"
         android:onClick="visualizarFaltas"
-        android:text="@string/verfaltas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCambiarPassword" />
+        android:text="@string/verfaltas" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btnCambiarPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="9dp"
+        android:gravity="center"
+        android:onClick="CambiarPassword"
+        android:text="@string/cambiarpass" />
+
+</RelativeLayout>
