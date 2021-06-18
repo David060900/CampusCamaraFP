@@ -35,7 +35,6 @@ public class PasarLista extends AppCompatActivity {
 
     ArrayList<AlumnoSerial> listaAlumnos;
     RecyclerView recyclerAlumnos;
-    StringBuffer sb = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,18 +53,15 @@ public class PasarLista extends AppCompatActivity {
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton2);
         fab.setOnClickListener(v -> {
-            sb = new StringBuffer();
 
             for(AlumnoSerial alumnoSerial : adapter.checkedAlumnos){
-                sb.append(alumnoSerial.getNombre());//dni
-                sb.append("\n");
                 insertarFaltas(alumnoSerial.getDni_alumno(),profesorSerialRecibe.getDni_profesores());
             }
 
             if(adapter.checkedAlumnos.size()>0){
-                Toast.makeText(PasarLista.this, sb.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PasarLista.this, "Faltas guardadas", Toast.LENGTH_SHORT).show();
             }else{
-                Toast.makeText(PasarLista.this, "Selecciona algo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PasarLista.this, "Hoy no ha faltado nadie!", Toast.LENGTH_SHORT).show();
             }
         });
         recyclerAlumnos = findViewById(R.id.recyclerAlumnos);
@@ -82,7 +78,6 @@ public class PasarLista extends AppCompatActivity {
         bd.execSQL("insert into faltas (num_falta, dni_alumnos, dni_profesores, dia_hora) " +
                 "values (1,'" + dni_al +"' " +
                 ", '" + dni_prof + "', datetime('now', 'localtime'));");
-        Toast.makeText(PasarLista.this, "Guardar Faltas ", Toast.LENGTH_SHORT).show();
     }
 
     //metodo que recoge los valores de la base de datos y los proyecta en una lista

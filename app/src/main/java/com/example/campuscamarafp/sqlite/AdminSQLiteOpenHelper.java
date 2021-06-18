@@ -42,10 +42,21 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     public void cargarDatos(SQLiteDatabase db){
         //inserts a modulo
-        db.execSQL("insert into modulo values (1,'Programación');");
-        db.execSQL("insert into modulo values (2,'FOL');");
-        db.execSQL("insert into modulo values (3,'Políticas');");
-        db.execSQL("insert into modulo values (4,'Comercio');");
+        db.execSQL("insert into modulo values (1,'FOL');");
+        db.execSQL("insert into modulo values (2,'GACI');");
+        db.execSQL("insert into modulo values (3,'GEYFE');");
+        db.execSQL("insert into modulo values (4,'INGLES T');");
+        db.execSQL("insert into modulo values (5,'INGLES');");
+        db.execSQL("insert into modulo values (6,'LOGAL');");
+        db.execSQL("insert into modulo values (7,'TIM');");
+        db.execSQL("insert into modulo values (8,'BASES');");
+        db.execSQL("insert into modulo values (9,'ED');");
+        db.execSQL("insert into modulo values (10,'LGMS');");
+        db.execSQL("insert into modulo values (11,'PROGRAMACION');");
+        db.execSQL("insert into modulo values (12,'SISTEMAS');");
+        db.execSQL("insert into modulo values (13,'INVCOM');");
+        db.execSQL("insert into modulo values (14,'MKDIG');");
+        db.execSQL("insert into modulo values (15,'PLMK');");
         //inserts a curso
         db.execSQL("insert into curso values (1,'DAM','Primero');");
         db.execSQL("insert into curso values (2,'DAM', 'Segundo');");

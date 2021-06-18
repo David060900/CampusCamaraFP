@@ -16,6 +16,8 @@
 
     <string name="etnombre">Nombre</string>
 
+    <string name="nombreyapellidos">Nombre y Apellidos</string>
+
     <string name="etapellidos">Apellidos</string>
 
     <string name="cursoSerial">Curso</string>
