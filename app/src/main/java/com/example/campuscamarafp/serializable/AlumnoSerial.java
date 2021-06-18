@@ -22,9 +22,10 @@ public class AlumnoSerial implements Serializable {
 
     }
 
-    public AlumnoSerial(String nombre, String apellidos) {
+    public AlumnoSerial(String nombre, String apellidos, String dni_alumno) {
         this.nombre = nombre;
         this.apellidos = apellidos;
+        this.dni_alumno = dni_alumno;
     }
 
     //getters y setters
