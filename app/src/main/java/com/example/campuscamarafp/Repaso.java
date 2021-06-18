@@ -45,7 +45,7 @@ public class Repaso extends AppCompatActivity {
 
         //adaptador para el spinner
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, listaModulo);
+                R.layout.spinner_cursos, listaModulo);
         spinner1.setAdapter(adaptador);
 
         //spinner para decidir el lugar donde quedar

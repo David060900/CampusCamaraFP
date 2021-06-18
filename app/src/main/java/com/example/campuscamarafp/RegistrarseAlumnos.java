@@ -6,9 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,8 +45,29 @@ public class RegistrarseAlumnos extends AppCompatActivity {
 
         //adaptador para el spinner de cursos
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, listaCursos);
+                R.layout.spinner_cursos, listaCursos);
         spinner1.setAdapter(adaptador);
+        spinner1.setOnItemSelectedListener(new spinnerSeleccionar());
+    }
+
+    public class spinnerSeleccionar implements AdapterView.OnItemSelectedListener{
+
+        RadioGroup rg = findViewById(R.id.radio);
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            if(parent.getItemAtPosition(position).toString().equals("Primero ---- DAM")){
+                rg.setVisibility(View.VISIBLE);
+            }else{
+                rg.setVisibility(View.INVISIBLE);
+            }
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
     }
     //metodo que consulta los cursos para establecerlos en el spinner
     private void consultarCursos() {

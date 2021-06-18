@@ -6,123 +6,159 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etDNIAlumnos"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:ems="10"
-        android:hint="@string/dni"
-        android:inputType="textPersonName"
-        android:textColor="@color/azul"
-        android:textColorHint="@color/azul" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/etNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:ems="10"
-        android:hint="@string/etnombre"
-        android:inputType="textPersonName"
-        android:textColor="@color/linea_escribir"
-        android:textColorHint="@color/linea_escribir" />
-
-    <EditText
-        android:id="@+id/etApellidos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:ems="10"
-        android:hint="@string/etapellidos"
-        android:inputType="textPersonName"
-        android:textColor="@color/linea_escribir"
-        android:textColorHint="@color/linea_escribir" />
-
-    <EditText
-        android:id="@+id/etCorreoR"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/linea_escribir"
-        android:textColorHint="@color/linea_escribir" />
-
-    <EditText
-        android:id="@+id/etPasswordR"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:ems="10"
-        android:hint="@string/etpass"
-        android:inputType="textPassword"
-        android:textColor="@color/linea_escribir"
-        android:textColorHint="@color/linea_escribir" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="vertical">
-
-        <Spinner
-            android:id="@+id/spinnerCursos"
-            style="@style/Widget.AppCompat.Spinner"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            tools:layout_conversion_absoluteHeight="24dp"
-            tools:layout_conversion_absoluteWidth="114dp"
-            tools:layout_editor_absoluteX="40dp"
-            tools:layout_editor_absoluteY="360dp" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btnRegistrarse"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:gravity="center_vertical"
-            android:onClick="Registrarse"
-            android:text="@string/registrarse"
-            android:textColor="@color/white"
-            android:textColorHighlight="@color/linea_escribir"
-            app:backgroundTint="@color/verde"
-            tools:layout_conversion_absoluteHeight="48dp"
-            tools:layout_conversion_absoluteWidth="126dp"
-            tools:layout_editor_absoluteX="142dp"
-            tools:layout_editor_absoluteY="520dp" />
-    </LinearLayout>
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/etDNIAlumnos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
+                android:ems="10"
+                android:hint="@string/dni"
+                android:inputType="textPersonName"
+                android:textColor="@color/azul"
+                android:textColorHint="@color/azul" />
+
+            <EditText
+                android:id="@+id/etNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
+                android:ems="10"
+                android:hint="@string/etnombre"
+                android:inputType="textPersonName"
+                android:textColor="@color/linea_escribir"
+                android:textColorHint="@color/linea_escribir" />
+
+            <EditText
+                android:id="@+id/etApellidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
+                android:ems="10"
+                android:hint="@string/etapellidos"
+                android:inputType="textPersonName"
+                android:textColor="@color/linea_escribir"
+                android:textColorHint="@color/linea_escribir" />
+
+            <EditText
+                android:id="@+id/etCorreoR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/linea_escribir"
+                android:textColorHint="@color/linea_escribir" />
+
+            <EditText
+                android:id="@+id/etPasswordR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
+                android:ems="10"
+                android:hint="@string/etpass"
+                android:inputType="textPassword"
+                android:textColor="@color/linea_escribir"
+                android:textColorHint="@color/linea_escribir" />
+
+            <RelativeLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp">
+
+                <Spinner
+                    android:id="@+id/spinnerCursos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <RadioGroup
+                    android:id="@+id/radio"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/spinnerCursos"
+                    android:layout_marginTop="-24dp"
+                    android:baselineAligned="false"
+                    android:hapticFeedbackEnabled="true"
+                    android:visibility="invisible">
+
+                    <CheckBox
+                        android:id="@+id/checkBox6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CheckBox" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CheckBox" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CheckBox" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CheckBox" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CheckBox" />
+
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/btnRegistrarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/radio"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:onClick="Registrarse"
+                    android:text="@string/registrarse"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="@color/linea_escribir" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

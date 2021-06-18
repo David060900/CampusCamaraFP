@@ -47,7 +47,7 @@ public class RegistrarseProfesores extends AppCompatActivity {
 
         //adaptador para el spinner de cursos
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, listaCursos);
+                R.layout.spinner_cursos, listaCursos);
         spinner1.setAdapter(adaptador);
     }
     //metodo que consulta los cursos para establecerlos en el spinner
