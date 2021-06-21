@@ -11,12 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CampusCamaraFP">
-        <activity android:name=".RegistrarseAlumnos"></activity>
+        <activity android:name=".RegistrarseAlumnos"
+            android:label="Alumnos"></activity>
         <activity android:name=".BancoTiempo"
             android:label="Banco de Tiempo"></activity>
         <activity android:name=".PerfilAlumno"
             android:label="Perfil"></activity>
-        <activity android:name=".RegistrarseProfesores"></activity>
+        <activity android:name=".RegistrarseProfesores"
+            android:label="Profesores"></activity>
         <activity android:name=".Repaso"
             android:label="Repaso"></activity>
         <activity android:name=".PasarLista"

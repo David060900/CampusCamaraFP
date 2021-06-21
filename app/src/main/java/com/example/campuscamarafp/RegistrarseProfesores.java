@@ -88,28 +88,21 @@ public class RegistrarseProfesores extends AppCompatActivity {
         String correo = etCorreo.getText().toString();
         String password = etPassword.getText().toString();
 
-        ContentValues values = new ContentValues();//valores para alumnos
-        ContentValues values1 = new ContentValues();//valores para imparten
+        int [] valoresModulo = new int[6];
+
         //comprobamos que ninguno de los campos estan vacios
         if(!dni.isEmpty() && !nombre.isEmpty() && !apellidos.isEmpty() && !correo.isEmpty() && !password.isEmpty()){
             //tabla alumnos
-            values.put("dni_profesores", dni);
-            values.put("nombre", nombre);
-            values.put("apellidos", apellidos);
-            values.put("correo_profesores", correo);
-            values.put("password", password);
+            db.execSQL("insert into profesores (dni_profesores, nombre, apellidos, correo_profesores, password) " +
+                    "values ('" + dni +"', '" + nombre + "', '" + apellidos + "', " +
+                    "'" + correo + "', '" + password + "');");
             //tabla imparten
-            values1.put("id_curso", spinner1.getSelectedItemId() + 1);
-            values1.put("dni_profesores", dni);
-            values1.put("id_modulo", 1);
-            values1.put("id_modulo", 2);
-
+            db.execSQL("insert into imparten (dni_profesores, id_modulo, id_curso) " +
+                    "values ('" + dni +"', " + 1 + "," + spinner1.getSelectedItemId()  + 1 + ");");
             Toast.makeText(this,"Profesor '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this,"Introduce todos los campos", Toast.LENGTH_SHORT).show();
         }
-        db.insert("profesores", null, values);
-        db.insert("imparten", null, values1);
         db.close();
         etDni.setText("");
         etCorreo.setText("");
@@ -117,5 +110,4 @@ public class RegistrarseProfesores extends AppCompatActivity {
         etNombre.setText("");
         etPassword.setText("");
     }
-
 }

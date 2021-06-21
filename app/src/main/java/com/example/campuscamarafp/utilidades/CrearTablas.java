@@ -36,7 +36,7 @@ public class CrearTablas {
             "foreign key (id_curso) references curso(id_curso));";
     //tabla imparten
     public static final String CREAR_TABLA_IMPARTEN = "create table if not exists imparten(" +
-            "dni_profesores text primary key, id_modulo integer not null, " +
+            "dni_profesores text not null, id_modulo integer not null, " +
             "id_curso integer not null, " +
             "foreign key (id_curso) references curso(id_curso), " +
             "foreign key (id_modulo) references modulo(id_modulo), " +
