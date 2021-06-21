@@ -102,6 +102,7 @@ public class RegistrarseProfesores extends AppCompatActivity {
             values1.put("id_curso", spinner1.getSelectedItemId() + 1);
             values1.put("dni_profesores", dni);
             values1.put("id_modulo", 1);
+            values1.put("id_modulo", 2);
 
             Toast.makeText(this,"Profesor '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
         }else{

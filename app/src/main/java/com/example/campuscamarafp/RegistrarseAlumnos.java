@@ -59,7 +59,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
             if(parent.getItemAtPosition(position).toString().equals("Primero ---- DAM")){
                 rg.setVisibility(View.VISIBLE);
             }else{
-                rg.setVisibility(View.INVISIBLE);
+                rg.setVisibility(View.GONE);
             }
 
         }
