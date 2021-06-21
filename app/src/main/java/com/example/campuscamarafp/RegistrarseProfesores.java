@@ -96,15 +96,9 @@ public class RegistrarseProfesores extends AppCompatActivity {
             db.execSQL("insert into profesores (dni_profesores, nombre, apellidos, correo_profesores, password) " +
                     "values ('" + dni +"', '" + nombre + "', '" + apellidos + "', " +
                     "'" + correo + "', '" + password + "');");
-
-            for(int i = 1;i<=valoresModulo.length;i++){
-                //tabla imparten
-                db.execSQL("begin transaction;" +
-                        "insert into imparten (dni_profesores, id_modulo, id_curso) " +
-                        "values ('" + dni +"', " + valoresModulo[i++] + "," + spinner1.getSelectedItemId()  + 1 + ");" +
-                        "commit;");
-            }
-
+            //tabla imparten
+            db.execSQL("insert into imparten (dni_profesores, id_modulo, id_curso) " +
+                    "values ('" + dni +"', " + 1 + "," + spinner1.getSelectedItemId()  + 1 + ");");
             Toast.makeText(this,"Profesor '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this,"Introduce todos los campos", Toast.LENGTH_SHORT).show();
