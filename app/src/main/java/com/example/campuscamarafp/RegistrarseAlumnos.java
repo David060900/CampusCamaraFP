@@ -5,13 +5,18 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +30,10 @@ public class RegistrarseAlumnos extends AppCompatActivity {
 
     private EditText etNombre, etApellido, etCorreo, etPassword, etDNI;
     private Spinner spinner1;
+    private CheckBox cb1,cb2,cb3,cb4;//PRIMERO DAM
+    private CheckBox cb5,cb6,cb7,cb8;//PRIMERO MYP
+    private CheckBox cb9,cb10,cb11;//PRIMERO CIN
+    private Button btn;
     ArrayList<String> listaCursos;
     ArrayList<CursoSerial> cursoSerialLista;
 
@@ -34,12 +43,14 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         setContentView(R.layout.activity_registro_alumnos);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        btn = findViewById(R.id.btnRegistrarse);
         etDNI = findViewById(R.id.etDNIAlumnos);
         etNombre = findViewById(R.id.etNombre);
         etApellido = findViewById(R.id.etApellidos);
         etCorreo = findViewById(R.id.etCorreoR);
         etPassword = findViewById(R.id.etPasswordR);
         spinner1 = findViewById(R.id.spinnerCursos);
+        setCheckBox();//relaciona las checkbox declaradas
 
         consultarCursos();
 
@@ -50,25 +61,6 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         spinner1.setOnItemSelectedListener(new spinnerSeleccionar());
     }
 
-    public class spinnerSeleccionar implements AdapterView.OnItemSelectedListener{
-
-        RadioGroup rg = findViewById(R.id.radio);
-
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            if(parent.getItemAtPosition(position).toString().equals("Primero ---- DAM")){
-                rg.setVisibility(View.VISIBLE);
-            }else{
-                rg.setVisibility(View.GONE);
-            }
-
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
-    }
     //metodo que consulta los cursos para establecerlos en el spinner
     private void consultarCursos() {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
@@ -97,12 +89,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         }
     }
 
-    //llamamos al metodo que registra los alumnos
-    public void Registrarse (View view){
-        registrarUsuarios();
-    }
-
-    private void registrarUsuarios() {
+    public void registrarAlumnos(View view) {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();
 
@@ -112,33 +99,145 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         String correo = etCorreo.getText().toString();
         String password = etPassword.getText().toString();
 
-        ContentValues values = new ContentValues();
-        ContentValues values1 = new ContentValues();
         //comprobamos que ninguno de los campos estan vacios
         if(!dni.isEmpty() && !nombre.isEmpty() && !apellidos.isEmpty() && !correo.isEmpty() && !password.isEmpty()){
             //tabla alumnos
-            values.put("dni_alumnos", dni);
-            values.put("nombre", nombre);
-            values.put("apellidos", apellidos);
-            values.put("correo_alumnos", correo);
-            values.put("password", password);
-            //tabla estudian
-            values1.put("id_curso", spinner1.getSelectedItemId() + 1);
-            values1.put("dni_alumnos", dni);
-            values1.put("id_modulo", 1);
+            db.execSQL("insert into alumnos (dni_alumnos, nombre, apellidos, correo_alumnos, password) " +
+                    "values ('" + dni +"', '" + nombre + "', '" + apellidos + "', " +
+                    "'" + correo + "', '" + password + "');");
+
+            insertEstudian(view, dni);
 
             Toast.makeText(this,"Alumno '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this,"Introduce todos los campos", Toast.LENGTH_SHORT).show();
         }
-        db.insert("alumnos", null, values);
-        db.insert("estudian", null, values1);
-        db.close();
         etDNI.setText("");
         etCorreo.setText("");
         etApellido.setText("");
         etNombre.setText("");
         etPassword.setText("");
+    }
+
+    public void insertEstudian(View view, String dni){
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        SQLiteDatabase db = conexion.getWritableDatabase();
+        if(view.getId() == R.id.btnRegistrarse){
+            if(cb1.isChecked() == true){
+                //tabla estudian
+                db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
+                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 1 + ", '" + dni + "');");
+            }
+            if (cb2.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
+                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 3 + ", '" + dni + "');");
+            }
+            if (cb3.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
+                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 4 + ", '" + dni + "');");
+            }
+            if(cb4.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
+                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 5 + ", '" + dni + "');");
+            }
+            if(cb5.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
+                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 1 + ", '" + dni + "');");
+            }
+            if(cb6.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
+                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 3 + ", '" + dni + "');");
+            }
+            if(cb7.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
+                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 2 + ", '" + dni + "');");
+            }
+            if(cb8.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
+                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 6 + ", '" + dni + "');");
+            }
+            if(cb9.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
+                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 1 + ", '" + dni + "');");
+            }
+            if(cb10.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
+                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 3 + ", '" + dni + "');");
+            }
+            if(cb11.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
+                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 2 + ", '" + dni + "');");
+            }
+        }
+    }
+
+    public void setCheckBox(){
+        cb1 = findViewById(R.id.cbFOL);
+        cb2 = findViewById(R.id.cbIngles);
+        cb3 = findViewById(R.id.cbBases);
+        cb4 = findViewById(R.id.cbProgram);
+        cb5 = findViewById(R.id.cbFOLMYP1);
+        cb6 = findViewById(R.id.cbInglesMYP1);
+        cb7 = findViewById(R.id.cbGEYFEMYP);
+        cb8 = findViewById(R.id.cbPLMKMYP);
+        cb9 = findViewById(R.id.cbFOLCIN1);
+        cb10 = findViewById(R.id.cbInglesCIN1);
+        cb11 = findViewById(R.id.cbGEYFECIN);
+    }
+
+    public class spinnerSeleccionar implements AdapterView.OnItemSelectedListener{
+
+        RadioGroup rgDAM1 = findViewById(R.id.radioPrimeroDAM);
+        RadioGroup rgMYP1 = findViewById(R.id.radioPrimeroMYP);
+        RadioGroup rgCIN1 = findViewById(R.id.radioPrimeroCIN);
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            if(parent.getItemAtPosition(position).toString().equals("Primero ---- DAM")){
+                rgDAM1.setVisibility(View.VISIBLE);
+                RelativeLayout.LayoutParams params= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroDAM );
+                btn.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
+                params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                btn.setLayoutParams(params);
+            }else{
+                rgDAM1.setVisibility(View.GONE);
+            }
+            if(parent.getItemAtPosition(position).toString().equals("Primero ---- Marketing y Publicidad")){
+                rgMYP1.setVisibility(View.VISIBLE);
+                RelativeLayout.LayoutParams params= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroMYP);
+                params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                btn.setLayoutParams(params);
+            }else{
+                rgMYP1.setVisibility(View.GONE);
+            }
+            if(parent.getItemAtPosition(position).toString().equals("Primero ---- Comercio Internacional")){
+                rgCIN1.setVisibility(View.VISIBLE);
+                RelativeLayout.LayoutParams params= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroCIN);
+                params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                btn.setLayoutParams(params);
+            }else{
+                rgCIN1.setVisibility(View.GONE);
+            }
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
     }
 
 }

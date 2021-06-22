@@ -29,7 +29,7 @@ public class CrearTablas {
             "foreign key (id_modulo) references modulo(id_modulo));";
     //tabla estudian
     public static final String CREAR_TABLA_ESTUDIAN = "create table if not exists estudian(" +
-            "dni_alumnos text primary key, id_modulo integer not null, " +
+            "dni_alumnos text not null, id_modulo integer not null, " +
             "id_curso integer not null, " +
             "foreign key (dni_alumnos) references alumnos(dni_alumnos), " +
             "foreign key (id_modulo) references modulo(id_modulo), " +
