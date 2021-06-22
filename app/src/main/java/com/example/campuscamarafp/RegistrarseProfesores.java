@@ -5,9 +5,16 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,6 +29,10 @@ public class RegistrarseProfesores extends AppCompatActivity {
 
     private EditText etNombre, etApellido, etCorreo, etPassword, etDni;
     private Spinner spinner1;
+    private CheckBox cb1,cb2,cb3,cb4;//PRIMERO DAM
+    private CheckBox cb5,cb6,cb7,cb8;//PRIMERO MYP
+    private CheckBox cb9,cb10,cb11;//PRIMERO CIN
+    private Button btn;
     ArrayList<String> listaCursos;
     ArrayList<CursoSerial> cursoSerialLista;
 
@@ -37,11 +48,8 @@ public class RegistrarseProfesores extends AppCompatActivity {
         etCorreo = findViewById(R.id.etCorreoRP);
         etPassword = findViewById(R.id.etPasswordRP);
         spinner1 = findViewById(R.id.spinnerCursos2);
-
-        //con un adapter adaptamos a nuestro gusto nuestro spinner
-        String cursos [] = {"DAM", "Marketing y Publicidad", "Comercio Internacional", "Transporte y Logística"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_cursos, cursos);
-        spinner1.setAdapter(adapter);
+        btn = findViewById(R.id.btnRegistrarseP);
+        setCheckBox();//relaciona las checkbox declaradas
 
         consultarCursos();
 
@@ -49,6 +57,7 @@ public class RegistrarseProfesores extends AppCompatActivity {
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
                 R.layout.spinner_cursos, listaCursos);
         spinner1.setAdapter(adaptador);
+        spinner1.setOnItemSelectedListener(new spinnerSeleccionar());
     }
     //metodo que consulta los cursos para establecerlos en el spinner
     private void consultarCursos() {
@@ -88,17 +97,15 @@ public class RegistrarseProfesores extends AppCompatActivity {
         String correo = etCorreo.getText().toString();
         String password = etPassword.getText().toString();
 
-        int [] valoresModulo = {1,2,3,4,5,6};
-
         //comprobamos que ninguno de los campos estan vacios
         if(!dni.isEmpty() && !nombre.isEmpty() && !apellidos.isEmpty() && !correo.isEmpty() && !password.isEmpty()){
             //tabla alumnos
             db.execSQL("insert into profesores (dni_profesores, nombre, apellidos, correo_profesores, password) " +
                     "values ('" + dni +"', '" + nombre + "', '" + apellidos + "', " +
                     "'" + correo + "', '" + password + "');");
-            //tabla imparten
-            db.execSQL("insert into imparten (dni_profesores, id_modulo, id_curso) " +
-                    "values ('" + dni +"', " + 1 + "," + spinner1.getSelectedItemId()  + 1 + ");");
+
+            insertImparten(view, dni);
+
             Toast.makeText(this,"Profesor '" + nombre + "' registrado", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this,"Introduce todos los campos", Toast.LENGTH_SHORT).show();
@@ -109,5 +116,127 @@ public class RegistrarseProfesores extends AppCompatActivity {
         etApellido.setText("");
         etNombre.setText("");
         etPassword.setText("");
+    }
+
+    public void insertImparten(View view, String dni){
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        SQLiteDatabase db = conexion.getWritableDatabase();
+        long spinner = spinner1.getSelectedItemId() + 1;
+        if(view.getId() == R.id.btnRegistrarse){
+            if(cb1.isChecked() == true){
+                //tabla estudian
+                db.execSQL("insert into imparten (id_curso, id_modulo, dni_profesores) " +
+                        "values (" + spinner + ", " + 1 + ", '" + dni + "');");
+            }
+            if (cb2.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into imparten (id_curso, id_modulo, dni_profesores) " +
+                        "values (" + spinner + ", " + 3 + ", '" + dni + "');");
+            }
+            if (cb3.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into imparten (id_curso, id_modulo, dni_profesores) " +
+                        "values (" + spinner + ", " + 4 + ", '" + dni + "');");
+            }
+            if(cb4.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into imparten (id_curso, id_modulo, dni_profesores) " +
+                        "values (" + spinner + ", " + 5 + ", '" + dni + "');");
+            }
+            if(cb5.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into imparten (id_curso, id_modulo, dni_profesores) " +
+                        "values (" + spinner + ", " + 1 + ", '" + dni + "');");
+            }
+            if(cb6.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into imparten (id_curso, id_modulo, dni_profesores) " +
+                        "values (" + spinner + ", " + 3 + ", '" + dni + "');");
+            }
+            if(cb7.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into imparten (id_curso, id_modulo, dni_profesores) " +
+                        "values (" + spinner + ", " + 2 + ", '" + dni + "');");
+            }
+            if(cb8.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into imparten (id_curso, id_modulo, dni_profesores) " +
+                        "values (" + spinner + ", " + 6 + ", '" + dni + "');");
+            }
+            if(cb9.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into imparten (id_curso, id_modulo, dni_profesores) " +
+                        "values (" + spinner + ", " + 1 + ", '" + dni + "');");
+            }
+            if(cb10.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into imparten (id_curso, id_modulo, dni_profesores) " +
+                        "values (" + spinner + ", " + 3 + ", '" + dni + "');");
+            }
+            if(cb11.isChecked()){
+                //tabla estudian
+                db.execSQL("insert into imparten (id_curso, id_modulo, dni_profesores) " +
+                        "values (" + spinner + ", " + 2 + ", '" + dni + "');");
+            }
+        }
+    }
+
+    public void setCheckBox(){
+        cb1 = findViewById(R.id.cbFOL);
+        cb2 = findViewById(R.id.cbIngles);
+        cb3 = findViewById(R.id.cbBases);
+        cb4 = findViewById(R.id.cbProgram);
+        cb5 = findViewById(R.id.cbFOLMYP1);
+        cb6 = findViewById(R.id.cbInglesMYP1);
+        cb7 = findViewById(R.id.cbGEYFEMYP);
+        cb8 = findViewById(R.id.cbPLMKMYP);
+        cb9 = findViewById(R.id.cbFOLCIN1);
+        cb10 = findViewById(R.id.cbInglesCIN1);
+        cb11 = findViewById(R.id.cbGEYFECIN);
+    }
+
+    public class spinnerSeleccionar implements AdapterView.OnItemSelectedListener{
+
+        RadioGroup rgDAM1 = findViewById(R.id.radioPrimeroDAM);
+        RadioGroup rgMYP1 = findViewById(R.id.radioPrimeroMYP);
+        RadioGroup rgCIN1 = findViewById(R.id.radioPrimeroCIN);
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            if(parent.getItemAtPosition(position).toString().equals("Primero ---- DAM")){
+                rgDAM1.setVisibility(View.VISIBLE);
+                RelativeLayout.LayoutParams params= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroDAM );
+                btn.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
+                params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                btn.setLayoutParams(params);
+            }else{
+                rgDAM1.setVisibility(View.GONE);
+            }
+            if(parent.getItemAtPosition(position).toString().equals("Primero ---- Marketing y Publicidad")){
+                rgMYP1.setVisibility(View.VISIBLE);
+                RelativeLayout.LayoutParams params= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroMYP);
+                params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                btn.setLayoutParams(params);
+            }else{
+                rgMYP1.setVisibility(View.GONE);
+            }
+            if(parent.getItemAtPosition(position).toString().equals("Primero ---- Comercio Internacional")){
+                rgCIN1.setVisibility(View.VISIBLE);
+                RelativeLayout.LayoutParams params= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroCIN);
+                params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                btn.setLayoutParams(params);
+            }else{
+                rgCIN1.setVisibility(View.GONE);
+            }
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
     }
 }

@@ -90,40 +90,179 @@
                 android:textColor="@color/linea_escribir"
                 android:textColorHint="@color/linea_escribir" />
 
-            <Spinner
-                android:id="@+id/spinnerCursos2"
+            <RelativeLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="40dp"
-                tools:layout_conversion_absoluteHeight="24dp"
-                tools:layout_conversion_absoluteWidth="114dp"
-                tools:layout_editor_absoluteX="40dp"
-                tools:layout_editor_absoluteY="360dp" />
+                android:layout_marginTop="40dp">
+                <Spinner
+                    android:id="@+id/spinnerCursos2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="40dp"
+                    tools:layout_conversion_absoluteHeight="24dp"
+                    tools:layout_conversion_absoluteWidth="114dp"
+                    tools:layout_editor_absoluteX="40dp"
+                    tools:layout_editor_absoluteY="360dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                <RadioGroup
+                    android:id="@+id/radioPrimeroDAM"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/spinnerCursos2"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:baselineAligned="false"
+                    android:hapticFeedbackEnabled="true">
+
+                    <CheckBox
+                        android:id="@+id/cbFOL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:foregroundGravity="center"
+                        android:text="FOL" />
+
+                    <CheckBox
+                        android:id="@+id/cbIngles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:foregroundGravity="center"
+                        android:text="Ingles" />
+
+                    <CheckBox
+                        android:id="@+id/cbBases"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:foregroundGravity="center"
+                        android:text="BBDD" />
+
+                    <CheckBox
+                        android:id="@+id/cbProgram"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:foregroundGravity="center"
+                        android:text="Programación" />
+
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/radioPrimeroMYP"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/spinnerCursos2"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:baselineAligned="false"
+                    android:hapticFeedbackEnabled="true" >
+
+                    <CheckBox
+                        android:id="@+id/cbFOLMYP1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:foregroundGravity="center"
+                        android:text="FOL" />
+
+                    <CheckBox
+                        android:id="@+id/cbInglesMYP1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:foregroundGravity="center"
+                        android:text="Ingles" />
+                    <CheckBox
+                        android:id="@+id/cbGEYFEMYP"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:foregroundGravity="center"
+                        android:text="GEYFE" />
+
+                    <CheckBox
+                        android:id="@+id/cbPLMKMYP"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:foregroundGravity="center"
+                        android:text="PLMK" />
+                </RadioGroup>
+                <RadioGroup
+                    android:id="@+id/radioPrimeroCIN"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/spinnerCursos2"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:baselineAligned="false"
+                    android:hapticFeedbackEnabled="true" >
+
+                    <CheckBox
+                        android:id="@+id/cbFOLCIN1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:foregroundGravity="center"
+                        android:text="FOL" />
+
+                    <CheckBox
+                        android:id="@+id/cbInglesCIN1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:foregroundGravity="center"
+                        android:text="Ingles" />
+                    <CheckBox
+                        android:id="@+id/cbGEYFECIN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:foregroundGravity="center"
+                        android:text="GEYFE" />
+
+                </RadioGroup>
 
                 <Button
                     android:id="@+id/btnRegistrarseP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="40dp"
-                    android:gravity="center_vertical"
+                    android:layout_below="@+id/radioPrimeroDAM"
+                    android:layout_marginTop="30dp"
                     android:onClick="registrarProfesores"
                     android:text="@string/registrarse"
                     android:textColor="@color/white"
-                    android:textColorHighlight="@color/linea_escribir"
-                    app:backgroundTint="@color/verde"
-                    tools:layout_conversion_absoluteHeight="48dp"
-                    tools:layout_conversion_absoluteWidth="126dp"
-                    tools:layout_editor_absoluteX="142dp"
-                    tools:layout_editor_absoluteY="520dp" />
-            </LinearLayout>
+                    android:textColorHighlight="@color/linea_escribir" />
+
+            </RelativeLayout>
+
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>

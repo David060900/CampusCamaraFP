@@ -122,61 +122,62 @@ public class RegistrarseAlumnos extends AppCompatActivity {
     public void insertEstudian(View view, String dni){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();
+        long spinner = spinner1.getSelectedItemId() + 1;
         if(view.getId() == R.id.btnRegistrarse){
             if(cb1.isChecked() == true){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 1 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 1 + ", '" + dni + "');");
             }
             if (cb2.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 3 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 3 + ", '" + dni + "');");
             }
             if (cb3.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 4 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 4 + ", '" + dni + "');");
             }
             if(cb4.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 5 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 5 + ", '" + dni + "');");
             }
             if(cb5.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 1 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 1 + ", '" + dni + "');");
             }
             if(cb6.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 3 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 3 + ", '" + dni + "');");
             }
             if(cb7.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 2 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 2 + ", '" + dni + "');");
             }
             if(cb8.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 6 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 6 + ", '" + dni + "');");
             }
             if(cb9.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 1 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 1 + ", '" + dni + "');");
             }
             if(cb10.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 3 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 3 + ", '" + dni + "');");
             }
             if(cb11.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner1.getSelectedItemId() + 1 + ", " + 2 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 2 + ", '" + dni + "');");
             }
         }
     }
