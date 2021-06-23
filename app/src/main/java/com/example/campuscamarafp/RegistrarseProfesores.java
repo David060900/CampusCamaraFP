@@ -1,6 +1,5 @@
 package com.example.campuscamarafp;
 
-import android.content.ContentValues;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -57,7 +56,7 @@ public class RegistrarseProfesores extends AppCompatActivity {
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
                 R.layout.spinner_cursos, listaCursos);
         spinner1.setAdapter(adaptador);
-        spinner1.setOnItemSelectedListener(new spinnerSeleccionar());
+        spinner1.setOnItemSelectedListener(new spinnerSeleccionarProfesores());
     }
     //metodo que consulta los cursos para establecerlos en el spinner
     private void consultarCursos() {
@@ -110,7 +109,6 @@ public class RegistrarseProfesores extends AppCompatActivity {
         }else{
             Toast.makeText(this,"Introduce todos los campos", Toast.LENGTH_SHORT).show();
         }
-        db.close();
         etDni.setText("");
         etCorreo.setText("");
         etApellido.setText("");
@@ -122,7 +120,7 @@ public class RegistrarseProfesores extends AppCompatActivity {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();
         long spinner = spinner1.getSelectedItemId() + 1;
-        if(view.getId() == R.id.btnRegistrarse){
+        if(view.getId() == R.id.btnRegistrarseP){
             if(cb1.isChecked() == true){
                 //tabla estudian
                 db.execSQL("insert into imparten (id_curso, id_modulo, dni_profesores) " +
@@ -182,31 +180,31 @@ public class RegistrarseProfesores extends AppCompatActivity {
     }
 
     public void setCheckBox(){
-        cb1 = findViewById(R.id.cbFOL);
-        cb2 = findViewById(R.id.cbIngles);
-        cb3 = findViewById(R.id.cbBases);
-        cb4 = findViewById(R.id.cbProgram);
-        cb5 = findViewById(R.id.cbFOLMYP1);
-        cb6 = findViewById(R.id.cbInglesMYP1);
-        cb7 = findViewById(R.id.cbGEYFEMYP);
-        cb8 = findViewById(R.id.cbPLMKMYP);
-        cb9 = findViewById(R.id.cbFOLCIN1);
-        cb10 = findViewById(R.id.cbInglesCIN1);
-        cb11 = findViewById(R.id.cbGEYFECIN);
+        cb1 = findViewById(R.id.cbFOLProf);
+        cb2 = findViewById(R.id.cbInglesProf);
+        cb3 = findViewById(R.id.cbBasesProf);
+        cb4 = findViewById(R.id.cbProgramProf);
+        cb5 = findViewById(R.id.cbFOLMYP1Prof);
+        cb6 = findViewById(R.id.cbInglesMYP1Prof);
+        cb7 = findViewById(R.id.cbGEYFEMYPProf);
+        cb8 = findViewById(R.id.cbPLMKMYPProf);
+        cb9 = findViewById(R.id.cbFOLCIN1Prof);
+        cb10 = findViewById(R.id.cbInglesCIN1Prof);
+        cb11 = findViewById(R.id.cbGEYFECINProf);
     }
 
-    public class spinnerSeleccionar implements AdapterView.OnItemSelectedListener{
+    public class spinnerSeleccionarProfesores implements AdapterView.OnItemSelectedListener{
 
-        RadioGroup rgDAM1 = findViewById(R.id.radioPrimeroDAM);
-        RadioGroup rgMYP1 = findViewById(R.id.radioPrimeroMYP);
-        RadioGroup rgCIN1 = findViewById(R.id.radioPrimeroCIN);
+        RadioGroup rgDAM1 = findViewById(R.id.radioPrimeroDAMProf);
+        RadioGroup rgMYP1 = findViewById(R.id.radioPrimeroMYPProf);
+        RadioGroup rgCIN1 = findViewById(R.id.radioPrimeroCINProf);
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             if(parent.getItemAtPosition(position).toString().equals("Primero ---- DAM")){
                 rgDAM1.setVisibility(View.VISIBLE);
                 RelativeLayout.LayoutParams params= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroDAM );
+                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroDAMProf);
                 btn.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
                 params.addRule(RelativeLayout.CENTER_HORIZONTAL);
                 btn.setLayoutParams(params);
@@ -216,7 +214,7 @@ public class RegistrarseProfesores extends AppCompatActivity {
             if(parent.getItemAtPosition(position).toString().equals("Primero ---- Marketing y Publicidad")){
                 rgMYP1.setVisibility(View.VISIBLE);
                 RelativeLayout.LayoutParams params= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroMYP);
+                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroMYPProf);
                 params.addRule(RelativeLayout.CENTER_HORIZONTAL);
                 btn.setLayoutParams(params);
             }else{
@@ -225,7 +223,7 @@ public class RegistrarseProfesores extends AppCompatActivity {
             if(parent.getItemAtPosition(position).toString().equals("Primero ---- Comercio Internacional")){
                 rgCIN1.setVisibility(View.VISIBLE);
                 RelativeLayout.LayoutParams params= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroCIN);
+                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroCINProf);
                 params.addRule(RelativeLayout.CENTER_HORIZONTAL);
                 btn.setLayoutParams(params);
             }else{

@@ -1,11 +1,9 @@
 package com.example.campuscamarafp;
 
-import android.content.ContentValues;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +56,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
                 R.layout.spinner_cursos, listaCursos);
         spinner1.setAdapter(adaptador);
-        spinner1.setOnItemSelectedListener(new spinnerSeleccionar());
+        spinner1.setOnItemSelectedListener(new spinnerSeleccionarAlumnos());
     }
 
     //metodo que consulta los cursos para establecerlos en el spinner
@@ -183,31 +181,31 @@ public class RegistrarseAlumnos extends AppCompatActivity {
     }
 
     public void setCheckBox(){
-        cb1 = findViewById(R.id.cbFOL);
-        cb2 = findViewById(R.id.cbIngles);
-        cb3 = findViewById(R.id.cbBases);
-        cb4 = findViewById(R.id.cbProgram);
-        cb5 = findViewById(R.id.cbFOLMYP1);
-        cb6 = findViewById(R.id.cbInglesMYP1);
-        cb7 = findViewById(R.id.cbGEYFEMYP);
-        cb8 = findViewById(R.id.cbPLMKMYP);
-        cb9 = findViewById(R.id.cbFOLCIN1);
-        cb10 = findViewById(R.id.cbInglesCIN1);
-        cb11 = findViewById(R.id.cbGEYFECIN);
+        cb1 = findViewById(R.id.cbFOLAlum);
+        cb2 = findViewById(R.id.cbInglesAlum);
+        cb3 = findViewById(R.id.cbBasesAlum);
+        cb4 = findViewById(R.id.cbProgramAlum);
+        cb5 = findViewById(R.id.cbFOLMYP1Alum);
+        cb6 = findViewById(R.id.cbInglesMYP1Alum);
+        cb7 = findViewById(R.id.cbGEYFEMYPAlum);
+        cb8 = findViewById(R.id.cbPLMKMYPAlum);
+        cb9 = findViewById(R.id.cbFOLCIN1Alum);
+        cb10 = findViewById(R.id.cbInglesCIN1Alum);
+        cb11 = findViewById(R.id.cbGEYFECINAlum);
     }
 
-    public class spinnerSeleccionar implements AdapterView.OnItemSelectedListener{
+    public class spinnerSeleccionarAlumnos implements AdapterView.OnItemSelectedListener{
 
-        RadioGroup rgDAM1 = findViewById(R.id.radioPrimeroDAM);
-        RadioGroup rgMYP1 = findViewById(R.id.radioPrimeroMYP);
-        RadioGroup rgCIN1 = findViewById(R.id.radioPrimeroCIN);
+        RadioGroup rgDAM1 = findViewById(R.id.radioPrimeroDAMAlum);
+        RadioGroup rgMYP1 = findViewById(R.id.radioPrimeroMYPAlum);
+        RadioGroup rgCIN1 = findViewById(R.id.radioPrimeroCINAlum);
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             if(parent.getItemAtPosition(position).toString().equals("Primero ---- DAM")){
                 rgDAM1.setVisibility(View.VISIBLE);
                 RelativeLayout.LayoutParams params= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroDAM );
+                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroDAMAlum);
                 btn.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
                 params.addRule(RelativeLayout.CENTER_HORIZONTAL);
                 btn.setLayoutParams(params);
@@ -217,7 +215,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
             if(parent.getItemAtPosition(position).toString().equals("Primero ---- Marketing y Publicidad")){
                 rgMYP1.setVisibility(View.VISIBLE);
                 RelativeLayout.LayoutParams params= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroMYP);
+                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroMYPAlum);
                 params.addRule(RelativeLayout.CENTER_HORIZONTAL);
                 btn.setLayoutParams(params);
             }else{
@@ -226,7 +224,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
             if(parent.getItemAtPosition(position).toString().equals("Primero ---- Comercio Internacional")){
                 rgCIN1.setVisibility(View.VISIBLE);
                 RelativeLayout.LayoutParams params= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroCIN);
+                params.addRule(RelativeLayout.BELOW, R.id.radioPrimeroCINAlum);
                 params.addRule(RelativeLayout.CENTER_HORIZONTAL);
                 btn.setLayoutParams(params);
             }else{

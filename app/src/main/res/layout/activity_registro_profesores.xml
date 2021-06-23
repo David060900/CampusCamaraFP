@@ -107,7 +107,7 @@
                     tools:layout_editor_absoluteY="360dp" />
 
                 <RadioGroup
-                    android:id="@+id/radioPrimeroDAM"
+                    android:id="@+id/radioPrimeroDAMProf"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/spinnerCursos2"
@@ -117,7 +117,7 @@
                     android:hapticFeedbackEnabled="true">
 
                     <CheckBox
-                        android:id="@+id/cbFOL"
+                        android:id="@+id/cbFOLProf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -127,7 +127,7 @@
                         android:text="FOL" />
 
                     <CheckBox
-                        android:id="@+id/cbIngles"
+                        android:id="@+id/cbInglesProf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -137,7 +137,7 @@
                         android:text="Ingles" />
 
                     <CheckBox
-                        android:id="@+id/cbBases"
+                        android:id="@+id/cbBasesProf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -147,7 +147,7 @@
                         android:text="BBDD" />
 
                     <CheckBox
-                        android:id="@+id/cbProgram"
+                        android:id="@+id/cbProgramProf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -159,7 +159,7 @@
                 </RadioGroup>
 
                 <RadioGroup
-                    android:id="@+id/radioPrimeroMYP"
+                    android:id="@+id/radioPrimeroMYPProf"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/spinnerCursos2"
@@ -169,7 +169,7 @@
                     android:hapticFeedbackEnabled="true" >
 
                     <CheckBox
-                        android:id="@+id/cbFOLMYP1"
+                        android:id="@+id/cbFOLMYP1Prof"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -179,7 +179,7 @@
                         android:text="FOL" />
 
                     <CheckBox
-                        android:id="@+id/cbInglesMYP1"
+                        android:id="@+id/cbInglesMYP1Prof"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -188,7 +188,7 @@
                         android:foregroundGravity="center"
                         android:text="Ingles" />
                     <CheckBox
-                        android:id="@+id/cbGEYFEMYP"
+                        android:id="@+id/cbGEYFEMYPProf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -198,7 +198,7 @@
                         android:text="GEYFE" />
 
                     <CheckBox
-                        android:id="@+id/cbPLMKMYP"
+                        android:id="@+id/cbPLMKMYPProf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -208,7 +208,7 @@
                         android:text="PLMK" />
                 </RadioGroup>
                 <RadioGroup
-                    android:id="@+id/radioPrimeroCIN"
+                    android:id="@+id/radioPrimeroCINProf"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/spinnerCursos2"
@@ -218,7 +218,7 @@
                     android:hapticFeedbackEnabled="true" >
 
                     <CheckBox
-                        android:id="@+id/cbFOLCIN1"
+                        android:id="@+id/cbFOLCIN1Prof"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -228,7 +228,7 @@
                         android:text="FOL" />
 
                     <CheckBox
-                        android:id="@+id/cbInglesCIN1"
+                        android:id="@+id/cbInglesCIN1Prof"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -237,7 +237,7 @@
                         android:foregroundGravity="center"
                         android:text="Ingles" />
                     <CheckBox
-                        android:id="@+id/cbGEYFECIN"
+                        android:id="@+id/cbGEYFECINProf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -252,7 +252,7 @@
                     android:id="@+id/btnRegistrarseP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/radioPrimeroDAM"
+                    android:layout_below="@+id/radioPrimeroDAMProf"
                     android:layout_marginTop="30dp"
                     android:onClick="registrarProfesores"
                     android:text="@string/registrarse"
