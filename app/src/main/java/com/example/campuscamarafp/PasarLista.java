@@ -27,6 +27,15 @@ import java.util.ArrayList;
 
 public class PasarLista extends AppCompatActivity {
 
+
+    /*select modulo.id_modulo, nombre from modulo left join imparten
+on modulo.id_modulo = imparten.id_modulo where
+dni_profesores = 'g'
+and imparten.id_curso = '1';
+select curso.id_curso, curso.nombre, curso.num_curso from curso left join imparten
+on curso.id_curso = imparten.id_curso where
+dni_profesores = 'g'
+GROUP by curso.id_curso;*/
     private Spinner spinner1;
     private FloatingActionButton fab;
     ArrayList<AlumnoSerial> listaAlumnos;
@@ -98,11 +107,11 @@ public class PasarLista extends AppCompatActivity {
         profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
 
         //consulta el id del curso al que pertenece el profesor que ha iniciado sesion
-        Cursor curso = bd.rawQuery("select id_modulo from imparten " +
+        Cursor modulo = bd.rawQuery("select id_modulo from imparten " +
                 "where dni_profesores = '" + profesorSerialRecibe.getDni_profesores() + "';",null);
         int idmodulo = 0;
-        while(curso.moveToNext()){
-            idmodulo = curso.getInt(0);
+        while(modulo.moveToNext()){
+            idmodulo = modulo.getInt(0);
         }
         //consulta el nombre y los apellidos de los alumnos que estudian el curso que imparte el profesor
         Cursor alumnos = bd.rawQuery("select nombre, apellidos, alumnos.dni_alumnos from alumnos left join estudian on" +
