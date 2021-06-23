@@ -4,43 +4,46 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.collection.ArraySet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.campuscamarafp.adaptadores.AdaptadorPasarLista;
 import com.example.campuscamarafp.ayudas.AyudaPasarLista;
 import com.example.campuscamarafp.serializable.AlumnoSerial;
-import com.example.campuscamarafp.serializable.FaltasSerial;
+import com.example.campuscamarafp.serializable.ModuloSerial;
 import com.example.campuscamarafp.serializable.ProfesorSerial;
 import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class PasarLista extends AppCompatActivity {
 
+    private Spinner spinner1;
+    private FloatingActionButton fab;
     ArrayList<AlumnoSerial> listaAlumnos;
     RecyclerView recyclerAlumnos;
+    ArrayList<String> listaModulos;
+    ArrayList<ModuloSerial> moduloSerialLista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pasarlista);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        fab = findViewById(R.id.floatingActionButton2);
+        spinner1 = findViewById(R.id.spinnerElegirModulo);
+
+        consultarModulos();
 
         listaAlumnos = new ArrayList<>();
         llenarListaAlumnos();
@@ -51,7 +54,6 @@ public class PasarLista extends AppCompatActivity {
         ProfesorSerial profesorSerialRecibe;
         profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
 
-        FloatingActionButton fab = findViewById(R.id.floatingActionButton2);
         fab.setOnClickListener(v -> {
 
             for(AlumnoSerial alumnoSerial : adapter.checkedAlumnos){
@@ -67,6 +69,11 @@ public class PasarLista extends AppCompatActivity {
         recyclerAlumnos = findViewById(R.id.recyclerAlumnos);
         recyclerAlumnos.setLayoutManager(new LinearLayoutManager(this));
         recyclerAlumnos.setAdapter(adapter);
+
+        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
+                R.layout.spinner_cursos, listaModulos);
+        spinner1.setAdapter(adaptador);
+        //spinner1.setOnItemSelectedListener(new spinnerSeleccionarModulos());
     }
 
     private void insertarFaltas(String dni_al, String dni_prof) {
@@ -91,15 +98,15 @@ public class PasarLista extends AppCompatActivity {
         profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
 
         //consulta el id del curso al que pertenece el profesor que ha iniciado sesion
-        Cursor curso = bd.rawQuery("select id_curso from imparten " +
+        Cursor curso = bd.rawQuery("select id_modulo from imparten " +
                 "where dni_profesores = '" + profesorSerialRecibe.getDni_profesores() + "';",null);
-        int idcurso = 0;
+        int idmodulo = 0;
         while(curso.moveToNext()){
-            idcurso = curso.getInt(0);
+            idmodulo = curso.getInt(0);
         }
         //consulta el nombre y los apellidos de los alumnos que estudian el curso que imparte el profesor
         Cursor alumnos = bd.rawQuery("select nombre, apellidos, alumnos.dni_alumnos from alumnos left join estudian on" +
-                " alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_curso = '" + idcurso + "';", null);
+                " alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_modulo = '" + idmodulo + "' group by alumnos.dni_alumnos;", null);
         if(alumnos.moveToFirst()){
             do{
                 String nombre = alumnos.getString(0);
@@ -118,6 +125,7 @@ public class PasarLista extends AppCompatActivity {
         Bundle objEnviado = getIntent().getExtras();
         ProfesorSerial profesorSerialRecibe;
         profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
+
         //consulta a la base de datos todos los valores
         Cursor fila = bd.rawQuery("select * from profesores where dni_profesores " +
                         "= '" + profesorSerialRecibe.getDni_profesores() + "';"
@@ -178,5 +186,72 @@ public class PasarLista extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    //consulta los modulos para posteriormente añadirlo en el spinner
+    private void consultarModulos() {
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        SQLiteDatabase db = conexion.getWritableDatabase();
+
+        //recibe objetos de la clase profesor
+        Bundle objEnviado = getIntent().getExtras();
+        ProfesorSerial profesorSerialRecibe;
+        profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
+
+        moduloSerialLista = new ArrayList<ModuloSerial>();
+        ModuloSerial modulo = null;
+        //consulta el id del modulo y el nombre
+        Cursor cursor = db.rawQuery("select modulo.id_modulo, nombre from modulo left join imparten " +
+                "on modulo.id_modulo = imparten.id_modulo where " +
+                "dni_profesores = '" + profesorSerialRecibe.getDni_profesores() + "';", null);
+
+        while(cursor.moveToNext()){
+            modulo = new ModuloSerial();
+            modulo.setId_modulo(cursor.getInt(0));
+            modulo.setNombre(cursor.getString(1));
+
+            moduloSerialLista.add(modulo);
+        }
+        obtenerListaModulo();
+    }
+    //inserta los valores en el spinner
+    public void obtenerListaModulo() {
+        listaModulos = new ArrayList<String>();
+
+        for (int i = 0; i < moduloSerialLista.size(); i++) {
+            listaModulos.add(moduloSerialLista.get(i).getNombre());
+        }
+    }
+
+    /*public class spinnerSeleccionarModulos implements AdapterView.OnItemSelectedListener{
+
+        RadioGroup rgDAM1 = findViewById(R.id.radioPrimeroDAMAlum);
+        RadioGroup rgMYP1 = findViewById(R.id.radioPrimeroMYPAlum);
+        RadioGroup rgCIN1 = findViewById(R.id.radioPrimeroCINAlum);
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            if(parent.getItemAtPosition(position).toString().equals("Primero ---- DAM")){
+                rgDAM1.setVisibility(View.VISIBLE);
+            }else{
+                rgDAM1.setVisibility(View.GONE);
+            }
+            if(parent.getItemAtPosition(position).toString().equals("Primero ---- Marketing y Publicidad")){
+                rgMYP1.setVisibility(View.VISIBLE);
+            }else{
+                rgMYP1.setVisibility(View.GONE);
+            }
+            if(parent.getItemAtPosition(position).toString().equals("Primero ---- Comercio Internacional")){
+                rgCIN1.setVisibility(View.VISIBLE);
+            }else{
+                rgCIN1.setVisibility(View.GONE);
+            }
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    }*/
 
 }

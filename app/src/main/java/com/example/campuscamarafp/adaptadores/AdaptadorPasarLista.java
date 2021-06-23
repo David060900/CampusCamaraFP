@@ -37,17 +37,14 @@ public class AdaptadorPasarLista extends RecyclerView.Adapter<AdaptadorPasarList
     public void onBindViewHolder(ViewHolderPasarLista holder, final int position) {
         holder.tv1.setText(listaAlumnos.get(position).getNombre() + " " + listaAlumnos.get(position).getApellidos());
 
-        holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onItemClick(View view, int pos) {
-                CheckBox checkBox = (CheckBox) view;
+        holder.setItemClickListener((view, pos) -> {
+            CheckBox checkBox = (CheckBox) view;
 
-                //check if it is else if not
-                if(checkBox.isChecked()){
-                    checkedAlumnos.add(listaAlumnos.get(pos));
-                }else if(!checkBox.isChecked()){
-                    checkedAlumnos.remove(listaAlumnos.get(pos));
-                }
+            //check if it is else if not
+            if(checkBox.isChecked()){
+                checkedAlumnos.add(listaAlumnos.get(pos));
+            }else if(!checkBox.isChecked()){
+                checkedAlumnos.remove(listaAlumnos.get(pos));
             }
         });
     }
