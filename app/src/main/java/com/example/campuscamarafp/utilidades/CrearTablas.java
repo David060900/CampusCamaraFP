@@ -12,7 +12,7 @@ public class CrearTablas {
     //tabla faltas
     public static final String CREAR_TABLA_FALTAS = "create table if not exists faltas(" +
             "id_falta integer primary key autoincrement, num_falta integer, " +
-            "dni_alumnos text, dni_profesores text, dia_hora DEFAULT CURRENT_TIMESTAMP, " +
+            "dni_alumnos text, dni_profesores text, dia_hora text, " +
             "foreign key (dni_alumnos) references alumnos(dni_alumnos), " +
             "foreign key (dni_profesores) references profesores(dni_profesores));";
     //tabla modulo

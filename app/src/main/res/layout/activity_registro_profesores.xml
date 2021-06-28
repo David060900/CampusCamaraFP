@@ -95,12 +95,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp">
+
                 <Spinner
                     android:id="@+id/spinnerCursos2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="40dp"
                     tools:layout_conversion_absoluteHeight="24dp"
                     tools:layout_conversion_absoluteWidth="114dp"
                     tools:layout_editor_absoluteX="40dp"

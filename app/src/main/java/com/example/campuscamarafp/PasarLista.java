@@ -1,5 +1,6 @@
 package com.example.campuscamarafp;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
@@ -7,8 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +28,7 @@ import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class PasarLista extends AppCompatActivity {
 
@@ -36,7 +41,8 @@ select curso.id_curso, curso.nombre, curso.num_curso from curso left join impart
 on curso.id_curso = imparten.id_curso where
 dni_profesores = 'g'
 GROUP by curso.id_curso;*/
-    private Spinner spinner1;
+    private Spinner spinner1, spinner2;
+    private TextView tv1;
     private FloatingActionButton fab;
     ArrayList<AlumnoSerial> listaAlumnos;
     RecyclerView recyclerAlumnos;
@@ -51,6 +57,7 @@ GROUP by curso.id_curso;*/
 
         fab = findViewById(R.id.floatingActionButton2);
         spinner1 = findViewById(R.id.spinnerElegirModulo);
+        spinner2 = findViewById(R.id.spinnerHoras);
 
         consultarModulos();
 
@@ -83,6 +90,10 @@ GROUP by curso.id_curso;*/
                 R.layout.spinner_cursos, listaModulos);
         spinner1.setAdapter(adaptador);
         //spinner1.setOnItemSelectedListener(new spinnerSeleccionarModulos());
+
+        String lugar [] = {"8:15-9:10", "9:10-10:05", "10:05-11:00", "11:30-12:25", "12:25-13:20", "13:20-14:15"};
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_cursos, lugar);
+        spinner2.setAdapter(adapter2);
     }
 
     private void insertarFaltas(String dni_al, String dni_prof) {
@@ -90,10 +101,11 @@ GROUP by curso.id_curso;*/
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
         AlumnoSerial alumnoSerial = new AlumnoSerial();
+        String dia_hora = tv1.getText().toString() + " " + spinner2.getSelectedItem().toString();
         //instruccion que incrementa en 1 la columna de las faltas de los alumnos
         bd.execSQL("insert into faltas (num_falta, dni_alumnos, dni_profesores, dia_hora) " +
                 "values (1,'" + dni_al +"' " +
-                ", '" + dni_prof + "', datetime('now', 'localtime'));");
+                ", '" + dni_prof + "', '" + dia_hora +"');");
     }
 
     //metodo que recoge los valores de la base de datos y los proyecta en una lista
@@ -229,6 +241,21 @@ GROUP by curso.id_curso;*/
         for (int i = 0; i < moduloSerialLista.size(); i++) {
             listaModulos.add(moduloSerialLista.get(i).getNombre());
         }
+    }
+
+    //metodo que abre el calendario de la caja de texto
+    public void etCalendario(View view) {
+        tv1 = findViewById(R.id.tvElegirDia);
+        Calendar cal = Calendar.getInstance();
+        int anio = cal.get(Calendar.YEAR);
+        int mes = cal.get(Calendar.MONTH);
+        int dia = cal.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dpd = new DatePickerDialog(PasarLista.this, (view1, year, month, dayOfMonth) -> {
+            String fecha = dayOfMonth + "/" + month + "/" + year;
+            tv1.setText(fecha);
+        }, anio, mes, dia);
+        dpd.show();
     }
 
     /*public class spinnerSeleccionarModulos implements AdapterView.OnItemSelectedListener{

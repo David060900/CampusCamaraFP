@@ -45,7 +45,6 @@ public class InicioSesion extends AppCompatActivity {
             i.putExtra("dato", et1.getText().toString());
             startActivity(i);
             Toast.makeText(this,"Registro Alumnos",Toast.LENGTH_SHORT).show();
-            rb1.setChecked(false);
         }
         //condicion si el segundo radio button esta seleccionado
         if(rb2.isChecked()){
@@ -53,7 +52,6 @@ public class InicioSesion extends AppCompatActivity {
             i.putExtra("dato2", et1.getText().toString());
             startActivity(i);
             Toast.makeText(this,"Registro Profesores",Toast.LENGTH_SHORT).show();
-            rb2.setChecked(false);
         }
     }
     //método para iniciar sesión y abrir otra ventana
