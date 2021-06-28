@@ -130,52 +130,52 @@ public class RegistrarseAlumnos extends AppCompatActivity {
             if (cb2.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner + ", " + 3 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 4 + ", '" + dni + "');");
             }
             if (cb3.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner + ", " + 4 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 9 + ", '" + dni + "');");
             }
             if(cb4.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner + ", " + 5 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 10 + ", '" + dni + "');");
             }
             if(cb5.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner + ", " + 1 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 2 + ", '" + dni + "');");
             }
             if(cb6.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner + ", " + 3 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 5 + ", '" + dni + "');");
             }
             if(cb7.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner + ", " + 2 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 7 + ", '" + dni + "');");
             }
             if(cb8.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner + ", " + 6 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 11 + ", '" + dni + "');");
             }
             if(cb9.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner + ", " + 1 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 3 + ", '" + dni + "');");
             }
             if(cb10.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner + ", " + 3 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 6 + ", '" + dni + "');");
             }
             if(cb11.isChecked()){
                 //tabla estudian
                 db.execSQL("insert into estudian (id_curso, id_modulo, dni_alumnos) " +
-                        "values (" + spinner + ", " + 2 + ", '" + dni + "');");
+                        "values (" + spinner + ", " + 8 + ", '" + dni + "');");
             }
         }
     }

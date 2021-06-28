@@ -124,7 +124,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginLeft="20dp"
                         android:foregroundGravity="center"
-                        android:text="FOL" />
+                        android:text="FOL --- DAM" />
 
                     <CheckBox
                         android:id="@+id/cbInglesProf"
@@ -134,7 +134,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginLeft="20dp"
                         android:foregroundGravity="center"
-                        android:text="Ingles" />
+                        android:text="Ingles --- DAM" />
 
                     <CheckBox
                         android:id="@+id/cbBasesProf"
@@ -176,7 +176,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginLeft="20dp"
                         android:foregroundGravity="center"
-                        android:text="FOL" />
+                        android:text="FOL --- MYP" />
 
                     <CheckBox
                         android:id="@+id/cbInglesMYP1Prof"
@@ -186,7 +186,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginLeft="20dp"
                         android:foregroundGravity="center"
-                        android:text="Ingles" />
+                        android:text="Ingles --- MYP" />
                     <CheckBox
                         android:id="@+id/cbGEYFEMYPProf"
                         android:layout_width="match_parent"
@@ -195,7 +195,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginLeft="20dp"
                         android:foregroundGravity="center"
-                        android:text="GEYFE" />
+                        android:text="GEYFE --- MYP" />
 
                     <CheckBox
                         android:id="@+id/cbPLMKMYPProf"
@@ -225,7 +225,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginLeft="20dp"
                         android:foregroundGravity="center"
-                        android:text="FOL" />
+                        android:text="FOL --- CIN" />
 
                     <CheckBox
                         android:id="@+id/cbInglesCIN1Prof"
@@ -235,7 +235,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginLeft="20dp"
                         android:foregroundGravity="center"
-                        android:text="Ingles" />
+                        android:text="Ingles --- CIN" />
                     <CheckBox
                         android:id="@+id/cbGEYFECINProf"
                         android:layout_width="match_parent"
@@ -244,7 +244,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginLeft="20dp"
                         android:foregroundGravity="center"
-                        android:text="GEYFE" />
+                        android:text="GEYFE --- CIN" />
 
                 </RadioGroup>
 
