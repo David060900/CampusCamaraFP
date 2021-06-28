@@ -31,8 +31,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class PasarLista extends AppCompatActivity {
-
-
     /*select modulo.id_modulo, nombre from modulo left join imparten
 on modulo.id_modulo = imparten.id_modulo where
 dni_profesores = 'g'
@@ -125,9 +123,11 @@ GROUP by curso.id_curso;*/
         while(modulo.moveToNext()){
             idmodulo = modulo.getInt(0);
         }
+        //--------- HACER SUBCONSULTA
+        String moduloname = "FOL --- DAM";
         //consulta el nombre y los apellidos de los alumnos que estudian el curso que imparte el profesor
-        Cursor alumnos = bd.rawQuery("select nombre, apellidos, alumnos.dni_alumnos from alumnos left join estudian on" +
-                " alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_modulo = '" + idmodulo + "' group by alumnos.dni_alumnos;", null);
+        Cursor alumnos = bd.rawQuery("select alumnos.nombre, alumnos.apellidos, alumnos.dni_alumnos from alumnos, modulo" +
+                " where modulo.nombre = '" + moduloname + "';", null);
         if(alumnos.moveToFirst()){
             do{
                 String nombre = alumnos.getString(0);
