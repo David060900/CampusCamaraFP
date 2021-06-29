@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -40,7 +41,7 @@ on curso.id_curso = imparten.id_curso where
 dni_profesores = 'g'
 GROUP by curso.id_curso;*/
     private Spinner spinner1, spinner2;
-    private TextView tv1;
+    private TextView tv1, tv2;
     private FloatingActionButton fab;
     ArrayList<AlumnoSerial> listaAlumnos;
     RecyclerView recyclerAlumnos;
@@ -56,6 +57,7 @@ GROUP by curso.id_curso;*/
         fab = findViewById(R.id.floatingActionButton2);
         spinner1 = findViewById(R.id.spinnerElegirModulo);
         spinner2 = findViewById(R.id.spinnerHoras);
+        tv2 = findViewById(R.id.tvprueba);
 
         consultarModulos();
 
@@ -87,7 +89,6 @@ GROUP by curso.id_curso;*/
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
                 R.layout.spinner_cursos, listaModulos);
         spinner1.setAdapter(adaptador);
-        //spinner1.setOnItemSelectedListener(new spinnerSeleccionarModulos());
 
         String lugar [] = {"8:15-9:10", "9:10-10:05", "10:05-11:00", "11:30-12:25", "12:25-13:20", "13:20-14:15"};
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_cursos, lugar);
@@ -116,26 +117,33 @@ GROUP by curso.id_curso;*/
         ProfesorSerial profesorSerialRecibe;
         profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
 
-        //consulta el id del curso al que pertenece el profesor que ha iniciado sesion
-        Cursor modulo = bd.rawQuery("select id_modulo from imparten " +
-                "where dni_profesores = '" + profesorSerialRecibe.getDni_profesores() + "';",null);
-        int idmodulo = 0;
-        while(modulo.moveToNext()){
-            idmodulo = modulo.getInt(0);
-        }
-        //--------- HACER SUBCONSULTA
-        String moduloname = "FOL --- DAM";
-        //consulta el nombre y los apellidos de los alumnos que estudian el curso que imparte el profesor
-        Cursor alumnos = bd.rawQuery("select alumnos.nombre, alumnos.apellidos, alumnos.dni_alumnos from alumnos, modulo" +
-                " where modulo.nombre = '" + moduloname + "';", null);
-        if(alumnos.moveToFirst()){
-            do{
-                String nombre = alumnos.getString(0);
-                String apellidos = alumnos.getString(1);
-                String dni_alumnos = alumnos.getString(2);
-                listaAlumnos.add(new AlumnoSerial(nombre, apellidos, dni_alumnos));
-            }while(alumnos.moveToNext());
-        }
+        Spinner spinnerModulo = findViewById(R.id.spinnerElegirModulo);
+
+        spinnerModulo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                String ValorSeleccionado=spinnerModulo.getItemAtPosition(position).toString(); //Obtiene el valor del Spinner
+                tv2.setText(ValorSeleccionado);
+                //consulta el nombre y los apellidos de los alumnos que estudian el modulo que imparte el profesor
+                Cursor alumnos = bd.rawQuery("select alumnos.nombre, alumnos.apellidos, alumnos.dni_alumnos from alumnos left join estudian " +
+                        " on alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_modulo in (select id_modulo from modulo" +
+                        " where modulo.nombre = '"+ValorSeleccionado+"');", null);
+                if(alumnos.moveToFirst()){
+                    do{
+                        String nombre = alumnos.getString(0);
+                        String apellidos = alumnos.getString(1);
+                        String dni_alumnos = alumnos.getString(2);
+                        listaAlumnos.add(new AlumnoSerial(nombre, apellidos, dni_alumnos));
+                    }while(alumnos.moveToNext());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
     //método que da paso a la actividad Perfil
     public void Perfil (){
