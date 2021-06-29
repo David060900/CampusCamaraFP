@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -32,17 +33,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class PasarLista extends AppCompatActivity {
-    /*select modulo.id_modulo, nombre from modulo left join imparten
-on modulo.id_modulo = imparten.id_modulo where
-dni_profesores = 'g'
-and imparten.id_curso = '1';
-select curso.id_curso, curso.nombre, curso.num_curso from curso left join imparten
-on curso.id_curso = imparten.id_curso where
-dni_profesores = 'g'
-GROUP by curso.id_curso;*/
+
     private Spinner spinner1, spinner2;
     private TextView tv1, tv2;
     private FloatingActionButton fab;
+    private String ValorSeleccionado;
     ArrayList<AlumnoSerial> listaAlumnos;
     RecyclerView recyclerAlumnos;
     ArrayList<String> listaModulos;
@@ -62,7 +57,6 @@ GROUP by curso.id_curso;*/
         consultarModulos();
 
         listaAlumnos = new ArrayList<>();
-        llenarListaAlumnos();
         AdaptadorPasarLista adapter = new AdaptadorPasarLista(listaAlumnos, getApplicationContext());
 
         //recibimos objetos de la clase inicio sesion
@@ -90,7 +84,9 @@ GROUP by curso.id_curso;*/
                 R.layout.spinner_cursos, listaModulos);
         spinner1.setAdapter(adaptador);
 
-        String lugar [] = {"8:15-9:10", "9:10-10:05", "10:05-11:00", "11:30-12:25", "12:25-13:20", "13:20-14:15"};
+        llenarListaAlumnos();
+
+        String lugar [] = {"8:15 - 9:10", "9:10 - 10:05", "10:05 - 11:00", "11:30 - 12:25", "12:25 - 13:20", "13:20 - 14:15"};
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_cursos, lugar);
         spinner2.setAdapter(adapter2);
     }
@@ -112,28 +108,23 @@ GROUP by curso.id_curso;*/
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
-        //recibimos objetos de la clase inicio sesion
-        Bundle objEnviado = getIntent().getExtras();
-        ProfesorSerial profesorSerialRecibe;
-        profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
-
-        Spinner spinnerModulo = findViewById(R.id.spinnerElegirModulo);
-
-        spinnerModulo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                String ValorSeleccionado=spinnerModulo.getItemAtPosition(position).toString(); //Obtiene el valor del Spinner
+                ValorSeleccionado=spinner1.getSelectedItem().toString(); //Obtiene el valor del Spinner
                 tv2.setText(ValorSeleccionado);
                 //consulta el nombre y los apellidos de los alumnos que estudian el modulo que imparte el profesor
                 Cursor alumnos = bd.rawQuery("select alumnos.nombre, alumnos.apellidos, alumnos.dni_alumnos from alumnos left join estudian " +
                         " on alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_modulo in (select id_modulo from modulo" +
-                        " where modulo.nombre = '"+ValorSeleccionado+"');", null);
+                        " where modulo.nombre = '" + ValorSeleccionado + "');", null);
                 if(alumnos.moveToFirst()){
                     do{
                         String nombre = alumnos.getString(0);
                         String apellidos = alumnos.getString(1);
                         String dni_alumnos = alumnos.getString(2);
                         listaAlumnos.add(new AlumnoSerial(nombre, apellidos, dni_alumnos));
+                        Toast.makeText(PasarLista.this, ValorSeleccionado, Toast.LENGTH_SHORT).show();
+
                     }while(alumnos.moveToNext());
                 }
             }
@@ -161,19 +152,19 @@ GROUP by curso.id_curso;*/
                 , null);
         //corrección de errores
         try{
-            //condicion que recoge esos valores y los inserta en la clase serializable alumno
+            //condicion que recoge esos valores y los inserta en la clase serializable profesor
             if(fila.moveToFirst()){
                 ProfesorSerial profesorSerialEnvia = new ProfesorSerial();
-                String dnii = fila.getString(0);
-                profesorSerialEnvia.setDni_profesores(dnii);
+                String dni = fila.getString(0);
+                profesorSerialEnvia.setDni_profesores(dni);
                 String correo = fila.getString(1);
                 profesorSerialEnvia.setCorreo(correo);
                 String nombre= fila.getString(2);
                 profesorSerialEnvia.setNombre(nombre);
                 String apellidos = fila.getString(3);
                 profesorSerialEnvia.setApellidos(apellidos);
-                String passwordd = fila.getString(4);
-                profesorSerialEnvia.setPassword(passwordd);
+                String password = fila.getString(4);
+                profesorSerialEnvia.setPassword(password);
 
                 //se envia los datos de los profesores a la clase del perfil del profesor
                 Intent i = new Intent(this, PerfilProfesor.class);
