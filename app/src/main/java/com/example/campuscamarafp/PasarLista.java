@@ -52,6 +52,7 @@ public class PasarLista extends AppCompatActivity {
         fab = findViewById(R.id.floatingActionButton2);
         spinner1 = findViewById(R.id.spinnerElegirModulo);
         spinner2 = findViewById(R.id.spinnerHoras);
+        tv1 = findViewById(R.id.tvElegirDia);
         tv2 = findViewById(R.id.tvprueba);
 
         consultarModulos();
