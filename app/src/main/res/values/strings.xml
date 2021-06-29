@@ -64,6 +64,8 @@
 
     <string name="passnueva">Escribe tu nueva contraseña:</string>
 
+    <string name="passnueva2">Repite la nueva contraseña:</string>
+
     <string name="verfaltas">Visualizar Faltas</string>
 
     /**********************FALTAS**********************/

@@ -15,7 +15,7 @@ import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 
 public class CambiarPasswordAlumnos extends AppCompatActivity {
 
-    private EditText et1, et2;
+    private EditText et1, et2, et3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class CambiarPasswordAlumnos extends AppCompatActivity {
 
         et1 = findViewById(R.id.etPasswordAntiguaAlum);
         et2 = findViewById(R.id.etPasswordNuevaAlum);
+        et3 = findViewById(R.id.etPasswordNuevaAlum2);
     }
     //metodo que comprueba la contraseña antigua y actualiza a la nueva
     public void comprobarPassword(View view){
@@ -32,6 +33,7 @@ public class CambiarPasswordAlumnos extends AppCompatActivity {
 
         String password = et1.getText().toString();
         String passwordnueva = et2.getText().toString();
+        String passwordnueva2 = et3.getText().toString();
 
         //recibimos el dni del alumno de la clase objeto
         Bundle objEnviado = getIntent().getExtras();
@@ -46,11 +48,11 @@ public class CambiarPasswordAlumnos extends AppCompatActivity {
 
         //corrección de errores
         try{
-            if(!password.isEmpty() && !passwordnueva.isEmpty()){
+            if(!password.isEmpty() && !passwordnueva.isEmpty() && !passwordnueva2.isEmpty()){
                 if(fila.moveToFirst()){
                     String pass = fila.getString(0);
                     //condicion si coincide, actualizamos a la nueva contraseña
-                    if(password.equals(pass)){
+                    if(password.equals(pass) && passwordnueva.equals(passwordnueva2)){
                         //instruccion sql que actualiza los valores en la base de datos
                         bd.execSQL("update alumnos set password = '" + passwordnueva + "' "
                                 + " where dni_alumnos = '" + dni + "';");
