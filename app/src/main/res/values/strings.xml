@@ -40,7 +40,9 @@
 
     <string name="impartir">Impartir</string>
 
-    <string name="asigimpartir">¿Qué asignatura quieres impartir?</string>
+    <string name="queceder">¿Qué puedes ceder para el resto de alumnos?</string>
+
+    <string name="ejemploimpartir">Ayudar con FOL o pasear al perro</string>
 
     <string name="tiempoimpartir">¿Cuánto tiempo tienes para emplear en la asignatura?</string>
 

@@ -7,37 +7,35 @@
 
     <TextView
         android:id="@+id/tvListaAsignatura"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="276dp"
-        android:layout_marginLeft="276dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="33dp"
+        android:gravity="center"
         android:text="TextView"
         android:textColor="@color/azul"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="104dp" />
 
     <TextView
         android:id="@+id/tvListaNombre"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
         android:text="TextView"
         android:textColor="@color/azul"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="104dp" />
 
     <TextView
         android:id="@+id/tvListaDiaHora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginLeft="96dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="63dp"
         android:text="TextView"
         android:textColor="@color/azul"
         android:textSize="16sp"
@@ -48,9 +46,9 @@
         android:id="@+id/tvListaHoras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="248dp"
-        android:layout_marginLeft="248dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="63dp"
         android:text="TextView"
         android:textColor="@color/azul"
         android:textSize="16sp"

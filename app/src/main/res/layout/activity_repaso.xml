@@ -12,14 +12,19 @@
         android:layout_height="37dp"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:hint="@string/asigimpartir" />
+        android:hint="@string/queceder" />
 
-    <Spinner
-        android:id="@+id/spinnerAsignaturas"
+    <EditText
+        android:id="@+id/etQueImpartir"
         android:layout_width="362dp"
-        android:layout_height="49dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/ejemploimpartir"
+        android:inputType="textPersonName"
+        android:textColor="@color/azul" />
 
     <TextView
         android:id="@+id/tvTiempoImpartir"

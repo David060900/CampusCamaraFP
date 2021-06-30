@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="403dp"
@@ -48,7 +50,6 @@
         android:layout_height="60dp"
         android:layout_marginStart="325dp"
         android:layout_marginLeft="325dp"
-        android:layout_marginTop="-80dp"
         android:clickable="true"
         android:src="@drawable/icono_libro"
         app:maxImageSize="45dp" />

@@ -24,8 +24,8 @@ import java.util.Calendar;
 
 public class Repaso extends AppCompatActivity {
 
-    private Spinner spinner1, spinner2;
-    private EditText et1, et2;
+    private Spinner spinner2;
+    private EditText et1, et2, et3;
     private TextView tv1;
     ArrayList<String> listaModulo;
     ArrayList<ModuloSerial> moduloLista;
@@ -38,47 +38,13 @@ public class Repaso extends AppCompatActivity {
         et1 = findViewById(R.id.etTiempoImpartir);
         tv1 = findViewById(R.id.tvDiaSemanaU);
         et2 = findViewById(R.id.etHoraU);
-        spinner1 = findViewById(R.id.spinnerAsignaturas);
+        et3 = findViewById(R.id.etQueImpartir);
         spinner2 = findViewById(R.id.spinnerLugarQuedar);
-        //declaramos con adaptadores nuestros propios spinners
-        consultarModulos();
-
-        //adaptador para el spinner
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
-                R.layout.spinner_cursos, listaModulo);
-        spinner1.setAdapter(adaptador);
 
         //spinner para decidir el lugar donde quedar
         String lugar [] = {"Hall CCFP", "Online"};
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_cursos, lugar);
         spinner2.setAdapter(adapter2);
-    }
-    //consulta los modulos para posteriormente añadirlo en el spinner
-    private void consultarModulos() {
-        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
-        SQLiteDatabase db = conexion.getWritableDatabase();
-
-        moduloLista = new ArrayList<ModuloSerial>();
-        ModuloSerial modulo = null;
-        //consulta el id del modulo y el nombre
-        Cursor cursor = db.rawQuery("select id_modulo, nombre from modulo;", null);
-
-        while(cursor.moveToNext()){
-            modulo = new ModuloSerial();
-            modulo.setId_modulo(cursor.getInt(0));
-            modulo.setNombre(cursor.getString(1));
-
-            moduloLista.add(modulo);
-        }
-        obtenerListaModulo();
-    }
-    //inserta los valores en el spinner
-    public void obtenerListaModulo() {
-        listaModulo = new ArrayList<String>();
-
-        for (int i = 0; i < moduloLista.size(); i++) {
-            listaModulo.add(moduloLista.get(i).getNombre());
-        }
     }
     //metodo que inserta en la tabla impartir de la base de datos
     public void RegistrarImpartir(View view){
@@ -89,7 +55,7 @@ public class Repaso extends AppCompatActivity {
         String calendario = tv1.getText().toString();
         String hora = et2.getText().toString();
         String diahora = calendario + " " + hora;
-        String modulo = spinner1.getSelectedItem().toString();
+        String modulo = et3.getText().toString();
         String lugarQuedada = spinner2.getSelectedItem().toString();
         String nombre = "";
         String apellidos = "";
