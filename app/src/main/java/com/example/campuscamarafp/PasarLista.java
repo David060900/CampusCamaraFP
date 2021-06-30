@@ -61,10 +61,9 @@ public class PasarLista extends AppCompatActivity {
         ProfesorSerial profesorSerialRecibe;
         profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
 
-        String texto = "Seleccionar Día";
         fab.setOnClickListener(v -> {
-            if(tv2.getText().equals(R.string.elegirdia)){
-                Toast.makeText(PasarLista.this, "Hola", Toast.LENGTH_SHORT).show();
+            if(tv1.getText().toString().length() == 15){
+                Toast.makeText(PasarLista.this, "Selecciona el día", Toast.LENGTH_SHORT).show();
             }else{
                 for(AlumnoSerial alumnoSerial : adapter.checkedAlumnos){
                     insertarFaltas(alumnoSerial.getDni_alumno(), profesorSerialRecibe.getDni_profesores());
@@ -255,37 +254,4 @@ public class PasarLista extends AppCompatActivity {
         }, anio, mes, dia);
         dpd.show();
     }
-
-    /*public class spinnerSeleccionarModulos implements AdapterView.OnItemSelectedListener{
-
-        RadioGroup rgDAM1 = findViewById(R.id.radioPrimeroDAMAlum);
-        RadioGroup rgMYP1 = findViewById(R.id.radioPrimeroMYPAlum);
-        RadioGroup rgCIN1 = findViewById(R.id.radioPrimeroCINAlum);
-
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            if(parent.getItemAtPosition(position).toString().equals("Primero ---- DAM")){
-                rgDAM1.setVisibility(View.VISIBLE);
-            }else{
-                rgDAM1.setVisibility(View.GONE);
-            }
-            if(parent.getItemAtPosition(position).toString().equals("Primero ---- Marketing y Publicidad")){
-                rgMYP1.setVisibility(View.VISIBLE);
-            }else{
-                rgMYP1.setVisibility(View.GONE);
-            }
-            if(parent.getItemAtPosition(position).toString().equals("Primero ---- Comercio Internacional")){
-                rgCIN1.setVisibility(View.VISIBLE);
-            }else{
-                rgCIN1.setVisibility(View.GONE);
-            }
-
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
-    }*/
-
 }
