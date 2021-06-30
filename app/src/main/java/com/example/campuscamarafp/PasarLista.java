@@ -6,7 +6,6 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -68,11 +67,11 @@ public class PasarLista extends AppCompatActivity {
                 for(AlumnoSerial alumnoSerial : adapter.checkedAlumnos){
                     insertarFaltas(alumnoSerial.getDni_alumno(), profesorSerialRecibe.getDni_profesores());
                     if(adapter.checkedAlumnos.size()>0){
-                        Toast.makeText(PasarLista.this, "Faltas guardadas", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(PasarLista.this, "Hoy no ha faltado nadie!", Toast.LENGTH_SHORT).show();
                     }
                 }
+                Toast.makeText(PasarLista.this, "Faltas guardadas", Toast.LENGTH_SHORT).show();
             }
         });
         recyclerAlumnos = findViewById(R.id.recyclerAlumnos);
@@ -185,7 +184,7 @@ public class PasarLista extends AppCompatActivity {
 
     //método que muestra los botones de acción
     public boolean onCreateOptionsMenu (Menu menu){
-        getMenuInflater().inflate(R.menu.menuacciones, menu);
+        getMenuInflater().inflate(R.menu.menuperfil, menu);
         getMenuInflater().inflate(R.menu.menuayuda, menu);
         return true;
     }
@@ -245,7 +244,7 @@ public class PasarLista extends AppCompatActivity {
         tv1 = findViewById(R.id.tvElegirDia);
         Calendar cal = Calendar.getInstance();
         int anio = cal.get(Calendar.YEAR);
-        int mes = cal.get(Calendar.MONTH);
+        int mes = cal.get(Calendar.MONTH) + 1;
         int dia = cal.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog dpd = new DatePickerDialog(PasarLista.this, (view1, year, month, dayOfMonth) -> {

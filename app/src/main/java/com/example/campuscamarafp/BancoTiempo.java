@@ -173,7 +173,7 @@ public class BancoTiempo extends AppCompatActivity {
     }
     //método que muestra los botones de acción
     public boolean onCreateOptionsMenu (Menu menu){
-        getMenuInflater().inflate(R.menu.menuacciones, menu);
+        getMenuInflater().inflate(R.menu.menuperfil, menu);
         getMenuInflater().inflate(R.menu.menuayuda, menu);
         return true;
     }

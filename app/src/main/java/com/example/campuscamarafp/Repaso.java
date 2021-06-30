@@ -27,8 +27,6 @@ public class Repaso extends AppCompatActivity {
     private Spinner spinner2;
     private EditText et1, et2, et3;
     private TextView tv1;
-    ArrayList<String> listaModulo;
-    ArrayList<ModuloSerial> moduloLista;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -105,7 +103,7 @@ public class Repaso extends AppCompatActivity {
         tv1 = findViewById(R.id.tvDiaSemanaU);
         Calendar cal = Calendar.getInstance();
         int anio = cal.get(Calendar.YEAR);
-        int mes = cal.get(Calendar.MONTH);
+        int mes = cal.get(Calendar.MONTH) + 1;
         int dia = cal.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog dpd = new DatePickerDialog(Repaso.this, (view1, year, month, dayOfMonth) -> {

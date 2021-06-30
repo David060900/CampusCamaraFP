@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -75,11 +77,15 @@ public class PerfilAlumno extends AppCompatActivity{
         //consulta que hace un count de las faltas de cada alumno
         Cursor fila = bd.rawQuery("select count(num_falta) from faltas where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
                 , null);
-        while(fila.moveToNext()){
+        while(fila.moveToNext()) {
             int numfaltas = fila.getInt(0);
             String numfaltasS = String.valueOf(numfaltas);
             tv4.setText(numfaltasS);
         }
-
+    }
+    //método que muestra los botones de acción
+    public boolean onCreateOptionsMenu (Menu menu){
+        getMenuInflater().inflate(R.menu.menuacciones, menu);
+        return true;
     }
 }
