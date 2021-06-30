@@ -92,10 +92,24 @@ public class PasarLista extends AppCompatActivity {
         AlumnoSerial alumnoSerial = new AlumnoSerial();
         String dia_hora = tv1.getText().toString() + " " + spinner2.getSelectedItem().toString();
 
+        //recibimos objetos de la clase inicio sesion
+        Bundle objEnviado = getIntent().getExtras();
+        ProfesorSerial profesorSerialRecibe;
+        profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
+
+        Cursor modulo = bd.rawQuery("select modulo.id_modulo from modulo left join imparten on" +
+                " modulo.id_modulo = imparten.id_modulo " +
+                "where imparten.dni_profesores = '" + profesorSerialRecibe.getDni_profesores() + "';", null);
+
+        int id_modulo = 0;
+        if(modulo.moveToFirst()){
+            id_modulo = modulo.getInt(0);
+        }
+
         //instruccion que incrementa en 1 la columna de las faltas de los alumnos
-        bd.execSQL("insert into faltas (num_falta, dni_alumnos, dni_profesores, dia_hora) " +
+        bd.execSQL("insert into faltas (num_falta, dni_alumnos, dni_profesores, dia_hora, id_modulo) " +
                 "values (1,'" + dni_al +"' " +
-                ", '" + dni_prof + "', '" + dia_hora +"');");
+                ", '" + dni_prof + "', '" + dia_hora +"', " + id_modulo + ");");
 
     }
 

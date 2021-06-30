@@ -9,15 +9,16 @@ public class CrearTablas {
     public static final String CREAR_TABLA_PROFESORES = "create table if not exists profesores(" +
             "dni_profesores text primary key, correo_profesores text, " +
             "nombre text, apellidos text, password text);";
-    //tabla faltas
-    public static final String CREAR_TABLA_FALTAS = "create table if not exists faltas(" +
-            "id_falta integer primary key autoincrement, num_falta integer, " +
-            "dni_alumnos text, dni_profesores text, dia_hora text, " +
-            "foreign key (dni_alumnos) references alumnos(dni_alumnos), " +
-            "foreign key (dni_profesores) references profesores(dni_profesores));";
     //tabla modulo
     public static final String CREAR_TABLA_MODULO = "create table if not exists modulo(" +
             "id_modulo integer primary key, nombre text);";
+    //tabla faltas
+    public static final String CREAR_TABLA_FALTAS = "create table if not exists faltas(" +
+            "id_falta integer primary key autoincrement, num_falta integer, " +
+            "dni_alumnos text, dni_profesores text, dia_hora text, id_modulo integer, " +
+            "foreign key (dni_alumnos) references alumnos(dni_alumnos), " +
+            "foreign key (id_modulo) references modulo(id_modulo), " +
+            "foreign key (dni_profesores) references profesores(dni_profesores));";
     //tabla curso
     public static final String CREAR_TABLA_CURSO = "create table if not exists curso(" +
             "id_curso integer primary key, nombre text, num_curso text);";

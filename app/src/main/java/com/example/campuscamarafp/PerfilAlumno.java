@@ -83,9 +83,4 @@ public class PerfilAlumno extends AppCompatActivity{
             tv4.setText(numfaltasS);
         }
     }
-    //método que muestra los botones de acción
-    public boolean onCreateOptionsMenu (Menu menu){
-        getMenuInflater().inflate(R.menu.menuacciones, menu);
-        return true;
-    }
 }
