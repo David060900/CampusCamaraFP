@@ -6,13 +6,11 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,10 +32,9 @@ import java.util.Calendar;
 
 public class PasarLista extends AppCompatActivity {
 
-    private Spinner spinner1, spinner2;
+    private Spinner spinner2;
     private TextView tv1, tv2;
     private FloatingActionButton fab;
-    private String ValorSeleccionado;
     ArrayList<AlumnoSerial> listaAlumnos;
     RecyclerView recyclerAlumnos;
     ArrayList<String> listaModulos;
@@ -50,10 +47,9 @@ public class PasarLista extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         fab = findViewById(R.id.floatingActionButton2);
-        spinner1 = findViewById(R.id.spinnerElegirModulo);
         spinner2 = findViewById(R.id.spinnerHoras);
         tv1 = findViewById(R.id.tvElegirDia);
-        tv2 = findViewById(R.id.tvprueba);
+        tv2 = findViewById(R.id.tvTituloModulo);
 
         consultarModulos();
 
@@ -65,25 +61,24 @@ public class PasarLista extends AppCompatActivity {
         ProfesorSerial profesorSerialRecibe;
         profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
 
+        String texto = "Seleccionar Día";
         fab.setOnClickListener(v -> {
-
-            for(AlumnoSerial alumnoSerial : adapter.checkedAlumnos){
-                insertarFaltas(alumnoSerial.getDni_alumno(),profesorSerialRecibe.getDni_profesores());
-            }
-
-            if(adapter.checkedAlumnos.size()>0){
-                Toast.makeText(PasarLista.this, "Faltas guardadas", Toast.LENGTH_SHORT).show();
+            if(tv2.getText().equals(R.string.elegirdia)){
+                Toast.makeText(PasarLista.this, "Hola", Toast.LENGTH_SHORT).show();
             }else{
-                Toast.makeText(PasarLista.this, "Hoy no ha faltado nadie!", Toast.LENGTH_SHORT).show();
+                for(AlumnoSerial alumnoSerial : adapter.checkedAlumnos){
+                    insertarFaltas(alumnoSerial.getDni_alumno(), profesorSerialRecibe.getDni_profesores());
+                    if(adapter.checkedAlumnos.size()>0){
+                        Toast.makeText(PasarLista.this, "Faltas guardadas", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(PasarLista.this, "Hoy no ha faltado nadie!", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
         recyclerAlumnos = findViewById(R.id.recyclerAlumnos);
         recyclerAlumnos.setLayoutManager(new LinearLayoutManager(this));
         recyclerAlumnos.setAdapter(adapter);
-
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
-                R.layout.spinner_cursos, listaModulos);
-        spinner1.setAdapter(adaptador);
 
         llenarListaAlumnos();
 
@@ -98,10 +93,12 @@ public class PasarLista extends AppCompatActivity {
 
         AlumnoSerial alumnoSerial = new AlumnoSerial();
         String dia_hora = tv1.getText().toString() + " " + spinner2.getSelectedItem().toString();
+
         //instruccion que incrementa en 1 la columna de las faltas de los alumnos
         bd.execSQL("insert into faltas (num_falta, dni_alumnos, dni_profesores, dia_hora) " +
                 "values (1,'" + dni_al +"' " +
                 ", '" + dni_prof + "', '" + dia_hora +"');");
+
     }
 
     //metodo que recoge los valores de la base de datos y los proyecta en una lista
@@ -109,33 +106,34 @@ public class PasarLista extends AppCompatActivity {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                ValorSeleccionado=spinner1.getSelectedItem().toString(); //Obtiene el valor del Spinner
-                tv2.setText(ValorSeleccionado);
-                //consulta el nombre y los apellidos de los alumnos que estudian el modulo que imparte el profesor
-                Cursor alumnos = bd.rawQuery("select alumnos.nombre, alumnos.apellidos, alumnos.dni_alumnos from alumnos left join estudian " +
-                        " on alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_modulo in (select id_modulo from modulo" +
-                        " where modulo.nombre = '" + ValorSeleccionado + "');", null);
-                if(alumnos.moveToFirst()){
-                    do{
-                        String nombre = alumnos.getString(0);
-                        String apellidos = alumnos.getString(1);
-                        String dni_alumnos = alumnos.getString(2);
-                        listaAlumnos.add(new AlumnoSerial(nombre, apellidos, dni_alumnos));
-                        Toast.makeText(PasarLista.this, ValorSeleccionado, Toast.LENGTH_SHORT).show();
+        //recibimos objetos de la clase inicio sesion
+        Bundle objEnviado = getIntent().getExtras();
+        ProfesorSerial profesorSerialRecibe;
+        profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
 
-                    }while(alumnos.moveToNext());
-                }
-            }
+        Cursor modulo = bd.rawQuery("select modulo.id_modulo, modulo.nombre from modulo left join imparten on" +
+                " modulo.id_modulo = imparten.id_modulo " +
+                "where imparten.dni_profesores = '" + profesorSerialRecibe.getDni_profesores() + "';", null);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+        int id_modulo = 0;
+        String nombre_modulo = null;
+        if(modulo.moveToFirst()){
+            id_modulo = modulo.getInt(0);
+            nombre_modulo = modulo.getString(1);
+        }
+        tv2.setText(nombre_modulo);
 
-            }
-        });
-
+        //consulta el nombre y los apellidos de los alumnos que estudian el modulo que imparte el profesor
+        Cursor alumnos = bd.rawQuery("select alumnos.nombre, alumnos.apellidos, alumnos.dni_alumnos from alumnos left join estudian " +
+                " on alumnos.dni_alumnos = estudian.dni_alumnos where estudian.id_modulo = '" + id_modulo + "';", null);
+        if(alumnos.moveToFirst()){
+            do{
+                String nombre = alumnos.getString(0);
+                String apellidos = alumnos.getString(1);
+                String dni_alumnos = alumnos.getString(2);
+                listaAlumnos.add(new AlumnoSerial(nombre, apellidos, dni_alumnos));
+            }while(alumnos.moveToNext());
+        }
     }
     //método que da paso a la actividad Perfil
     public void Perfil (){

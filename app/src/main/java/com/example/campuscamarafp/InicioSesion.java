@@ -80,7 +80,7 @@ public class InicioSesion extends AppCompatActivity {
                     bundle.putSerializable("alumno_iniciosesion", alumnoSerialEnvia);
                     i.putExtras(bundle);
                     startActivity(i);
-                    Toast.makeText(this,"Inicio",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Banco de Tiempo",Toast.LENGTH_SHORT).show();
                 }
             }else if(fila2.moveToFirst()){
                 String dni_bd2 = fila2.getString(0);
@@ -93,7 +93,7 @@ public class InicioSesion extends AppCompatActivity {
                     bundle.putSerializable("profesor_iniciosesion", profesorSerialEnvia);
                     i.putExtras(bundle);
                     startActivity(i);
-                    Toast.makeText(this,"Lista",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Pasar Lista",Toast.LENGTH_SHORT).show();
                 }
             }else{
                 Toast.makeText(this,"Datos incorrectos",Toast.LENGTH_SHORT).show();
