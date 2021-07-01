@@ -79,22 +79,8 @@ public class PerfilAlumno extends AppCompatActivity{
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(spinner1.getSelectedItem().equals("BBDD")){
-                    tv4.setText("hola");
-                }else{
-                    //consulta que hace un count de las faltas de cada alumno
-                    Cursor fila = bd.rawQuery("select count(faltas.num_falta), modulo.id_modulo, modulo.horas_modulo from modulo left join faltas " +
-                                    "on modulo.id_modulo = faltas.id_modulo where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "'" +
-                                    " and modulo.id_modulo = 1;"
-                            , null);
-                    while(fila.moveToNext()) {
-                        double numfaltas = fila.getInt(0);
-                        int id_modulo = fila.getInt(1);
-                        double horas = fila.getInt(2);
-                        DecimalFormat format = new DecimalFormat("#.##");
-                        double operacion = (numfaltas/horas)*100;
-                        tv4.setText(format.format(operacion) + "%");
-                    }
+                if(parent.getItemAtPosition(position).toString().equals(modulos)){
+                    tv4.setText("");
                 }
             }
 
