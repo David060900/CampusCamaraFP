@@ -65,13 +65,4 @@ public class VerFaltas extends AppCompatActivity {
             } while (faltas.moveToNext());
         }
     }
-    //método que muestra los botones de acción
-    public boolean onCreateOptionsMenu (Menu menu){
-        String [] array = new String[5];
-        for(int i = 0; i<array.length; i++){
-            int id = i;
-            menu.add(0,id,0,array[i]);
-        }
-        return true;
-    }
 }

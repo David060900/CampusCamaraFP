@@ -79,7 +79,8 @@ public class PerfilAlumno extends AppCompatActivity{
         alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("datos_alumnos");
         //consulta que hace un count de las faltas de cada alumno
         Cursor fila = bd.rawQuery("select count(faltas.num_falta), modulo.id_modulo, modulo.horas_modulo from modulo left join faltas " +
-                        "on modulo.id_modulo = faltas.id_modulo where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
+                        "on modulo.id_modulo = faltas.id_modulo where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "'" +
+                        " and modulo.id_modulo = 1;"
                 , null);
         while(fila.moveToNext()) {
             double numfaltas = fila.getInt(0);
@@ -89,5 +90,31 @@ public class PerfilAlumno extends AppCompatActivity{
             double operacion = (numfaltas/horas)*100;
             tv4.setText(format.format(operacion) + "%");
         }
+    }
+
+    //método que muestra los botones de acción
+    public boolean onCreateOptionsMenu (Menu menu){
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        SQLiteDatabase bd = conexion.getWritableDatabase();
+
+        //recibimos los datos de los alumnos
+        Bundle objEnviado = getIntent().getExtras();
+        AlumnoSerial alumnoSerialRecibe;
+        alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("datos_alumnos");
+
+        Cursor countModulo = bd.rawQuery("select count(modulo.id_modulo) from modulo left join estudian " +
+                        "on modulo.id_modulo = estudian.id_modulo where estudian.dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
+                , null);
+
+        if(countModulo.moveToFirst()){
+            int id_modulo = countModulo.getInt(0);
+            String [] array = new String[id_modulo];
+
+            for(int i = 0; i<array.length; i++){
+                int id = i;
+                menu.add(0,id,0,array[i]);
+            }
+        }
+        return true;
     }
 }
