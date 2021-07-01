@@ -42,26 +42,26 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     public void cargarDatos(SQLiteDatabase db){
         //inserts a modulo
-        db.execSQL("insert into modulo values (1,'FOL --- DAM');");
-        db.execSQL("insert into modulo values (2,'FOL --- MYP');");
-        db.execSQL("insert into modulo values (3,'FOL --- CIN');");
+        db.execSQL("insert into modulo values (1,'FOL --- DAM', 85);");
+        db.execSQL("insert into modulo values (2,'FOL --- MYP', 86);");
+        db.execSQL("insert into modulo values (3,'FOL --- CIN', 84);");
         //db.execSQL("insert into modulo values (2,'GACI');");
         //db.execSQL("insert into modulo values (4,'INGLES T');");
-        db.execSQL("insert into modulo values (4,'INGLES --- DAM');");
-        db.execSQL("insert into modulo values (5,'INGLES --- MYP');");
-        db.execSQL("insert into modulo values (6,'INGLES --- CIN');");
-        db.execSQL("insert into modulo values (7,'GEYFE --- MYP');");
-        db.execSQL("insert into modulo values (8,'GEYFE --- CIN');");
+        db.execSQL("insert into modulo values (4,'INGLES T --- DAM', 85);");
+        db.execSQL("insert into modulo values (5,'INGLES T --- MYP', 85);");
+        db.execSQL("insert into modulo values (6,'INGLES T --- CIN', 84);");
+        db.execSQL("insert into modulo values (7,'GEYFE --- MYP', 171);");
+        db.execSQL("insert into modulo values (8,'GEYFE --- CIN', 168);");
         //db.execSQL("insert into modulo values (6,'LOGAL');");
         //db.execSQL("insert into modulo values (7,'TIM');");
-        db.execSQL("insert into modulo values (9,'BBDD');");
+        db.execSQL("insert into modulo values (9,'BBDD', 171);");
         //db.execSQL("insert into modulo values (9,'ED');");
         //db.execSQL("insert into modulo values (10,'LGMS');");
-        db.execSQL("insert into modulo values (10,'PROGRAMACION');");
+        db.execSQL("insert into modulo values (10,'PROGRAMACION', 197);");
         //db.execSQL("insert into modulo values (12,'SISTEMAS');");
         //db.execSQL("insert into modulo values (13,'INVCOM');");
         //db.execSQL("insert into modulo values (14,'MKDIG');");
-        db.execSQL("insert into modulo values (11,'PLMK');");
+        db.execSQL("insert into modulo values (11,'PLMK', 168);");
         //inserts a curso
         db.execSQL("insert into curso values (1,'DAM','Primero');");
         db.execSQL("insert into curso values (2,'DAM', 'Segundo');");

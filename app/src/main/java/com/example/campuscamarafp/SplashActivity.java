@@ -20,6 +20,6 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },2000);//milisegundos que mantiene la actividad abierta
+        },10);//milisegundos que mantiene la actividad abierta
     }
 }

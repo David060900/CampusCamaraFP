@@ -11,7 +11,7 @@ public class CrearTablas {
             "nombre text, apellidos text, password text);";
     //tabla modulo
     public static final String CREAR_TABLA_MODULO = "create table if not exists modulo(" +
-            "id_modulo integer primary key, nombre text);";
+            "id_modulo integer primary key, nombre text, horas_modulo integer);";
     //tabla faltas
     public static final String CREAR_TABLA_FALTAS = "create table if not exists faltas(" +
             "id_falta integer primary key autoincrement, num_falta integer, " +

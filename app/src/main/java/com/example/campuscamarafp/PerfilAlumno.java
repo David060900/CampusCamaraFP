@@ -8,11 +8,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campuscamarafp.serializable.AlumnoSerial;
 import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
+
+import java.text.DecimalFormat;
 
 public class PerfilAlumno extends AppCompatActivity{
 
@@ -75,12 +78,16 @@ public class PerfilAlumno extends AppCompatActivity{
         AlumnoSerial alumnoSerialRecibe;
         alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("datos_alumnos");
         //consulta que hace un count de las faltas de cada alumno
-        Cursor fila = bd.rawQuery("select count(num_falta) from faltas where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
+        Cursor fila = bd.rawQuery("select count(faltas.num_falta), modulo.id_modulo, modulo.horas_modulo from modulo left join faltas " +
+                        "on modulo.id_modulo = faltas.id_modulo where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
                 , null);
         while(fila.moveToNext()) {
-            int numfaltas = fila.getInt(0);
-            String numfaltasS = String.valueOf(numfaltas);
-            tv4.setText(numfaltasS);
+            double numfaltas = fila.getInt(0);
+            int id_modulo = fila.getInt(1);
+            double horas = fila.getInt(2);
+            DecimalFormat format = new DecimalFormat("#.##");
+            double operacion = (numfaltas/horas)*100;
+            tv4.setText(format.format(operacion) + "%");
         }
     }
 }
