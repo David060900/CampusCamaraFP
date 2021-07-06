@@ -63,7 +63,7 @@ public class PerfilAlumno extends AppCompatActivity implements AdapterView.OnIte
         //adaptador para el spinner de cursos
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
                 R.layout.spinner_cursos, modulos);
-
+        //metodo que saca los modulos del alumno con el que se ha iniciado la sesion
         Cursor c = bd.rawQuery("select modulo.nombre from modulo left join estudian " +
                         "on modulo.id_modulo = estudian.id_modulo where estudian.dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
                 , null);
@@ -121,7 +121,7 @@ public class PerfilAlumno extends AppCompatActivity implements AdapterView.OnIte
             tv4.setText(format.format(operacion) + "%");
         }
     }
-
+    //metodo que comprueba el valor del spinner y plasma el porcentaje en en textview
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         parent.getSelectedItem();

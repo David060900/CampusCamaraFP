@@ -115,7 +115,7 @@ public class RegistrarseProfesores extends AppCompatActivity {
         etNombre.setText("");
         etPassword.setText("");
     }
-
+    //metodo que inserta en la tabla imparten lo que los profesores eligen
     public void insertImparten(View view, String dni){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();

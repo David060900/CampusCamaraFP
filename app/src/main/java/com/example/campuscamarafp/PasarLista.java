@@ -59,7 +59,7 @@ public class PasarLista extends AppCompatActivity {
         Bundle objEnviado = getIntent().getExtras();
         ProfesorSerial profesorSerialRecibe;
         profesorSerialRecibe = (ProfesorSerial) objEnviado.getSerializable("profesor_iniciosesion");
-
+        //boton que comprueba que se ha seleccionado el dia e inserta las faltas
         fab.setOnClickListener(v -> {
             if(tv1.getText().toString().length() == 15){
                 Toast.makeText(PasarLista.this, "Selecciona el día", Toast.LENGTH_SHORT).show();
@@ -84,7 +84,7 @@ public class PasarLista extends AppCompatActivity {
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_cursos, lugar);
         spinner2.setAdapter(adapter2);
     }
-
+    //metodo que inserta las faltas en la bd
     private void insertarFaltas(String dni_al, String dni_prof) {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(PasarLista.this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();

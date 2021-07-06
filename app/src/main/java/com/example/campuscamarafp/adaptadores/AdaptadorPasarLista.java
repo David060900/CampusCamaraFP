@@ -15,7 +15,7 @@ import com.example.campuscamarafp.R;
 import com.example.campuscamarafp.serializable.AlumnoSerial;
 
 import java.util.ArrayList;
-
+//adaptador para que los profesores pasen lista
 public class AdaptadorPasarLista extends RecyclerView.Adapter<AdaptadorPasarLista.ViewHolderPasarLista> {
 
     ArrayList<AlumnoSerial> listaAlumnos;

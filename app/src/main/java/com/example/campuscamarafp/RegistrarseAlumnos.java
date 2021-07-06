@@ -86,7 +86,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
             listaCursos.add(cursoSerialLista.get(i).getNum_curso() + " ---- " + cursoSerialLista.get(i).getNombre());
         }
     }
-
+    //metodo que inserta en la bd los datos de los alumnos
     public void registrarAlumnos(View view) {
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();
@@ -116,7 +116,7 @@ public class RegistrarseAlumnos extends AppCompatActivity {
         etNombre.setText("");
         etPassword.setText("");
     }
-
+    //metodo que inserta en la tabla estudian lo que los alumnos eligen
     public void insertEstudian(View view, String dni){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase db = conexion.getWritableDatabase();

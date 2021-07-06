@@ -11,7 +11,7 @@ import com.example.campuscamarafp.R;
 import com.example.campuscamarafp.serializable.RepasoSerial;
 
 import java.util.ArrayList;
-
+//adaptador para la lista del Banco de Tiempo
 public class Adaptador extends BaseAdapter {
     private ArrayList<RepasoSerial> listItems;
     private Context contexto;

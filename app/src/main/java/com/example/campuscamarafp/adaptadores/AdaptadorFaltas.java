@@ -11,7 +11,7 @@ import com.example.campuscamarafp.R;
 import com.example.campuscamarafp.serializable.FaltasSerial;
 
 import java.util.ArrayList;
-
+//adaptador para la visualización de las faltas
 public class AdaptadorFaltas extends RecyclerView.Adapter<AdaptadorFaltas.ViewHolderFaltas> {
 
     ArrayList<FaltasSerial> listaFaltas;
