@@ -129,9 +129,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTotalFaltasNU"
-        android:layout_marginStart="31dp"
-        android:layout_marginLeft="31dp"
-        android:layout_marginTop="53dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="42dp"
         android:layout_toEndOf="@+id/tvPerfilApellidosAlumU"
         android:layout_toRightOf="@+id/tvPerfilApellidosAlumU"
         android:textSize="16sp" />
@@ -142,7 +142,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvPerfilDNIAlumU"
         android:layout_centerInParent="true"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="55dp"
         android:gravity="center"
         android:onClick="visualizarFaltas"
         android:text="@string/verfaltas" />
@@ -163,14 +163,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvPerfilDNIAlumU"
-        android:layout_marginTop="6dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button"
-        android:layout_marginTop="16dp"
-        android:text="Button" />
+        android:layout_marginTop="15dp" />
 
 </RelativeLayout>

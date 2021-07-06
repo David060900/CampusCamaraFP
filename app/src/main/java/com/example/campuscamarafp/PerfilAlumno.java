@@ -22,12 +22,13 @@ import com.example.campuscamarafp.sqlite.AdminSQLiteOpenHelper;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class PerfilAlumno extends AppCompatActivity{
+public class PerfilAlumno extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private TextView tv1, tv2, tv3, tv4, tv5;
     Spinner spinner1;
-    Button btn;
     ArrayList<String> modulos = new ArrayList<String>();
+    String modulo = null;
+    String nombre_modulo = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +41,6 @@ public class PerfilAlumno extends AppCompatActivity{
         tv4 = findViewById(R.id.tvTotalFaltasAlumU);
         tv5 = findViewById(R.id.tvPerfilDNIAlumU);
         spinner1 = findViewById(R.id.spinner);
-        btn = findViewById(R.id.button2);
-
-        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
-        SQLiteDatabase bd = conexion.getWritableDatabase();
 
         //recoge los datos que se han enviado del alumno y los escribe en Text Views
         Bundle objEnviado = getIntent().getExtras();
@@ -60,7 +57,8 @@ public class PerfilAlumno extends AppCompatActivity{
         tv3.setText(correo_alumno);
         tv5.setText(dni_alumno);
 
-        verFaltas();
+        AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
+        SQLiteDatabase bd = conexion.getWritableDatabase();
 
         //adaptador para el spinner de cursos
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,
@@ -70,24 +68,13 @@ public class PerfilAlumno extends AppCompatActivity{
                         "on modulo.id_modulo = estudian.id_modulo where estudian.dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
                 , null);
 
-        String modulo = null;
         while(c.moveToNext()){
             modulo = c.getString(0);
             modulos.add(modulo);
         }
         spinner1.setAdapter(adaptador);
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(parent.getItemAtPosition(position).toString().equals(modulos)){
-                    tv4.setText("");
-                }
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+        verFaltas();
 
     }
     //metodo que llama a la clase que cambia la contraseña
@@ -119,21 +106,43 @@ public class PerfilAlumno extends AppCompatActivity{
         AlumnoSerial alumnoSerialRecibe;
         alumnoSerialRecibe = (AlumnoSerial) objEnviado.getSerializable("datos_alumnos");
         //consulta que hace un count de las faltas de cada alumno
-        Cursor fila = bd.rawQuery("select count(faltas.num_falta), modulo.id_modulo, modulo.horas_modulo from modulo left join faltas " +
+        Cursor fila = bd.rawQuery("select count(faltas.num_falta), modulo.id_modulo, modulo.horas_modulo, modulo.nombre from modulo left join faltas " +
                         "on modulo.id_modulo = faltas.id_modulo where dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "'" +
                         " and modulo.id_modulo = 1;"
                 , null);
+
         while(fila.moveToNext()) {
             double numfaltas = fila.getInt(0);
             int id_modulo = fila.getInt(1);
             double horas = fila.getInt(2);
+            nombre_modulo = fila.getString(3);
             DecimalFormat format = new DecimalFormat("#.##");
             double operacion = (numfaltas/horas)*100;
             tv4.setText(format.format(operacion) + "%");
         }
     }
 
-    //método que muestra los botones de acción
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        parent.getSelectedItem();
+        switch (parent.getId()){
+            case R.id.spinner:
+                if(parent.getSelectedItemPosition() == 1){
+                    Toast.makeText(this, parent.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+                    tv4.setText(parent.getSelectedItem().toString());
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    /*//método que muestra los botones de acción
     public boolean onCreateOptionsMenu (Menu menu){
         AdminSQLiteOpenHelper conexion = new AdminSQLiteOpenHelper(this, "campus", null, 1);
         SQLiteDatabase bd = conexion.getWritableDatabase();
@@ -147,7 +156,7 @@ public class PerfilAlumno extends AppCompatActivity{
                         "on modulo.id_modulo = estudian.id_modulo where estudian.dni_alumnos = '" + alumnoSerialRecibe.getDni_alumno() + "';"
                 , null);
 
-        if(countModulo.moveToFirst()){
+        if(countModulo.moveToNext()){
             int id_modulo = countModulo.getInt(0);
             String modulo = countModulo.getString(1);
             String [] array = new String[id_modulo];
@@ -157,5 +166,5 @@ public class PerfilAlumno extends AppCompatActivity{
             }
         }
         return true;
-    }
+    }*/
 }
